@@ -4,11 +4,11 @@ import com.BadaBazaar.BadaBazaar.Converter.ProductConverter;
 import com.BadaBazaar.BadaBazaar.Enum.ProductCategory;
 import com.BadaBazaar.BadaBazaar.Exception.SellerNotFoundException;
 import com.BadaBazaar.BadaBazaar.Repository.ProductRepository;
-import com.BadaBazaar.BadaBazaar.RequestDto.ProductRequestDto;
+import com.BadaBazaar.BadaBazaar.RequestDto.ProductByCategoryRequestDto;
 import com.BadaBazaar.BadaBazaar.Model.Product;
 import com.BadaBazaar.BadaBazaar.Model.Seller;
 import com.BadaBazaar.BadaBazaar.Repository.SellerRepository;
-import com.BadaBazaar.BadaBazaar.ResponseDto.ProductResponseDto;
+import com.BadaBazaar.BadaBazaar.ResponseDto.ProductByCategoryResponseDto;
 import com.BadaBazaar.BadaBazaar.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,15 +25,15 @@ public class ProductServiceImp implements ProductService {
     ProductRepository productRepository;
 
     @Override
-    public String addProduct(ProductRequestDto productRequestDto) throws SellerNotFoundException {
+    public String addProduct(ProductByCategoryRequestDto productByCategoryRequestDto) throws SellerNotFoundException {
         Seller seller;
         try{
-            seller = sellerRepository.findById(productRequestDto.getSellerId()).get();
+            seller = sellerRepository.findById(productByCategoryRequestDto.getSellerId()).get();
         }catch (Exception e){
             throw new SellerNotFoundException("Seller does not present");
         }
 
-        Product product = ProductConverter.productRequestDtoToProduct(productRequestDto);
+        Product product = ProductConverter.productRequestDtoToProduct(productByCategoryRequestDto);
 
         product.setSeller(seller);
         seller.getProductList().add(product);
@@ -43,14 +43,14 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public List<ProductResponseDto> getProductByCategory(ProductCategory productCategory) {
+    public List<ProductByCategoryResponseDto> getProductByCategory(ProductCategory productCategory) {
         List<Product> productList = productRepository.findAllByProductCategory(productCategory);
 
-        List<ProductResponseDto> productResponseDtoList = new ArrayList<>();
+        List<ProductByCategoryResponseDto> productByCategoryResponseDtoList = new ArrayList<>();
         for(Product product: productList){
-            productResponseDtoList.add(ProductConverter.productToProductResponseDto(product));
+            productByCategoryResponseDtoList.add(ProductConverter.productToProductResponseDto(product));
         }
-        return productResponseDtoList;
+        return productByCategoryResponseDtoList;
 
     }
 }

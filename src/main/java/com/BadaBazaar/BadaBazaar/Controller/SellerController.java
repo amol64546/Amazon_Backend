@@ -1,7 +1,7 @@
 package com.BadaBazaar.BadaBazaar.Controller;
 
 import com.BadaBazaar.BadaBazaar.RequestDto.SellerRequestDto;
-import com.BadaBazaar.BadaBazaar.Model.Seller;
+import com.BadaBazaar.BadaBazaar.ResponseDto.SellerResponseDto;
 import com.BadaBazaar.BadaBazaar.Service.Imp.SellerServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +21,14 @@ public class SellerController {
 
     }
 
-//    @GetMapping("/getAll")
-//    public List<Seller> getAllSeller(){
-//
-//    }
+    @GetMapping("/getAll")
+    public List<SellerResponseDto> getAllSellers(){
+        return sellerService.getAllSellers();
+    }
+
+    @GetMapping("/getByPan")
+    public SellerResponseDto getSellerByPan(@RequestParam String panNo){
+        return sellerService.getSellerByPan(panNo);
+    }
 
 }

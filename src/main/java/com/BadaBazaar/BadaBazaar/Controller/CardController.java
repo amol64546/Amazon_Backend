@@ -20,7 +20,7 @@ public class CardController {
     CardServiceImp cardService;
 
     @PostMapping("/add")
-    public ResponseEntity addCard(@RequestBody CardRequestDto cardRequestDto) throws Exception{
+    public ResponseEntity addCard(@RequestBody CardRequestDto cardRequestDto) {
         CardResponseDto cardResponseDto;
         try{
             cardResponseDto = cardService.addCard(cardRequestDto);
