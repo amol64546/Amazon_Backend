@@ -1,5 +1,7 @@
 package com.BadaBazaar.BadaBazaar.Service.Imp;
 
+import com.BadaBazaar.BadaBazaar.Controller.CardController;
+import com.BadaBazaar.BadaBazaar.Converter.CardConverter;
 import com.BadaBazaar.BadaBazaar.Model.Card;
 import com.BadaBazaar.BadaBazaar.Model.Customer;
 import com.BadaBazaar.BadaBazaar.Repository.CardRepository;
@@ -25,7 +27,7 @@ public class CardServiceImp implements CardService {
 
 
     @Override
-    public CardResponseDto addCard(CardRequestDto cardRequestDto) throws Exception {
+    public CardResponseDto add(CardRequestDto cardRequestDto) throws Exception {
         Customer customer;
         try{
             customer = customerRepository.findById(cardRequestDto.getCustomerId()).get();
@@ -50,11 +52,44 @@ public class CardServiceImp implements CardService {
         List<CardDto> cardDtoList = new ArrayList<>();
 
         for(Card c: customer.getCardList()){
-            CardDto cardDto = new CardDto();
-            cardDto.setCardNo(c.getCardNo());
-            cardDto.setCardType(c.getCardType());
-            cardDto.setCvv(c.getCvv());
-            cardDto.setExpiry(c.getExpiry());
+            CardDto cardDto = CardConverter.cardToCardDto(c);
+            cardDtoList.add(cardDto);
+        }
+        cardResponseDto.setCardDtoList(cardDtoList);
+
+        return cardResponseDto;
+    }
+
+    @Override
+    public void remove(int customerId, int cardId) throws Exception{
+
+        Customer customer = customerRepository.findById(customerId).get();
+        Card card = cardRepository.findById(cardId).get();
+
+        // card is not corresponding to customer
+        if(!customer.getCardList().contains(card)){
+            throw new Exception();
+        }
+
+        customer.getCardList().remove(card);
+        cardRepository.delete(card);
+    }
+
+    @Override
+    public CardResponseDto getAllCardsByCustomerId(int customerId) throws Exception{
+        Customer customer;
+        try{
+            customer = customerRepository.findById(customerId).get();
+        }catch (Exception e){
+            throw new Exception("customer does not present");
+        }
+
+        CardResponseDto cardResponseDto = new CardResponseDto();
+        cardResponseDto.setCustomerName(customer.getName());
+        List<CardDto> cardDtoList = new ArrayList<>();
+
+        for(Card c: customer.getCardList()){
+            CardDto cardDto = CardConverter.cardToCardDto(c);
             cardDtoList.add(cardDto);
         }
         cardResponseDto.setCardDtoList(cardDtoList);
