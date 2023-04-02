@@ -52,4 +52,10 @@ public class CardController {
         return new ResponseEntity(cardResponseDto,HttpStatus.OK);
     }
 
+    @DeleteMapping("/removeAll")
+    public String removeAll(@RequestParam int customerId) throws Exception{
+        cardService.removeAll(customerId);
+        return "All card deleted for customer ID: "+customerId;
+    }
+
 }

@@ -11,4 +11,6 @@ public interface CardService {
     void remove(int customerId, int cardId)throws Exception;
 
     CardResponseDto getAllCardsByCustomerId(int customerId) throws Exception;
+
+    void removeAll(int customerId)throws Exception;
 }

@@ -35,13 +35,8 @@ public class CardServiceImp implements CardService {
             throw new Exception("customer does not present");
         }
 
-        Card card = Card.builder()
-                .cardNo(cardRequestDto.getCardNo())
-                .cardType(cardRequestDto.getCardType())
-                .cvv(cardRequestDto.getCvv())
-                .expiry(cardRequestDto.getExpiry())
-                .customer(customer)
-                .build();
+        Card card = CardConverter.cardRequestDtoToCard(cardRequestDto);
+        card.setCustomer(customer);
 
         customer.getCardList().add(card);
         customerRepository.save(customer);
@@ -95,5 +90,12 @@ public class CardServiceImp implements CardService {
         cardResponseDto.setCardDtoList(cardDtoList);
 
         return cardResponseDto;
+    }
+
+    @Override
+    public void removeAll(int customerId) throws Exception{
+        Customer customer = customerRepository.findById(customerId).get();
+//        cardRepository.deleteAllByCustomerId(customerId);
+        customer.setCardList(new ArrayList<>());
     }
 }

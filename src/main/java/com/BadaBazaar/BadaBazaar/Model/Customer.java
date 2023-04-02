@@ -27,14 +27,13 @@ public class Customer {
     private String email;
     private int age;
 
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Card> cardList = new ArrayList<>();
 
-    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
     private Cart cart;
 
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Ordered> orderList = new ArrayList<>();
-
 
 }
