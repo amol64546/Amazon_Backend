@@ -46,6 +46,10 @@ This is a backend e-commerce project made using Java Spring Boot based on Spring
 - GET /seller/get/all - Retrieves all sellers
 - GET /card/view/all - Retrieves all cards by customer ID
 
+# Swagger Documentation
+![localhost_8080_swagger-ui_index html](https://user-images.githubusercontent.com/106758417/229530678-f1cfc863-e830-4fff-985b-9071c5efb9b8.png)
+
+
 - PUT /customer/update/mob - Updates a customer mobile no
 - PUT /customer/update/email - Updates a customer email ID
 
