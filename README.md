@@ -47,7 +47,7 @@ This is a backend e-commerce project made using Java Spring Boot based on Spring
 - GET /card/view/all - Retrieves all cards by customer ID
 
 - PUT /customer/update/mob - Updates a customer mobile no
-- PUT /customer/update/email = Updates a customer email ID
+- PUT /customer/update/email - Updates a customer email ID
 
 - DELETE /customer/delete/{customerId} - Deletes a customer by ID
 - DELETE /card/delete - Deletes a card by customer ID
