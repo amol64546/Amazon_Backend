@@ -8,6 +8,8 @@ import com.BadaBazaar.BadaBazaar.RequestDto.OrderRequestDto;
 import com.BadaBazaar.BadaBazaar.ResponseDto.OrderResponseDto;
 import com.BadaBazaar.BadaBazaar.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 
@@ -19,6 +21,9 @@ public class OrderServiceImp implements OrderService {
 
     @Autowired
     CustomerRepository customerRepository;
+
+    @Autowired
+    JavaMailSender emailSender;
 
     @Override
     public OrderResponseDto placeOrder(OrderRequestDto orderRequestDto) throws Exception {
@@ -95,6 +100,17 @@ public class OrderServiceImp implements OrderService {
                 .quantityOrdered(orderRequestDto.getRequiredQuantity())
                 .orderDate(savedOrdered.getOrderDate())
                 .build();
+
+
+        // send an email
+        String text = "Congrats your order with total value "+savedOrdered.getTotalCost()+" has been placed";
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("amolnakhate240@gmail.com");
+        message.setTo(customer.getEmail());
+        message.setSubject("Order Placed Notification");
+        message.setText(text);
+        emailSender.send(message);
 
         return orderResponseDto;
     }
