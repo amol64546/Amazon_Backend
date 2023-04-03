@@ -56,6 +56,14 @@ public class CustomerController {
             throw new Exception(e.getMessage());
         }
     }
+    @PutMapping("/update/email")
+    public CustomerResponseDto updateEmail(@RequestParam int customerId,@RequestParam String email) throws Exception{
+        try{
+            return customerService.updateEmail(customerId,email);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
 
     @DeleteMapping("/delete/{customerId}")
     public String deleteById(@PathVariable int customerId) throws Exception{

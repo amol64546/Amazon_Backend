@@ -21,4 +21,6 @@ public interface CustomerService {
     CustomerResponseDto getCustomerByEmail(String email);
 
     CustomerResponseDto updateMobNo(int customerId,String mobNo);
+
+    CustomerResponseDto updateEmail(int customerId, String email);
 }
