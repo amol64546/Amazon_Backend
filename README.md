@@ -49,19 +49,30 @@ mvn spring-boot:run
 
 
 # API Endpoints
-- GET /api/products - Retrieves all products
-- GET /api/products/{id} - Retrieves a single product by ID
-- POST /api/cart - Adds a product to cart
-- GET /api/cart - Retrieves all products in cart
-- DELETE /api/cart/{id} - Removes a product from cart
-- POST /api/orders - Places an order
-- GET /api/orders - Retrieves all orders
-- GET /api/orders/{id} - Retrieves a single order by ID
-- GET /api/orders/{id}/items - Retrieves all items in an order
-- GET /api/categories - Retrieves all categories
-- GET /api/categories/{id} - Retrieves a single category by ID
-- POST /api/categories - Creates a new category
-- PUT /api/categories/{id} - Updates a category by ID
-- DELETE /api/categories/{id} - Deletes a category by ID
+- POST /seller/add - Creates a new seller
+- POST /product/add - Creates a new product
+- POST /customer/add - Creates a new customer
+- POST /card/add - Creates a new card
+- POST /cart/add - Creates a new card
+- POST /cart/checkout - places order of all items in cart
+- POST /order/place - places order of product directly
+
+
+- GET /product/get/category/{category} - Retrieves all products by category
+- GET /item/view/{productId} - Retrieves a product by ID
+- GET /cart/view/{cartId} - Retrieves all products in cart
+- GET /customer/get/{customerId} - Retrieves customer by ID
+- GET /customer/get/email - Retrieves customer by email
+- GET /seller/get/{sellerId} - Retrieves seller by ID
+- GET /seller/get/pan - Retrieves seller by Pan No
+- GET /customer/get/all - Retrieves all customers
+- GET /seller/get/all - Retrieves all sellers
+- GET /card/view/all - Retrieves all cards by customer ID
+
+- PUT /customer/update/mob - Updates a customer mobile no
+- PUT /customer/update/email = Updates a customer email ID
+
+- DELETE /customer/delete/{customerId} - Deletes a customer by ID
+- DELETE /card/delete - Deletes a card by customer ID
 
 
