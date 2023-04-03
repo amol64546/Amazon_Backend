@@ -55,4 +55,10 @@ public class CustomerServiceImp implements CustomerService {
     public void deleteById(int customerId) {
         customerRepository.deleteById(customerId);
     }
+
+    @Override
+    public CustomerResponseDto getCustomerByEmail(String email) {
+        Customer customer = customerRepository.findByEmail(email);
+        return CustomerConverter.CustomerToCustomerResponseDto(customer);
+    }
 }

@@ -38,6 +38,16 @@ public class CustomerController {
         return customerService.getAll();
     }
 
+    @GetMapping("/get/email")
+    public CustomerResponseDto getCustomerByEmail(@RequestParam String email) throws Exception {
+        try{
+            return customerService.getCustomerByEmail(email);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
     @DeleteMapping("/delete/{customerId}")
     public String deleteById(@PathVariable int customerId) throws Exception{
         try{

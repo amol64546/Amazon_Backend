@@ -17,4 +17,6 @@ public interface CustomerService {
     CustomerResponseDto getCustomerById(int customerId);
 
     void deleteById(int customerId);
+
+    CustomerResponseDto getCustomerByEmail(String email);
 }

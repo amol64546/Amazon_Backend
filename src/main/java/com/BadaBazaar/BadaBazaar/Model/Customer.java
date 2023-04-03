@@ -25,6 +25,7 @@ public class Customer {
 
     @Column(unique = true)
     private String email;
+
     private int age;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
