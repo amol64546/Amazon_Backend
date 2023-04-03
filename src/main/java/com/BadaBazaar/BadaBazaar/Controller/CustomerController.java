@@ -38,4 +38,14 @@ public class CustomerController {
         return customerService.getAll();
     }
 
+    @DeleteMapping("/delete/{customerId}")
+    public String deleteById(@PathVariable int customerId) throws Exception{
+        try{
+            customerService.deleteById(customerId);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+        return "Customer with ID: "+customerId+" has been deleted.";
+    }
+
 }

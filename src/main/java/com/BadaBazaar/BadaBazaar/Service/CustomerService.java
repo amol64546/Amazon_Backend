@@ -15,4 +15,6 @@ public interface CustomerService {
      List<CustomerResponseDto> getAll();
 
     CustomerResponseDto getCustomerById(int customerId);
+
+    void deleteById(int customerId);
 }

@@ -50,4 +50,9 @@ public class CustomerServiceImp implements CustomerService {
 
         return CustomerConverter.CustomerToCustomerResponseDto(customer);
     }
+
+    @Override
+    public void deleteById(int customerId) {
+        customerRepository.deleteById(customerId);
+    }
 }
