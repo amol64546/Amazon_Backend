@@ -31,13 +31,13 @@ This is a backend e-commerce project made using Java Spring Boot based on Spring
 To run the project on your local machine, follow these steps:
 
 1. Clone the repository to your local machine using the following command:
-$ git clone https://github.com/your-username/BadaBazaar.git
+''' git clone https://github.com/your-username/BadaBazaar.git '''
 
 2. Install the required dependencies using Maven:
-$ mvn install
+''' mvn install '''
 
 3. Start the application using the following command:
-$ mvn spring-boot:run
+''' mvn spring-boot:run '''
 
 4. Navigate to http://localhost:8080 on your web browser to access the application.
 
@@ -58,13 +58,4 @@ $ mvn spring-boot:run
 - PUT /api/categories/{id} - Updates a category by ID
 - DELETE /api/categories/{id} - Deletes a category by ID
 
-
-# Learnings
-- During the development of this project, I gained knowledge and experience in the following areas:
-- Spring Boot and Spring MVC Architecture
-- JPA/Hibernate for efficient data management
-- MySQL database connection
-- Creating REST API endpoints and testing them using Postman
-- Integrating mailing feature to send real-time email notifications to users
-- Feel free to use this project as a reference or starting point for your own e-commerce project!
 
