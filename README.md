@@ -25,36 +25,8 @@ This is a backend e-commerce project made using Java Spring Boot based on Spring
 # Schema
 ![bazar](https://user-images.githubusercontent.com/106758417/229332513-71336889-2b69-427b-922a-73dbb2601ff8.png)
 
-# API Endpoints
-- POST /seller/add - Creates a new seller
-- POST /product/add - Creates a new product
-- POST /customer/add - Creates a new customer
-- POST /card/add - Creates a new card
-- POST /cart/add - Creates a new card
-- POST /cart/checkout - places order of all items in cart
-- POST /order/place - places order of product directly
-
-
-- GET /product/get/category/{category} - Retrieves all products by category
-- GET /item/view/{productId} - Retrieves a product by ID
-- GET /cart/view/{cartId} - Retrieves all products in cart
-- GET /customer/get/{customerId} - Retrieves customer by ID
-- GET /customer/get/email - Retrieves customer by email
-- GET /seller/get/{sellerId} - Retrieves seller by ID
-- GET /seller/get/pan - Retrieves seller by Pan No
-- GET /customer/get/all - Retrieves all customers
-- GET /seller/get/all - Retrieves all sellers
-- GET /card/view/all - Retrieves all cards by customer ID
-
-# Swagger Documentation
+# Swagger Documentation for API Endpoints
 ![localhost_8080_swagger-ui_index html](https://user-images.githubusercontent.com/106758417/229530678-f1cfc863-e830-4fff-985b-9071c5efb9b8.png)
-
-
-- PUT /customer/update/mob - Updates a customer mobile no
-- PUT /customer/update/email - Updates a customer email ID
-
-- DELETE /customer/delete/{customerId} - Deletes a customer by ID
-- DELETE /card/delete - Deletes a card by customer ID
 
 # Setup Instructions
 To run the project on your local machine, follow these steps:
