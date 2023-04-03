@@ -41,7 +41,7 @@ public class CardController {
         return new ResponseEntity("Card has been deleted", HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/viewAll")
+    @GetMapping("/view/all")
     public ResponseEntity getAllCardsByCustomerId(@RequestParam int customerId) {
         CardResponseDto cardResponseDto;
         try{
@@ -52,10 +52,6 @@ public class CardController {
         return new ResponseEntity(cardResponseDto,HttpStatus.OK);
     }
 
-    @DeleteMapping("/removeAll")
-    public String removeAll(@RequestParam int customerId) throws Exception{
-        cardService.removeAll(customerId);
-        return "All card deleted for customer ID: "+customerId;
-    }
+
 
 }

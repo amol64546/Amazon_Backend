@@ -92,10 +92,5 @@ public class CardServiceImp implements CardService {
         return cardResponseDto;
     }
 
-    @Override
-    public void removeAll(int customerId) throws Exception{
-        Customer customer = customerRepository.findById(customerId).get();
-//        cardRepository.deleteAllByCustomerId(customerId);
-        customer.setCardList(new ArrayList<>());
-    }
+
 }

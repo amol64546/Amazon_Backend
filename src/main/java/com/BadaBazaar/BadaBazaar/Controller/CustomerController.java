@@ -23,7 +23,17 @@ public class CustomerController {
         return customerService.addCustomer(customerRequestDto);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/get/{customerId}")
+    public CustomerResponseDto getCustomerById(@PathVariable int customerId) throws Exception {
+        try{
+            return customerService.getCustomerById(customerId);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
+    @GetMapping("/get/all")
     public List<CustomerResponseDto> getAll(){
         return customerService.getAll();
     }

@@ -13,8 +13,5 @@ import javax.transaction.Transactional;
 @Repository
 public interface CardRepository extends JpaRepository<Card,Integer> {
 
-//    @Transactional
-//    @Modifying
-//    @Query("DELETE FROM card c WHERE c.customer_id=:customerId")
-//    void deleteAllByCustomerId(@Param("customerId") int customerId);
+
 }

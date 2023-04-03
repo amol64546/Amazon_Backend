@@ -21,12 +21,12 @@ public class SellerController {
 
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/get/all")
     public List<SellerResponseDto> getAllSellers(){
         return sellerService.getAllSellers();
     }
 
-    @GetMapping("/getByPan")
+    @GetMapping("/get/pan")
     public SellerResponseDto getSellerByPan(@RequestParam String panNo){
         return sellerService.getSellerByPan(panNo);
     }

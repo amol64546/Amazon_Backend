@@ -43,4 +43,11 @@ public class CustomerServiceImp implements CustomerService {
         }
         return customerResponseDtoList;
     }
+
+    @Override
+    public CustomerResponseDto getCustomerById(int customerId) {
+        Customer customer = customerRepository.findById(customerId).get();
+
+        return CustomerConverter.CustomerToCustomerResponseDto(customer);
+    }
 }
