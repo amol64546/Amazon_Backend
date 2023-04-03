@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductByCategoryResponseDto {
+public class ProductResponseDto {
     private String name;
     private int price;
     private int quantity;

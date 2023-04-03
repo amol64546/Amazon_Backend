@@ -8,7 +8,7 @@ import com.BadaBazaar.BadaBazaar.RequestDto.ProductByCategoryRequestDto;
 import com.BadaBazaar.BadaBazaar.Model.Product;
 import com.BadaBazaar.BadaBazaar.Model.Seller;
 import com.BadaBazaar.BadaBazaar.Repository.SellerRepository;
-import com.BadaBazaar.BadaBazaar.ResponseDto.ProductByCategoryResponseDto;
+import com.BadaBazaar.BadaBazaar.ResponseDto.ProductResponseDto;
 import com.BadaBazaar.BadaBazaar.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,10 +43,10 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public List<ProductByCategoryResponseDto> getProductByCategory(ProductCategory productCategory) {
+    public List<ProductResponseDto> getProductByCategory(ProductCategory productCategory) {
         List<Product> productList = productRepository.findAllByProductCategory(productCategory);
 
-        List<ProductByCategoryResponseDto> productByCategoryResponseDtoList = new ArrayList<>();
+        List<ProductResponseDto> productByCategoryResponseDtoList = new ArrayList<>();
         for(Product product: productList){
             productByCategoryResponseDtoList.add(ProductConverter.productToProductResponseDto(product));
         }

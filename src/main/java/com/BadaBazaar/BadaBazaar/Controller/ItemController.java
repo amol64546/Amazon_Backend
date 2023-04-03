@@ -1,5 +1,6 @@
 package com.BadaBazaar.BadaBazaar.Controller;
 
+import com.BadaBazaar.BadaBazaar.Model.Item;
 import com.BadaBazaar.BadaBazaar.ResponseDto.ItemResponseDto;
 import com.BadaBazaar.BadaBazaar.Service.Imp.ItemServiceImp;
 import com.BadaBazaar.BadaBazaar.Service.ItemService;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/item")
@@ -20,6 +23,8 @@ public class ItemController {
     public ItemResponseDto viewItem(@PathVariable("productId") int productId ) throws Exception {
         return itemService.viewItem(productId);
     }
+
+
 
 
 

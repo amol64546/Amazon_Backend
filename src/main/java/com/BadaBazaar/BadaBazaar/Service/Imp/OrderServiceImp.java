@@ -58,6 +58,7 @@ public class OrderServiceImp implements OrderService {
         for(int i=0;i<len-4;i++)
             cardNo += 'X';
         cardNo += card.getCardNo().substring(len-4);
+
         ordered.setCardUsedForPayment(cardNo);
 
 
@@ -66,6 +67,7 @@ public class OrderServiceImp implements OrderService {
         item.setRequiredQuantity(orderRequestDto.getRequiredQuantity());
         item.setOrdered(ordered);
         item.setProduct(product);
+
         ordered.getItemList().add(item);
         ordered.setCustomer(customer);
 
@@ -78,10 +80,10 @@ public class OrderServiceImp implements OrderService {
 
 
         // customer
-
         customer.getOrderList().add(ordered);
 
         Customer savedCustomer = customerRepository.save(customer);
+
         Ordered savedOrdered = savedCustomer.getOrderList().get(savedCustomer.getOrderList().size()-1);
 
         OrderResponseDto orderResponseDto = OrderResponseDto.builder()
