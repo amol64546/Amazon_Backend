@@ -6,12 +6,8 @@ This is a backend e-commerce project made using Java Spring Boot based on Spring
 - Technologies Used
 - Features
 - Schema
-- Setup Instructions
 - API Endpoints
-- Learnings
-
-# Schema
-![bazar](https://user-images.githubusercontent.com/106758417/229332513-71336889-2b69-427b-922a-73dbb2601ff8.png)
+- Setup Instructions
 
 # Technologies Used
 - Java Spring Boot
@@ -26,27 +22,8 @@ This is a backend e-commerce project made using Java Spring Boot based on Spring
 - Customer can checkout cart and place order
 - Real-time email notifications for order confirmation and other relevant information
 
-
-# Setup Instructions
-To run the project on your local machine, follow these steps:
-
-1. Clone the repository to your local machine using the following command:
-```
-git clone https://github.com/your-username/BadaBazaar.git 
-```
-
-2. Install the required dependencies using Maven:
-```
-mvn install
-```
-
-3. Start the application using the following command:
-``` 
-mvn spring-boot:run 
-```
-
-4. Navigate to http://localhost:8080 on your web browser to access the application.
-
+# Schema
+![bazar](https://user-images.githubusercontent.com/106758417/229332513-71336889-2b69-427b-922a-73dbb2601ff8.png)
 
 # API Endpoints
 - POST /seller/add - Creates a new seller
@@ -74,5 +51,28 @@ mvn spring-boot:run
 
 - DELETE /customer/delete/{customerId} - Deletes a customer by ID
 - DELETE /card/delete - Deletes a card by customer ID
+
+# Setup Instructions
+To run the project on your local machine, follow these steps:
+
+1. Clone the repository to your local machine using the following command:
+```
+git clone https://github.com/your-username/BadaBazaar.git 
+```
+
+2. Install the required dependencies using Maven:
+```
+mvn install
+```
+
+3. Start the application using the following command:
+``` 
+mvn spring-boot:run 
+```
+
+4. Navigate to http://localhost:8080 on your web browser to access the application.
+
+
+
 
 
