@@ -19,4 +19,6 @@ public interface CustomerService {
     void deleteById(int customerId);
 
     CustomerResponseDto getCustomerByEmail(String email);
+
+    CustomerResponseDto updateMobNo(int customerId,String mobNo);
 }

@@ -48,6 +48,15 @@ public class CustomerController {
 
     }
 
+    @PutMapping("/update/mob")
+    public CustomerResponseDto updateMobNo(@RequestParam int customerId,@RequestParam String mobNo) throws Exception{
+        try{
+            return customerService.updateMobNo(customerId,mobNo);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
     @DeleteMapping("/delete/{customerId}")
     public String deleteById(@PathVariable int customerId) throws Exception{
         try{

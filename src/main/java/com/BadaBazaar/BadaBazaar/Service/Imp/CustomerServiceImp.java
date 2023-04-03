@@ -61,4 +61,12 @@ public class CustomerServiceImp implements CustomerService {
         Customer customer = customerRepository.findByEmail(email);
         return CustomerConverter.CustomerToCustomerResponseDto(customer);
     }
+
+    @Override
+    public CustomerResponseDto updateMobNo(int customerId, String mobNo) {
+        Customer customer = customerRepository.findById(customerId).get();
+        customer.setMobNo(mobNo);
+        customerRepository.save(customer);
+        return CustomerConverter.CustomerToCustomerResponseDto(customer);
+    }
 }
