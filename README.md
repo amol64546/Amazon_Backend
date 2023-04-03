@@ -31,13 +31,19 @@ This is a backend e-commerce project made using Java Spring Boot based on Spring
 To run the project on your local machine, follow these steps:
 
 1. Clone the repository to your local machine using the following command:
-' git clone https://github.com/your-username/BadaBazaar.git '
+```
+git clone https://github.com/your-username/BadaBazaar.git 
+```
 
 2. Install the required dependencies using Maven:
-' mvn install '
+```
+mvn install
+```
 
 3. Start the application using the following command:
-' mvn spring-boot:run '
+``` 
+mvn spring-boot:run 
+```
 
 4. Navigate to http://localhost:8080 on your web browser to access the application.
 
