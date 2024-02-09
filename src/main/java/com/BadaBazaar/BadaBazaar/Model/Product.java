@@ -4,7 +4,7 @@ import com.BadaBazaar.BadaBazaar.Enum.ProductCategory;
 import com.BadaBazaar.BadaBazaar.Enum.ProductStatus;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Data

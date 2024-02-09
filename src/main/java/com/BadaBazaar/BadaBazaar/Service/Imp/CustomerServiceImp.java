@@ -7,7 +7,6 @@ import com.BadaBazaar.BadaBazaar.Repository.CustomerRepository;
 import com.BadaBazaar.BadaBazaar.RequestDto.CustomerRequestDto;
 import com.BadaBazaar.BadaBazaar.ResponseDto.CustomerResponseDto;
 import com.BadaBazaar.BadaBazaar.Service.CustomerService;
-import org.hibernate.transform.CacheableResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

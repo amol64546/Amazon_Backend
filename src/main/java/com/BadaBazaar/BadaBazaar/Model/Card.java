@@ -3,7 +3,7 @@ package com.BadaBazaar.BadaBazaar.Model;
 import com.BadaBazaar.BadaBazaar.Enum.CardType;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Data
