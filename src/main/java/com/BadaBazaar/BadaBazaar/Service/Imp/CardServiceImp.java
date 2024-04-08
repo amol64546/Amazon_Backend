@@ -1,6 +1,5 @@
 package com.BadaBazaar.BadaBazaar.Service.Imp;
 
-import com.BadaBazaar.BadaBazaar.Controller.CardController;
 import com.BadaBazaar.BadaBazaar.Converter.CardConverter;
 import com.BadaBazaar.BadaBazaar.Model.Card;
 import com.BadaBazaar.BadaBazaar.Model.Customer;
@@ -26,7 +25,6 @@ public class CardServiceImp implements CardService {
     CustomerRepository customerRepository;
 
 
-    @Override
     public CardResponseDto add(CardRequestDto cardRequestDto) throws Exception {
         Customer customer;
         try{

@@ -11,13 +11,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 public class SellerServiceImp implements SellerService {
 
-    @Autowired
-    SellerRepository sellerRepository;
+    private final SellerRepository sellerRepository;
+
+    public SellerServiceImp(SellerRepository sellerRepository)
+    {
+        this.sellerRepository = sellerRepository;
+    }
 
     @Override
     public String addSeller(SellerRequestDto sellerRequestDto) {
@@ -42,5 +47,12 @@ public class SellerServiceImp implements SellerService {
     public SellerResponseDto getSellerByPan(String panNo) {
         Seller seller = sellerRepository.findByPanNo(panNo);
         return SellerConverter.sellerToSellerResponseDto(seller);
+    }
+
+    @Override
+    public SellerResponseDto getSellerById(int sellerId)
+    {
+        Optional<Seller> seller = sellerRepository.findById(sellerId);
+        return seller.map(SellerConverter::sellerToSellerResponseDto).orElse(null);
     }
 }

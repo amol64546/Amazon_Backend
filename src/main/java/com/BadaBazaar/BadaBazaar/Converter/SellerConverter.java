@@ -6,6 +6,8 @@ import com.BadaBazaar.BadaBazaar.ResponseDto.SellerResponseDto;
 import lombok.Builder;
 import lombok.experimental.UtilityClass;
 
+import java.util.Optional;
+
 @UtilityClass
 @Builder
 public class SellerConverter {

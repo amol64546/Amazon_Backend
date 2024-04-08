@@ -6,6 +6,9 @@ import com.BadaBazaar.BadaBazaar.RequestDto.CustomerRequestDto;
 import com.BadaBazaar.BadaBazaar.ResponseDto.CustomerResponseDto;
 import com.BadaBazaar.BadaBazaar.Service.CustomerService;
 import com.BadaBazaar.BadaBazaar.Service.Imp.CustomerServiceImp;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,65 +17,81 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/customers")
+@RequiredArgsConstructor
+@Slf4j
 public class CustomerController {
-    @Autowired
-    CustomerServiceImp customerService;
-    @PostMapping("/add")
-    public String addCustomer(@RequestBody CustomerRequestDto customerRequestDto){
-        return customerService.addCustomer(customerRequestDto);
+
+    private final CustomerServiceImp customerService;
+
+    @PostMapping
+    public ResponseEntity<String> addCustomer(@RequestBody CustomerRequestDto customerRequestDto){
+        log.info("[POST]: Request to add customer: {}", customerRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerService.addCustomer(customerRequestDto));
     }
 
-    @GetMapping("/get/{customerId}")
-    public CustomerResponseDto getCustomerById(@PathVariable int customerId) throws Exception {
+    @GetMapping("{customerId}")
+    public ResponseEntity<CustomerResponseDto> getCustomerById(@PathVariable int customerId) throws Exception {
+        log.info("[GET]: Request to get customer by ID: {}", customerId);
         try{
-            return customerService.getCustomerById(customerId);
+            return ResponseEntity.status(HttpStatus.OK).body(customerService.getCustomerById(customerId));
         }catch (Exception e){
+            log.error("Error while fetching customer by ID: {}", e.getMessage());
             throw new Exception(e.getMessage());
         }
 
     }
 
-    @GetMapping("/get/all")
+    @GetMapping
     public List<CustomerResponseDto> getAll(){
         return customerService.getAll();
     }
 
-    @GetMapping("/get/email")
-    public CustomerResponseDto getCustomerByEmail(@RequestParam String email) throws Exception {
+    @GetMapping("{emailId}")
+    public ResponseEntity<CustomerResponseDto> getCustomerByEmail(@PathVariable String emailId) throws Exception {
+        log.info("[GET]: Request to get customer by email: {}", emailId);
         try{
-            return customerService.getCustomerByEmail(email);
+            return ResponseEntity.status(HttpStatus.OK).body(customerService.getCustomerByEmail(emailId));
         }catch (Exception e){
+            log.error("Error while fetching customer by email: {}", e.getMessage());
             throw new Exception(e.getMessage());
         }
 
     }
 
-    @PutMapping("/update/mob")
-    public CustomerResponseDto updateMobNo(@RequestParam int customerId,@RequestParam String mobNo) throws Exception{
+    @PutMapping("{customerId}/mobile/{mobNo}")
+    public ResponseEntity<CustomerResponseDto> updateMobNo(
+            @PathVariable int customerId,
+            @PathVariable String mobNo) throws Exception {
+        log.info("[PUT]: Request to update mobile number: {}", mobNo);
         try{
-            return customerService.updateMobNo(customerId,mobNo);
+            return ResponseEntity.status(HttpStatus.OK).body(customerService.updateMobNo(customerId,mobNo));
         }catch (Exception e){
+            log.error("Error while updating mobile number: {}", e.getMessage());
             throw new Exception(e.getMessage());
         }
     }
-    @PutMapping("/update/email")
-    public CustomerResponseDto updateEmail(@RequestParam int customerId,@RequestParam String email) throws Exception{
+    @PutMapping("{customerId}/email/{email}")
+    public ResponseEntity<CustomerResponseDto> updateEmail(@PathVariable int customerId, @PathVariable String email) throws Exception{
+        log.info("[PUT]: Request to update email: {}", email);
         try{
-            return customerService.updateEmail(customerId,email);
+            return ResponseEntity.status(HttpStatus.OK).body(customerService.updateEmail(customerId,email));
         }catch (Exception e){
+            log.error("Error while updating email: {}", e.getMessage());
             throw new Exception(e.getMessage());
         }
     }
 
-    @DeleteMapping("/delete/{customerId}")
-    public String deleteById(@PathVariable int customerId) throws Exception{
+    @DeleteMapping("{customerId}")
+    public ResponseEntity<String> deleteById(@PathVariable int customerId) throws Exception{
+        log.info("[DELETE]: Request to delete customer by ID: {}", customerId);
         try{
             customerService.deleteById(customerId);
         }catch (Exception e){
+            log.error("Error while deleting customer: {}", e.getMessage());
             throw new Exception(e.getMessage());
         }
-        return "Customer with ID: "+customerId+" has been deleted.";
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("Customer deleted successfully");
     }
 
 }

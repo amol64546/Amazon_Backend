@@ -4,6 +4,8 @@ import com.BadaBazaar.BadaBazaar.RequestDto.OrderRequestDto;
 import com.BadaBazaar.BadaBazaar.ResponseDto.OrderResponseDto;
 import com.BadaBazaar.BadaBazaar.Service.Imp.OrderServiceImp;
 import com.BadaBazaar.BadaBazaar.Service.OrderService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,21 +15,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
+@RequiredArgsConstructor
+@Slf4j
 public class OrderController {
 
-    @Autowired
-    OrderServiceImp orderService;
+    private final OrderServiceImp orderService;
 
-    @PostMapping("/place")
-    public ResponseEntity placeOrder(@RequestBody OrderRequestDto orderRequestDto){
+    @PostMapping
+    public ResponseEntity<OrderResponseDto> placeOrder(@RequestBody OrderRequestDto orderRequestDto){
+        log.info("[POST]: Request to place order: {}", orderRequestDto);
         OrderResponseDto orderResponseDto;
         try{
             orderResponseDto = orderService.placeOrder(orderRequestDto);
         }catch (Exception e){
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            log.error("Error while placing order: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        return new ResponseEntity(orderResponseDto,HttpStatus.ACCEPTED);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(orderResponseDto);
     }
 
 
