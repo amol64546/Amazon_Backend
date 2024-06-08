@@ -26,10 +26,10 @@ public class Seller implements Serializable {
     @Column(unique = true)
     private String email;
 
-    private int age;
-
     @Column(unique = true)
     private String panNo;
+
+    private int age;
 
     @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
     private List<Product> productList = new ArrayList<>();
