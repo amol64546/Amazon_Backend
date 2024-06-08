@@ -16,19 +16,19 @@ import java.util.List;
 public class Seller implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int sellerId;
 
     private String name;
 
-//    @Column(unique = true)
+    @Column(unique = true)
     private String mobNo;
 
-//    @Column(unique = true)
+    @Column(unique = true)
     private String email;
 
     private int age;
 
-//    @Column(unique = true)
+    @Column(unique = true)
     private String panNo;
 
     @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)

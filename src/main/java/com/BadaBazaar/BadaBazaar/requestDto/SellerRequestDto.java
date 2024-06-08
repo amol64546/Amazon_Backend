@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SellerRequestDto {
 
-    @NotNull
-    private String name;
+    @NotBlank
+    private String sellerName;
 
-    @NotNull
+    @NotBlank
     @Size(min = 10, max = 10)
     private String mobNo;
 

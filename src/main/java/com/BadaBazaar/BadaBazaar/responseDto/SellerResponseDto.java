@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class SellerResponseDto {
 
-    private String name;
+    private int id;
+
+    private String sellerName;
 
     private String mobNo;
 
     private String email;
-
-    private int age;
 
     private String panNo;
 }
