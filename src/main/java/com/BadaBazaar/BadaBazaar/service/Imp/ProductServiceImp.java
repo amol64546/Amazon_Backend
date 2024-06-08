@@ -10,28 +10,26 @@ import com.BadaBazaar.BadaBazaar.model.Seller;
 import com.BadaBazaar.BadaBazaar.repository.SellerRepository;
 import com.BadaBazaar.BadaBazaar.responseDto.ProductResponseDto;
 import com.BadaBazaar.BadaBazaar.service.ProductService;
+import com.BadaBazaar.BadaBazaar.util.SellerCacheUtil;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductServiceImp implements ProductService {
-    @Autowired
-    SellerRepository sellerRepository;
+    private final SellerRepository sellerRepository;
 
-    @Autowired
-    ProductRepository productRepository;
+    private final ProductRepository productRepository;
+    private final SellerCacheUtil sellerCacheUtil;
 
     @Override
-    public String addProduct(ProductByCategoryRequestDto productByCategoryRequestDto) throws SellerNotFoundException {
-        Seller seller;
-        try{
-            seller = sellerRepository.findById(productByCategoryRequestDto.getSellerId()).get();
-        }catch (Exception e){
-            throw new SellerNotFoundException("Seller does not present");
-        }
+    public String addProduct(ProductByCategoryRequestDto productByCategoryRequestDto) {
+        Seller seller = sellerCacheUtil.getSeller(productByCategoryRequestDto.getSellerId());
 
         Product product = ProductConverter.productRequestDtoToProduct(productByCategoryRequestDto);
 

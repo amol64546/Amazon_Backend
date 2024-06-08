@@ -1,5 +1,6 @@
 package com.BadaBazaar.BadaBazaar.controller;
 
+import com.BadaBazaar.BadaBazaar.exception.SellerNotFoundException;
 import com.BadaBazaar.BadaBazaar.requestDto.SellerRequestDto;
 import com.BadaBazaar.BadaBazaar.responseDto.SellerResponseDto;
 import com.BadaBazaar.BadaBazaar.service.Imp.SellerServiceImp;
@@ -29,19 +30,32 @@ public class SellerController {
     @GetMapping
     public ResponseEntity<List<SellerResponseDto>> getAllSellers(){
         log.info("[GET]: Request to get all sellers");
-        return ResponseEntity.status(HttpStatus.OK).body(sellerService.getAllSellers());
-    }
-
-    @GetMapping("pan/{panNo}")
-    public ResponseEntity<SellerResponseDto> getSellerByPan(@PathVariable String panNo){
-        log.info("[GET]: Request to get seller by PAN: {}", panNo);
-        return ResponseEntity.status(HttpStatus.OK).body(sellerService.getSellerByPan(panNo));
+        return ResponseEntity.ok().body(sellerService.getAllSellers());
     }
 
     @GetMapping("{sellerId}")
-    public ResponseEntity<SellerResponseDto> getSellerById(@PathVariable int sellerId){
+    public ResponseEntity<SellerResponseDto> getSellerById(@PathVariable Integer sellerId){
         log.info("[GET]: Request to get seller by ID: {}", sellerId);
-        return ResponseEntity.status(HttpStatus.OK).body(sellerService.getSellerById(sellerId));
+        SellerResponseDto sellerResponseDto;
+        try{
+            sellerResponseDto = sellerService.getSellerById(sellerId);
+        } catch (SellerNotFoundException e){
+            log.error("Seller not found for ID: {}", sellerId);
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(sellerResponseDto);
+    }
+
+    @DeleteMapping("{sellerId}")
+    public ResponseEntity<Void> deleteSeller(@PathVariable Integer sellerId) {
+        log.info("[DELETE]: Request to delete seller by ID: {}", sellerId);
+        try{
+            sellerService.deleteSeller(sellerId);
+        } catch (SellerNotFoundException e){
+            log.error("Seller not found for ID: {}", sellerId);
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.noContent().build();
     }
 
 }

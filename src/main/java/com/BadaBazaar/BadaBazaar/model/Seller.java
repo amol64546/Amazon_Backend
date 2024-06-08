@@ -1,5 +1,6 @@
 package com.BadaBazaar.BadaBazaar.model;
 
+import java.io.Serializable;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -12,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "seller")
-public class Seller {
+public class Seller implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

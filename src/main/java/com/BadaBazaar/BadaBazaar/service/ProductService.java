@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    public String addProduct(ProductByCategoryRequestDto productByCategoryRequestDto) throws SellerNotFoundException;
+    String addProduct(ProductByCategoryRequestDto productByCategoryRequestDto) throws SellerNotFoundException;
 
-    public List<ProductResponseDto> getProductByCategory(ProductCategory productCategory);
+    List<ProductResponseDto> getProductByCategory(ProductCategory productCategory);
 }

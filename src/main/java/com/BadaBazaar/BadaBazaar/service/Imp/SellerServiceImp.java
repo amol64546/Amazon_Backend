@@ -1,64 +1,60 @@
 package com.BadaBazaar.BadaBazaar.service.Imp;
 
-import com.BadaBazaar.BadaBazaar.converter.SellerConverter;
-import com.BadaBazaar.BadaBazaar.requestDto.SellerRequestDto;
+import com.BadaBazaar.BadaBazaar.exception.SellerNotFoundException;
 import com.BadaBazaar.BadaBazaar.model.Seller;
 import com.BadaBazaar.BadaBazaar.repository.SellerRepository;
+import com.BadaBazaar.BadaBazaar.requestDto.SellerRequestDto;
 import com.BadaBazaar.BadaBazaar.responseDto.SellerResponseDto;
 import com.BadaBazaar.BadaBazaar.service.SellerService;
+import com.BadaBazaar.BadaBazaar.util.SellerCacheUtil;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 
 @Service
 @RequiredArgsConstructor
 public class SellerServiceImp implements SellerService {
 
-    private final SellerRepository sellerRepository;
+  private final ModelMapper modelMapper;
 
-    private final ModelMapper modelMapper;
+  private final SellerCacheUtil sellerCacheUtil;
 
-    @Override
-    @CachePut(value = "seller", key = "#sellerId")
-    public Object addSeller(SellerRequestDto sellerRequestDto) {
-//        Seller seller = SellerConverter.sellerRequestDtoToSeller(sellerRequestDto);
+  private final SellerRepository sellerRepository;
 
-        Seller seller = modelMapper.map(sellerRequestDto, Seller.class);
+  @Override
+  public SellerResponseDto addSeller(SellerRequestDto sellerRequestDto) {
+    Seller seller = modelMapper.map(sellerRequestDto, Seller.class);
+    Seller savedSeller = sellerCacheUtil.saveSeller(seller);
+    return modelMapper.map(savedSeller, SellerResponseDto.class);
+  }
 
-        sellerRepository.save(seller);
-        return seller;
+  @Override
+  public List<SellerResponseDto> getAllSellers() {
+    List<Seller> sellers = sellerCacheUtil.getAllSellers();
+
+    return sellers.stream()
+      .map(seller -> modelMapper.map(seller, SellerResponseDto.class))
+      .toList();
+  }
+
+
+  @Override
+  public SellerResponseDto getSellerById(Integer sellerId) {
+    Seller seller = sellerCacheUtil.getSeller(sellerId);
+    return modelMapper.map(seller, SellerResponseDto.class);
+  }
+
+  @Override
+  public void deleteSeller(Integer sellerId) {
+//    sellerCacheUtil.getSeller(sellerId); // check if seller exists
+    if (!sellerRepository.existsById(sellerId)) {
+        throw new SellerNotFoundException();
     }
+    sellerCacheUtil.deleteSeller(sellerId);
 
-    @Override
-    public List<SellerResponseDto> getAllSellers() {
-        List<Seller> sellers = sellerRepository.findAll();
-
-        List<SellerResponseDto> list = new ArrayList<>();
-
-        for(Seller s: sellers){
-            list.add(SellerConverter.sellerToSellerResponseDto(s));
-        }
-        return list;
-    }
-
-    public SellerResponseDto getSellerByPan(String panNo) {
-        Seller seller = sellerRepository.findByPanNo(panNo);
-        return SellerConverter.sellerToSellerResponseDto(seller);
-    }
-
-    @Override
-    public SellerResponseDto getSellerById(int sellerId)
-    {
-        Optional<Seller> seller = sellerRepository.findById(sellerId);
-        return seller.map(SellerConverter::sellerToSellerResponseDto).orElse(null);
-    }
-
+  }
 
 
 }
