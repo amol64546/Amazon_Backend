@@ -11,10 +11,8 @@ This is a backend e-commerce project made using Java Spring Boot based on Spring
 
 # Technologies Used
 - Java Spring Boot
-- Spring MVC Architecture
 - JPA/Hibernate
-- MySQL database
-- Postman for API testing
+- MySQL
 
 # Features
 - Customer can browse products by category
