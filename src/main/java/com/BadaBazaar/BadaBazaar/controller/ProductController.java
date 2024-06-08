@@ -33,8 +33,8 @@ public class ProductController {
         try {
             response = productService.addProduct(productByCategoryRequestDto);
         } catch (SellerNotFoundException e) {
-            log.error("Invalid sellerId");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid sellerId");
+            log.error(e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

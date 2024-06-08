@@ -32,7 +32,7 @@ public class SellerCacheUtil {
     log.info("-----Fetching seller from DB for id: {}-----", id);
     Optional<Seller> seller = sellerRepository.findById(id);
     if (seller.isEmpty()) {
-      throw new SellerNotFoundException();
+      throw new SellerNotFoundException("Seller not found for id: " + id);
     }
     return seller.get();
   }
