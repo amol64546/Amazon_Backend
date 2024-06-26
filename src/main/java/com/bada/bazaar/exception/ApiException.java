@@ -1,20 +1,13 @@
 
 package com.bada.bazaar.exception;
 
-import java.util.Objects;
-import org.springframework.http.HttpStatus;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.http.HttpStatusCode;
 
+@Data
+@AllArgsConstructor
 public class ApiException extends RuntimeException {
-  protected HttpStatusCode httpStatusCode;
-
-  public ApiException(Error error) {
-    super(error);
-    this.httpStatusCode = HttpStatusCode.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value());
-    if (Objects.nonNull(error)) {
-      this.httpStatusCode = error.getHttpStatusCode();
-    }
-
-  }
-
+  protected final HttpStatusCode httpStatusCode;
+  protected final Error error;
 }
