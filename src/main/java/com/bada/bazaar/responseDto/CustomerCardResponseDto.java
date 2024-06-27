@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @JsonInclude(Include.NON_NULL)
-public class BuyerCardResponseDto {
+public class CustomerCardResponseDto {
 
     private String buyerName;
     private List<CardResponseDto> cardResponseDtoList;

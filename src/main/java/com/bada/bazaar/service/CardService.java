@@ -1,16 +1,16 @@
 package com.bada.bazaar.service;
 
 import com.bada.bazaar.requestDto.CardRequestDto;
-import com.bada.bazaar.responseDto.BuyerCardResponseDto;
+import com.bada.bazaar.responseDto.CustomerCardResponseDto;
 
 
 public interface CardService {
 
-    BuyerCardResponseDto add(CardRequestDto cardRequestDto) throws Exception;
+    CustomerCardResponseDto add(CardRequestDto cardRequestDto) throws Exception;
 
     void remove(int customerId, int cardId)throws Exception;
 
-    BuyerCardResponseDto getAllCardsByCustomerId(int customerId) throws Exception;
+    CustomerCardResponseDto getAllCardsByCustomerId(int customerId) throws Exception;
 
 
 }

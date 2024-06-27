@@ -1,4 +1,4 @@
-package com.bada.bazaar.controller;
+package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.requestDto.LoginRequest;
 import com.bada.bazaar.util.JwtHelper;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class LoginController {
+public class LoginControllerImpl {
 
   private final AuthenticationManager authenticationManager;
 

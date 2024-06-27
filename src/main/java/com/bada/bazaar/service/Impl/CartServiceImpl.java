@@ -1,4 +1,4 @@
-package com.bada.bazaar.service.Imp;
+package com.bada.bazaar.service.Impl;
 
 import com.BadaBazaar.BadaBazaar.converter.ProductConverter;
 import com.bada.bazaar.enums.ProductStatus;
@@ -8,7 +8,7 @@ import com.bada.bazaar.model.Cart;
 import com.bada.bazaar.model.Item;
 import com.bada.bazaar.model.Ordered;
 import com.bada.bazaar.model.Product;
-import com.bada.bazaar.repository.BuyerRepository;
+import com.bada.bazaar.repository.CustomerRepository;
 import com.bada.bazaar.repository.ProductRepository;
 import com.bada.bazaar.requestDto.OrderedRequestDto;
 import com.bada.bazaar.responseDto.ItemResponseDto;
@@ -21,10 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CartServiceImp implements CartService {
+public class CartServiceImpl implements CartService {
 
     @Autowired
-    BuyerRepository buyerRepository;
+    CustomerRepository customerRepository;
 
     @Autowired
     ProductRepository productRepository;
@@ -37,7 +37,7 @@ public class CartServiceImp implements CartService {
         // check for customer
         Customer customer;
         try{
-            customer = buyerRepository.findById(orderedRequestDto.getCustomerId()).get();
+            customer = customerRepository.findById(orderedRequestDto.getCustomerId()).get();
         }catch (Exception e){
             throw new Exception("Customer is not available");
         }
@@ -70,7 +70,7 @@ public class CartServiceImp implements CartService {
 
         cart.getItemList().add(item);
 
-        buyerRepository.save(customer);
+        customerRepository.save(customer);
 
         return "Item has been added to your Cart!!";
     }
@@ -79,7 +79,7 @@ public class CartServiceImp implements CartService {
     public List<OrderedResponseDto> checkout(int customerId) throws Exception{
         Customer customer;
         try{
-            customer = buyerRepository.findById(customerId).get();
+            customer = customerRepository.findById(customerId).get();
         }
         catch(Exception e){
             throw new CustomerNotFoundException("Invalid Customer id !!!");
@@ -150,14 +150,14 @@ public class CartServiceImp implements CartService {
         cart.setItemList(new ArrayList<>());
         cart.setCartTotal(0);
 
-        buyerRepository.save(customer);
+        customerRepository.save(customer);
 
         return orderedResponseDtoList;
     }
 
     @Override
     public List<ItemResponseDto> viewItems(int customerId) {
-        Customer customer = buyerRepository.findById(customerId).get();
+        Customer customer = customerRepository.findById(customerId).get();
         List<ItemResponseDto> itemResponseDtos = new ArrayList<>();
         for(Item item:  customer.getCart().getItemList()){
             itemResponseDtos.add(ProductConverter.productToItemResponseDto(item.getProduct()));

@@ -1,10 +1,9 @@
-package com.bada.bazaar.controller;
+package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.enums.ProductCategory;
-import com.bada.bazaar.exception.SellerNotFoundException;
 import com.bada.bazaar.requestDto.ProductRequestDto;
 import com.bada.bazaar.responseDto.ProductResponseDto;
-import com.bada.bazaar.service.Imp.ProductServiceImp;
+import com.bada.bazaar.service.Impl.ProductServiceImpl;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/products")
 @RequiredArgsConstructor
 @Slf4j
-public class ProductController {
+public class ProductControllerImpl {
 
-    private final ProductServiceImp productService;
+    private final ProductServiceImpl productService;
 
     @PostMapping
     public ResponseEntity<String> addProduct(@RequestBody ProductRequestDto productRequestDto) {

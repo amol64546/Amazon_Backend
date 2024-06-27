@@ -1,6 +1,6 @@
 package com.bada.bazaar.config;
 
-import com.bada.bazaar.service.Imp.SellerServiceImp;
+import com.bada.bazaar.service.Impl.SellerServiceImpl;
 import com.bada.bazaar.util.JwtHelper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +17,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-  private final SellerServiceImp sellerService;
+  private final SellerServiceImpl sellerService;
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,

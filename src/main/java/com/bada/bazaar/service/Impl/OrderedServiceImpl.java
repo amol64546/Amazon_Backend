@@ -1,4 +1,4 @@
-package com.bada.bazaar.service.Imp;
+package com.bada.bazaar.service.Impl;
 
 import com.bada.bazaar.enums.ProductStatus;
 import com.BadaBazaar.BadaBazaar.model.*;
@@ -6,7 +6,7 @@ import com.bada.bazaar.model.Card;
 import com.bada.bazaar.model.Item;
 import com.bada.bazaar.model.Ordered;
 import com.bada.bazaar.model.Product;
-import com.bada.bazaar.repository.BuyerRepository;
+import com.bada.bazaar.repository.CustomerRepository;
 import com.bada.bazaar.repository.ProductRepository;
 import com.bada.bazaar.requestDto.OrderedRequestDto;
 import com.bada.bazaar.responseDto.OrderedResponseDto;
@@ -16,20 +16,20 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class OrderedServiceImp implements OrderedService {
+public class OrderedServiceImpl implements OrderedService {
 
     @Autowired
     ProductRepository productRepository;
 
     @Autowired
-    BuyerRepository buyerRepository;
+    CustomerRepository customerRepository;
 
     @Override
     public OrderedResponseDto placeOrder(OrderedRequestDto orderedRequestDto) throws Exception {
         // check for customer
         Customer customer;
         try{
-            customer = buyerRepository.findById(orderedRequestDto.getCustomerId()).get();
+            customer = customerRepository.findById(orderedRequestDto.getCustomerId()).get();
         }catch (Exception e){
             throw new Exception("Customer is not available");
         }
@@ -86,7 +86,7 @@ public class OrderedServiceImp implements OrderedService {
         // customer
         customer.getOrderList().add(ordered);
 
-        Customer savedCustomer = buyerRepository.save(customer);
+        Customer savedCustomer = customerRepository.save(customer);
 
         Ordered savedOrdered = savedCustomer.getOrderList().get(savedCustomer.getOrderList().size()-1);
 

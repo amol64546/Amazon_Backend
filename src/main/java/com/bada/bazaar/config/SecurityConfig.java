@@ -1,10 +1,9 @@
 package com.bada.bazaar.config;
 
-import com.bada.bazaar.service.Imp.SellerServiceImp;
+import com.bada.bazaar.service.Impl.SellerServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-  private final SellerServiceImp sellerService;
+  private final SellerServiceImpl sellerService;
   private final JwtAuthFilter jwtAuthFilter;
 
   @Bean
