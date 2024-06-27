@@ -22,7 +22,7 @@ public class SellerCacheUtil {
   @Caching(evict = {@CacheEvict(value = "retrieveAllSellers", allEntries = true)},
     put = {@CachePut(cacheNames = "seller", key = "#seller.id")})
   public Seller saveSeller(Seller seller) {
-    log.info("-----Persisting seller for id: {}-----", seller.getId());
+    log.info("-----Persisting seller for id: {}-----", seller.getSellerId());
     sellerRepository.save(seller);
     return seller;
   }

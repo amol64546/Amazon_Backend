@@ -34,7 +34,7 @@ public class Seller implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer sellerId;
 
     private String name;
 

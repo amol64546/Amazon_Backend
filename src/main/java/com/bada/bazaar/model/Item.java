@@ -28,7 +28,7 @@ public class Item implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer itemId;
 
     private Integer quantity;
 

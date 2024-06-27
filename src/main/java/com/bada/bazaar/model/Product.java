@@ -31,45 +31,45 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 public class Product implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer productId;
 
-    private String name;
+  private String name;
 
-    @Enumerated(EnumType.STRING)
-    private ProductCategory productCategory;
+  @Enumerated(EnumType.STRING)
+  private ProductCategory productCategory;
 
-    @Enumerated(EnumType.STRING)
-    private ProductSubCategory productSubCategory;
+  @Enumerated(EnumType.STRING)
+  private ProductSubCategory productSubCategory;
 
-    @Enumerated(EnumType.STRING)
-    private ProductStatus productStatus = ProductStatus.AVAILABLE;
+  @Enumerated(EnumType.STRING)
+  private ProductStatus productStatus = ProductStatus.AVAILABLE;
 
-    private String description;
-    private Double price;
-    private Integer stock;
+  private String description;
+  private Double price;
+  private Integer stock;
 
-    private byte[] image;
-    private String brand;
-    private String color;
-    private String size;
-    private String material;
+  private byte[] image;
+  private String brand;
+  private String color;
+  private String size;
+  private String material;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime dateAdded;
+  @CreatedDate
+  @Column(updatable = false)
+  private LocalDateTime dateAdded;
 
-    @ElementCollection
-    private List<String> tags = new ArrayList<>();
+  @ElementCollection
+  private List<String> tags = new ArrayList<>();
 
-    @ElementCollection
-    private List<String> reviews = new ArrayList<>();
-    private Integer rating;
-    private Integer views;
+  @ElementCollection
+  private List<String> reviews = new ArrayList<>();
+  private Integer rating;
+  private Integer views;
 
-    private Integer sellerId;
-    private Integer itemId;
+  private Integer sellerId;
+  private Integer itemId;
 
 
 }

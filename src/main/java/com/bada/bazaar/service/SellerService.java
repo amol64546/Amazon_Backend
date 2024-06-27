@@ -11,6 +11,6 @@ public interface SellerService {
 
     SellerResponseDto getSellerById(Integer sellerId);
 
-    void deleteSeller(Integer id);
+    void deleteSeller(Integer sellerId);
 
 }

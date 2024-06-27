@@ -28,7 +28,7 @@ public class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer customerId;
     private String name;
     private String email;
     private String phoneNumber;

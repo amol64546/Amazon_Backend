@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(Include.NON_NULL)
 public class ItemResponseDto {
 
+    private Integer itemId;
     private String productName;
     private Integer quantity;
     private Double price;

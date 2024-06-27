@@ -25,7 +25,7 @@ import org.springframework.data.annotation.CreatedDate;
 @Builder
 public class ProductResponseDto {
 
-    private Integer id;
+    private Integer productId;
 
     private String name;
 

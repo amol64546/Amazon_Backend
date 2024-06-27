@@ -31,7 +31,7 @@ public class Cart implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer cartId;
 
     private Integer totalAmount;
 

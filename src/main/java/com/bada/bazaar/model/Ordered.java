@@ -1,9 +1,6 @@
 package com.bada.bazaar.model;
 
 import com.bada.bazaar.enums.CardType;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -32,7 +29,7 @@ public class Ordered implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer orderId;
 
     @CreatedDate
     @Column(updatable = false)
