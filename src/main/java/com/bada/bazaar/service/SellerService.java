@@ -5,7 +5,7 @@ import com.bada.bazaar.responseDto.SellerResponseDto;
 
 public interface SellerService {
 
-//    UserDetails loadUserByUsername(String username);
+//    UserDetails getSellerByUsername(String username);
 
     SellerResponseDto addSeller(SellerRequestDto sellerRequestDto);
 
