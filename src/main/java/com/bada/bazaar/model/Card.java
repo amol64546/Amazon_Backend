@@ -39,7 +39,6 @@ public class Card implements Serializable {
     @Column(updatable = false)
     private LocalDateTime expiry;
 
-
     @Enumerated(EnumType.STRING)
     private CardType cardType;
 

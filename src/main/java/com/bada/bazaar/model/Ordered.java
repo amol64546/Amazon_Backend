@@ -10,7 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,7 +52,7 @@ public class Ordered implements Serializable {
     private Integer buyerId;
 
     @ElementCollection
-    private List<Integer> itemIds = new ArrayList<>();
+    private List<Integer> itemIds = new LinkedList<>();
 
     private Integer quantity;
 

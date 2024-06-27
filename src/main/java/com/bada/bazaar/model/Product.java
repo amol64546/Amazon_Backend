@@ -14,7 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -61,10 +61,10 @@ public class Product implements Serializable {
   private LocalDateTime dateAdded;
 
   @ElementCollection
-  private List<String> tags = new ArrayList<>();
+  private List<String> tags = new LinkedList<>();
 
   @ElementCollection
-  private List<String> reviews = new ArrayList<>();
+  private List<String> reviews = new LinkedList<>();
   private Integer rating;
   private Integer views;
 

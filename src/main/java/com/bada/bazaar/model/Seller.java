@@ -11,8 +11,8 @@ import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -58,14 +58,14 @@ public class Seller implements Serializable {
     private String gender;
 
     @ElementCollection
-    private Map<Integer,Integer> salesHistory = new HashMap<>(); // productId -> quantity
+    private Map<Integer,Integer> salesHistory = new LinkedHashMap<>(); // productId -> quantity
 
     @ElementCollection
-    private List<String> reviews = new ArrayList<>();
+    private List<String> reviews = new LinkedList<>();
     private Integer rating;
 
     @ElementCollection
-    private List<Integer> productIds = new ArrayList<>();
+    private List<Integer> productIds = new LinkedList<>();
 
 
 }

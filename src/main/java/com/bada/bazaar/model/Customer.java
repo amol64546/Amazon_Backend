@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,18 +51,18 @@ public class Customer implements Serializable {
     private LocalDateTime dateJoined;
 
     @ElementCollection
-    private List<Integer> purchaseHistoryIds = new ArrayList<>();
+    private List<Integer> purchaseHistoryIds = new LinkedList<>();
 
     @ElementCollection
-    private List<Integer> wishlistIds = new ArrayList<>();
+    private List<Integer> wishlistIds = new LinkedList<>();
 
     @ElementCollection
-    private List<Integer> cartHistoryIds = new ArrayList<>();
+    private List<Integer> cartHistoryIds = new LinkedList<>();
 
     @ElementCollection
-    private List<Integer> browsingHistoryIds = new ArrayList<>();
+    private List<Integer> browsingHistoryIds = new LinkedList<>();
 
     @ElementCollection
-    private List<String> searchHistory = new ArrayList<>();
+    private List<String> searchHistory = new LinkedList<>();
 
 }
