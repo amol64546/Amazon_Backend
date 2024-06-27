@@ -1,8 +1,8 @@
-package com.bada.bazaar.controller;
+package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.requestDto.CardRequestDto;
-import com.bada.bazaar.responseDto.BuyerCardResponseDto;
-import com.bada.bazaar.service.Imp.CardServiceImp;
+import com.bada.bazaar.responseDto.CustomerCardResponseDto;
+import com.bada.bazaar.service.Impl.CardServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -13,21 +13,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/cards")
 @RequiredArgsConstructor
 @Slf4j
-public class CardController {
+public class CardControllerImpl {
 
-    private final CardServiceImp cardService;
+    private final CardServiceImpl cardService;
 
     @PostMapping
-    public ResponseEntity<BuyerCardResponseDto> addCard(@RequestBody CardRequestDto cardRequestDto) {
+    public ResponseEntity<CustomerCardResponseDto> addCard(@RequestBody CardRequestDto cardRequestDto) {
         log.info("[POST]: Request to add card: {}", cardRequestDto);
-        BuyerCardResponseDto buyerCardResponseDto;
+        CustomerCardResponseDto customerCardResponseDto;
         try{
-            buyerCardResponseDto = cardService.add(cardRequestDto);
+            customerCardResponseDto = cardService.add(cardRequestDto);
         }catch (Exception e){
             log.error("Invalid customerId");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(buyerCardResponseDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerCardResponseDto);
 
     }
 
@@ -45,16 +45,16 @@ public class CardController {
 
 
     @GetMapping("{customerId}")
-    public ResponseEntity<BuyerCardResponseDto> getAllCardsByCustomerId(@PathVariable int customerId) {
+    public ResponseEntity<CustomerCardResponseDto> getAllCardsByCustomerId(@PathVariable int customerId) {
         log.info("[GET]: Request to get all cards by customerId: {}", customerId);
-        BuyerCardResponseDto buyerCardResponseDto;
+        CustomerCardResponseDto customerCardResponseDto;
         try{
-            buyerCardResponseDto = cardService.getAllCardsByCustomerId(customerId);
+            customerCardResponseDto = cardService.getAllCardsByCustomerId(customerId);
         }catch (Exception e){
             log.error("Invalid customerId");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        return new ResponseEntity<>(buyerCardResponseDto,HttpStatus.OK);
+        return new ResponseEntity<>(customerCardResponseDto,HttpStatus.OK);
     }
 
 

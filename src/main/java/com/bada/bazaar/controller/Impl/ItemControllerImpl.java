@@ -1,7 +1,7 @@
-package com.bada.bazaar.controller;
+package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.responseDto.ItemResponseDto;
-import com.bada.bazaar.service.Imp.ItemServiceImp;
+import com.bada.bazaar.service.Impl.ItemServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/items")
 @RequiredArgsConstructor
 @Slf4j
-public class ItemController {
+public class ItemControllerImpl {
 
-    private final ItemServiceImp itemService;
+    private final ItemServiceImpl itemService;
 
     @GetMapping("{productId}")
     public ResponseEntity<ItemResponseDto> viewItem(@PathVariable("productId") int productId ) throws Exception {

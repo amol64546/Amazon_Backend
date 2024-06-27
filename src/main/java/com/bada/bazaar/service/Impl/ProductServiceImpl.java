@@ -1,4 +1,4 @@
-package com.bada.bazaar.service.Imp;
+package com.bada.bazaar.service.Impl;
 
 import com.BadaBazaar.BadaBazaar.converter.ProductConverter;
 import com.bada.bazaar.enums.ProductCategory;
@@ -18,7 +18,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProductServiceImp implements ProductService {
+public class ProductServiceImpl implements ProductService {
     private final SellerRepository sellerRepository;
 
     private final ProductRepository productRepository;

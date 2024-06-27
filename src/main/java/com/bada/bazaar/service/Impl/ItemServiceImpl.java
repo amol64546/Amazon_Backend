@@ -1,8 +1,8 @@
-package com.bada.bazaar.service.Imp;
+package com.bada.bazaar.service.Impl;
 
 import com.bada.bazaar.model.Item;
 import com.bada.bazaar.model.Product;
-import com.bada.bazaar.repository.BuyerRepository;
+import com.bada.bazaar.repository.CustomerRepository;
 import com.bada.bazaar.repository.ItemRepository;
 import com.bada.bazaar.repository.ProductRepository;
 import com.bada.bazaar.responseDto.ItemResponseDto;
@@ -11,13 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ItemServiceImp implements ItemService {
+public class ItemServiceImpl implements ItemService {
 
     @Autowired
     ProductRepository productRepository;
 
     @Autowired
-    BuyerRepository buyerRepository;
+    CustomerRepository customerRepository;
 
     @Autowired
     ItemRepository itemRepository;

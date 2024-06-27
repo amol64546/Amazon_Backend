@@ -1,8 +1,8 @@
-package com.bada.bazaar.controller;
+package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.requestDto.OrderedRequestDto;
 import com.bada.bazaar.responseDto.OrderedResponseDto;
-import com.bada.bazaar.service.Imp.OrderedServiceImp;
+import com.bada.bazaar.service.Impl.OrderedServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/orders")
 @RequiredArgsConstructor
 @Slf4j
-public class OrderedController {
+public class OrderedControllerImpl {
 
-    private final OrderedServiceImp orderService;
+    private final OrderedServiceImpl orderService;
 
     @PostMapping
     public ResponseEntity<OrderedResponseDto> placeOrder(@RequestBody OrderedRequestDto orderedRequestDto){

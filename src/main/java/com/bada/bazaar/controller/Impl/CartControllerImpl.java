@@ -1,4 +1,4 @@
-package com.bada.bazaar.controller;
+package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.requestDto.OrderedRequestDto;
 import com.bada.bazaar.responseDto.ItemResponseDto;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/carts")
 @RequiredArgsConstructor
 @Slf4j
-public class CartController {
+public class CartControllerImpl {
 
     private final CartService cartService;
 

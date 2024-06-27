@@ -1,4 +1,4 @@
-package com.bada.bazaar.service.Imp;
+package com.bada.bazaar.service.Impl;
 
 import com.bada.bazaar.model.Seller;
 import com.bada.bazaar.repository.SellerRepository;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class SellerServiceImp implements SellerService, org.springframework.security.core.userdetails.UserDetailsService{
+public class SellerServiceImpl implements SellerService, org.springframework.security.core.userdetails.UserDetailsService{
 
   private final ModelMapper modelMapper;
 
