@@ -1,6 +1,6 @@
-package com.bada.bazaar.exception;
+package com.bada.bazaar.constant;
 
-import com.aidtaas.mobius.error.services.error.Error;
+import com.bada.bazaar.error.Error;
 import org.springframework.http.HttpStatus;
 
 public class ErrorConstants {

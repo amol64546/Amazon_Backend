@@ -3,7 +3,7 @@ package com.bada.bazaar.controller.Impl;
 import com.bada.bazaar.controller.SellerController;
 import com.bada.bazaar.requestDto.SellerRequestDto;
 import com.bada.bazaar.responseDto.SellerResponseDto;
-import com.bada.bazaar.service.Impl.SellerServiceImpl;
+import com.bada.bazaar.service.SellerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SellerControllerImpl implements SellerController {
 
-  private final SellerServiceImpl sellerService;
+  private final SellerService sellerService;
 
   @Override
   public ResponseEntity<Object> addSeller(SellerRequestDto sellerRequestDto) {
