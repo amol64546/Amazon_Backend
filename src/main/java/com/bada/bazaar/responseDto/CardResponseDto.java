@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(Include.NON_NULL)
 public class CardResponseDto {
 
-    private String cardId;
+    private String id;
     private String cardNo;
     private Integer cvv;
     private String expiry;

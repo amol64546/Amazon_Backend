@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ProductResponseDto {
 
-    private Integer productId;
+    private Integer id;
 
     private String name;
 
@@ -29,7 +29,6 @@ public class ProductResponseDto {
     private String description;
     private Double price;
     private Integer stock;
-
     private byte[] image;
 
     private Map<String,String> characteristics;

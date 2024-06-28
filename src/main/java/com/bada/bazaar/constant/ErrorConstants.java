@@ -1,9 +1,10 @@
 package com.bada.bazaar.constant;
 
+import com.bada.bazaar.error.CommonErrors;
 import com.bada.bazaar.error.Error;
 import org.springframework.http.HttpStatus;
 
-public class ErrorConstants {
+public class ErrorConstants extends CommonErrors {
 
   //400
   public static final Error BAD_REQUEST =

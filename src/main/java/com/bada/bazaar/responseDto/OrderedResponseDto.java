@@ -18,7 +18,7 @@ import java.util.Date;
 @JsonInclude(Include.NON_NULL)
 public class OrderedResponseDto {
 
-    private String orderId;
+    private String id;
     private String productName;
     private LocalDateTime orderDate;
     private Double itemPrice;
