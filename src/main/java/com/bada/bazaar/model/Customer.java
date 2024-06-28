@@ -7,6 +7,8 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
+import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,19 +25,31 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(indexes = {
+  @Index(name = "customer_username_email_phoneNumber",
+    columnList = "username, email, phoneNumber")
+})
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer customerId;
+    private Integer id;
     private String name;
+
+
+    @Column(unique = true)
     private String email;
+
+    @Column(unique = true)
     private String phoneNumber;
+
     private String address;
     private Integer age;
     private String gender;
+
+    @Column(unique = true)
     private String username;
     private String password;
 

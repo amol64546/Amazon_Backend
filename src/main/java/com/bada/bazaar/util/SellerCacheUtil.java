@@ -22,7 +22,7 @@ public class SellerCacheUtil {
   @Caching(evict = {@CacheEvict(value = "retrieveAllSellers", allEntries = true)},
     put = {@CachePut(cacheNames = "seller", key = "#seller.id")})
   public Seller saveSeller(Seller seller) {
-    log.info("-----Persisting seller for id: {}-----", seller.getSellerId());
+    log.info("-----Persisting seller for id: {}-----", seller.getId());
     sellerRepository.save(seller);
     return seller;
   }
@@ -32,6 +32,7 @@ public class SellerCacheUtil {
     log.info("-----Fetching seller from DB for id: {}-----", id);
     Optional<Seller> seller = sellerRepository.findById(id);
     if (seller.isEmpty()) {
+      log.error("-----Seller not found for id: {}-----", id);
       throw new ApiException(ErrorConstants.NOT_FOUND,"Seller not found for id: " + id);
     }
     return seller.get();

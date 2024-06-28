@@ -1,8 +1,7 @@
 package com.bada.bazaar.model;
 
-import com.bada.bazaar.enums.ProductCategory;
+import com.bada.bazaar.enums.Category;
 import com.bada.bazaar.enums.ProductStatus;
-import com.bada.bazaar.enums.ProductSubCategory;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -14,8 +13,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,28 +34,25 @@ public class Product implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer productId;
+  private Integer id;
 
   private String name;
-
-  @Enumerated(EnumType.STRING)
-  private ProductCategory productCategory;
-
-  @Enumerated(EnumType.STRING)
-  private ProductSubCategory productSubCategory;
-
-  @Enumerated(EnumType.STRING)
-  private ProductStatus productStatus = ProductStatus.AVAILABLE;
-
   private String description;
   private Double price;
   private Integer stock;
-
   private byte[] image;
-  private String brand;
-  private String color;
-  private String size;
-  private String material;
+
+//  @ElementCollection
+//  private Map<String, String> characteristics = new LinkedHashMap<>();
+
+
+  @Enumerated(EnumType.STRING)
+  private Category category;
+
+  private Enum<?> subCategory;
+
+  @Enumerated(EnumType.STRING)
+  private ProductStatus productStatus = ProductStatus.AVAILABLE;
 
   @CreatedDate
   @Column(updatable = false)
@@ -65,6 +63,7 @@ public class Product implements Serializable {
 
   @ElementCollection
   private List<String> reviews = new LinkedList<>();
+
   private Integer rating;
   private Integer views;
 

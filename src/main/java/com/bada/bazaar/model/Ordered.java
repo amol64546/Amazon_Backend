@@ -29,7 +29,7 @@ public class Ordered implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer orderId;
+    private Integer id;
 
     @CreatedDate
     @Column(updatable = false)

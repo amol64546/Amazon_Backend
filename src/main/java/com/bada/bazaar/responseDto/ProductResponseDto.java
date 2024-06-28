@@ -1,23 +1,15 @@
 package com.bada.bazaar.responseDto;
 
-import com.bada.bazaar.enums.ProductCategory;
+import com.bada.bazaar.enums.Category;
 import com.bada.bazaar.enums.ProductStatus;
-import com.bada.bazaar.enums.ProductSubCategory;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.bada.bazaar.enums.SubCategory;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 
 @Data
 @NoArgsConstructor
@@ -29,9 +21,8 @@ public class ProductResponseDto {
 
     private String name;
 
-    private ProductCategory productCategory;
-
-    private ProductSubCategory productSubCategory;
+    private Category category;
+    private Enum<?> subCategory;
 
     private ProductStatus productStatus;
 
@@ -40,10 +31,8 @@ public class ProductResponseDto {
     private Integer stock;
 
     private byte[] image;
-    private String brand;
-    private String color;
-    private String size;
-    private String material;
+
+    private Map<String,String> characteristics;
 
     private LocalDateTime dateAdded;
 

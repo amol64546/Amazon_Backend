@@ -24,7 +24,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(indexes = {
-  @Index(name = "idx_username_email_phoneNumber",
+  @Index(name = "seller_username_email_phoneNumber",
     columnList = "username, email, phoneNumber")
 })
 @Data
@@ -34,7 +34,7 @@ public class Seller implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer sellerId;
+    private Integer id;
 
     private String name;
 
@@ -57,12 +57,13 @@ public class Seller implements Serializable {
     private Integer age;
     private String gender;
 
+    private Integer rating;
+
     @ElementCollection
     private Map<Integer,Integer> salesHistory = new LinkedHashMap<>(); // productId -> quantity
 
     @ElementCollection
     private List<String> reviews = new LinkedList<>();
-    private Integer rating;
 
     @ElementCollection
     private List<Integer> productIds = new LinkedList<>();
