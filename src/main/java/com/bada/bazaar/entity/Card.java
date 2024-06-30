@@ -10,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,23 +26,21 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 public class Card implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    @Column(unique = true)
-    private String cardNo;
+  @Column(unique = true)
+  private String cardNo;
 
-    private Integer cvv;
+  private Integer cvv;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime expiry;
+  private String expiry;
 
-    @Enumerated(EnumType.STRING)
-    private CardType cardType;
+  @Enumerated(EnumType.STRING)
+  private CardType cardType;
 
-    private Integer buyerId;
+  private Integer buyerId;
 
 }
 

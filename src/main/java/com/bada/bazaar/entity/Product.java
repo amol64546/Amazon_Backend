@@ -12,7 +12,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -57,7 +56,7 @@ public class Product implements Serializable {
 
   @CreatedDate
   @Column(updatable = false)
-  private LocalDateTime dateAdded;
+  private Date dateAdded;
 
   @LastModifiedDate
   private Date lastModifiedDate;

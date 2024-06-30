@@ -5,6 +5,7 @@ import com.bada.bazaar.requestDto.SellerPostRequestDto;
 import com.bada.bazaar.requestDto.SellerPutRequestDto;
 import com.bada.bazaar.responseDto.SellerResponseDto;
 import com.bada.bazaar.service.SellerService;
+import com.bada.bazaar.util.CommonUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,8 @@ public class SellerControllerImpl implements SellerController {
   @Override
   public ResponseEntity<Object> registerSeller(SellerPostRequestDto sellerPostRequestDto,
     BindingResult bindingResult, HttpServletRequest request) {
-    log.info("[POST]: Request to add seller: {}", sellerPostRequestDto);
+    log.info("[POST]: Request to add seller: {}",
+      CommonUtils.prettyPrint(sellerPostRequestDto));
     return ResponseEntity.status(HttpStatus.CREATED)
       .body(sellerService.registerSeller(sellerPostRequestDto));
   }

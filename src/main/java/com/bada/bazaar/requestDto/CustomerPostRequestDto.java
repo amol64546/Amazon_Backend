@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CustomerRequestDto implements Serializable {
+public class CustomerPostRequestDto implements Serializable {
 
     @NotBlank(message = "Name cannot be empty")
     private String name;

@@ -7,10 +7,9 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class CommonUtils {
 
-  public void prettyPrint(Object obj){
+  public String prettyPrint(Object obj){
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    String json = gson.toJson(obj);
-    System.out.println(json);
+    return gson.toJson(obj);
   }
 
 

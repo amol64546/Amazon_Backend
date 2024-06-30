@@ -9,7 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -27,35 +27,34 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @AllArgsConstructor
 public class Ordered implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime orderDate;
+  @CreatedDate
+  @Column(updatable = false)
+  private Date orderDate;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime deliveryDate;
+  @CreatedDate
+  @Column(updatable = false)
+  private Date deliveryDate;
 
-    private Double totalCost;
+  private Double totalCost;
 
-    private Double deliveryCharge;
+  private Double deliveryCharge;
 
-    private String shippingAddress;
+  private String shippingAddress;
 
-    private CardType paymentMode;
+  private CardType paymentMode;
 
-    private String paymentStatus;
+  private String paymentStatus;
 
-    private Integer buyerId;
+  private Integer buyerId;
 
-    @ElementCollection
-    private List<Integer> itemIds = new LinkedList<>();
+  @ElementCollection
+  private List<Integer> itemIds = new LinkedList<>();
 
-    private Integer quantity;
-
+  private Integer quantity;
 
 
 }

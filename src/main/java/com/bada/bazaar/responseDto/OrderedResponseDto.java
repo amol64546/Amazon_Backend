@@ -4,13 +4,11 @@ import com.bada.bazaar.enums.CardType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -19,14 +17,14 @@ import java.util.Date;
 @JsonInclude(Include.NON_NULL)
 public class OrderedResponseDto implements Serializable {
 
-    private String id;
-    private String productName;
-    private LocalDateTime orderDate;
-    private Double itemPrice;
-    private Integer quantity;
-    private Double totalCost;
-    private Double deliveryCharge;
-    private CardType paymentMode;
-    private String shippingAddress;
+  private String id;
+  private String productName;
+  private Date orderDate;
+  private Double itemPrice;
+  private Integer quantity;
+  private Double totalCost;
+  private Double deliveryCharge;
+  private CardType paymentMode;
+  private String shippingAddress;
 
 }

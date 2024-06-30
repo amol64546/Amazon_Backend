@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,22 +23,22 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 public class Item implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    private Integer quantity;
+  private Integer quantity;
 
-    private Double price;
+  private Double price;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime dateAdded;
+  @CreatedDate
+  @Column(updatable = false)
+  private Date dateAdded;
 
-    private Integer cartId;
+  private Integer cartId;
 
-    private Integer productId;
+  private Integer productId;
 
-    private Integer orderedId;
+  private Integer orderedId;
 
 }

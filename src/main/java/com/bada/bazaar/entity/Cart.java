@@ -8,7 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -26,19 +26,19 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @AllArgsConstructor
 public class Cart implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    private Integer totalAmount;
+  private Integer totalAmount;
 
-    private Integer buyerId;
+  private Integer buyerId;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime dateAdded;
+  @CreatedDate
+  @Column(updatable = false)
+  private Date dateAdded;
 
-    @ElementCollection
-    private List<Integer> itemIds = new LinkedList<>();
+  @ElementCollection
+  private List<Integer> itemIds = new LinkedList<>();
 
 }

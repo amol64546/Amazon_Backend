@@ -1,6 +1,6 @@
 package com.bada.bazaar.responseDto;
 
-import com.bada.bazaar.util.PhoneNumberSerializer;
+import com.bada.bazaar.util.FieldMasking;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -24,7 +24,7 @@ public class SellerResponseDto implements Serializable {
 
     private String username;
 
-    @JsonSerialize(using = PhoneNumberSerializer.class)
+    @JsonSerialize(using = FieldMasking.class)
     private String phoneNumber;
 
     private String email;
