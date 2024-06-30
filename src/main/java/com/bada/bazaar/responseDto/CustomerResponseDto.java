@@ -2,6 +2,7 @@ package com.bada.bazaar.responseDto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @JsonInclude(Include.NON_NULL)
-public class CustomerResponseDto {
+public class CustomerResponseDto implements Serializable {
 
     private Integer id;
     private String name;

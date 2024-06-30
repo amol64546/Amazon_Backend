@@ -20,6 +20,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
@@ -53,6 +54,9 @@ public class Seller implements Serializable {
     @CreatedDate
     @Column(updatable = false)
     private Date dateJoined;
+
+    @LastModifiedDate
+    private Date lastModifiedDate;
 
     private String address;
     private Integer age;

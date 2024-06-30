@@ -5,6 +5,7 @@ import com.bada.bazaar.enums.ProductStatus;
 import com.bada.bazaar.service.Impl.ProductServiceImpl;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @JsonInclude(Include.NON_NULL)
-public class ItemResponseDto {
+public class ItemResponseDto implements Serializable {
 
     private Integer id;
     private String productName;

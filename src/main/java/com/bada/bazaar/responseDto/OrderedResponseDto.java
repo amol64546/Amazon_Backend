@@ -3,6 +3,7 @@ package com.bada.bazaar.responseDto;
 import com.bada.bazaar.enums.CardType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @JsonInclude(Include.NON_NULL)
-public class OrderedResponseDto {
+public class OrderedResponseDto implements Serializable {
 
     private String id;
     private String productName;

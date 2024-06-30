@@ -3,6 +3,7 @@ package com.bada.bazaar.responseDto;
 import com.bada.bazaar.enums.Category;
 import com.bada.bazaar.enums.ProductStatus;
 import com.bada.bazaar.enums.SubCategory;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductResponseDto {
+public class ProductResponseDto implements Serializable {
 
     private Integer id;
 

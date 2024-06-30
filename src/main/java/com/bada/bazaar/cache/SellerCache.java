@@ -1,22 +1,24 @@
-package com.bada.bazaar.util;
+package com.bada.bazaar.cache;
 
+import com.bada.bazaar.entity.Seller;
 import com.bada.bazaar.exception.ApiException;
 import com.bada.bazaar.exception.ErrorConstants;
-import com.bada.bazaar.entity.Seller;
 import com.bada.bazaar.repository.SellerRepository;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
 @Slf4j
-public class SellerCacheUtil {
+public class SellerCache {
+
   private final SellerRepository sellerRepository;
 
   @Caching(evict = {@CacheEvict(value = "retrieveAllSellers", allEntries = true)},
@@ -30,12 +32,8 @@ public class SellerCacheUtil {
   @Cacheable(cacheNames = "seller", key = "#id")
   public Seller getSeller(Integer id) {
     log.info("-----Fetching seller from DB for id: {}-----", id);
-    Optional<Seller> seller = sellerRepository.findById(id);
-    if (seller.isEmpty()) {
-      log.error("-----Seller not found for id: {}-----", id);
-      throw new ApiException(ErrorConstants.SELLER_NOT_FOUND);
-    }
-    return seller.get();
+    return sellerRepository.findById(id)
+      .orElseThrow(()-> new ApiException(ErrorConstants.SELLER_NOT_FOUND));
   }
 
   @Caching(evict = {@CacheEvict(value = "retrieveAllSellers", allEntries = true),
@@ -45,6 +43,11 @@ public class SellerCacheUtil {
     sellerRepository.deleteById(id);
   }
 
+  @Cacheable(cacheNames = "retrieveAllSellers")
+  public Page<Seller> retrieveAllSellers(Pageable pageable) {
+    log.info("-----Fetching all sellers from DB-----");
+    return sellerRepository.findAll(pageable);
+  }
 
 }
 

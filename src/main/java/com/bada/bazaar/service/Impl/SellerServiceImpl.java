@@ -2,13 +2,17 @@ package com.bada.bazaar.service.Impl;
 
 import com.bada.bazaar.entity.Seller;
 import com.bada.bazaar.repository.SellerRepository;
-import com.bada.bazaar.requestDto.SellerRequestDto;
+import com.bada.bazaar.requestDto.SellerPostRequestDto;
+import com.bada.bazaar.requestDto.SellerPutRequestDto;
 import com.bada.bazaar.responseDto.SellerResponseDto;
 import com.bada.bazaar.service.SellerService;
-import com.bada.bazaar.util.SellerCacheUtil;
+import com.bada.bazaar.cache.SellerCache;
+import com.bada.bazaar.util.CommonUtils;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -20,7 +24,7 @@ public class SellerServiceImpl implements SellerService{
 
   private final ModelMapper modelMapper;
 
-  private final SellerCacheUtil sellerCacheUtil;
+  private final SellerCache sellerCache;
 
   private final SellerRepository sellerRepository;
 
@@ -36,25 +40,40 @@ public class SellerServiceImpl implements SellerService{
 //  }
 
   @Override
-  public SellerResponseDto registerSeller(SellerRequestDto sellerRequestDto) {
-    Seller seller = modelMapper.map(sellerRequestDto, Seller.class);
+  public SellerResponseDto registerSeller(SellerPostRequestDto sellerPostRequestDto) {
+    Seller seller = modelMapper.map(sellerPostRequestDto, Seller.class);
 //    seller.setPassword(passwordEncoder.encode(sellerRequestDto.getPassword()));
-    Seller savedSeller = sellerCacheUtil.saveSeller(seller);
+    Seller savedSeller = sellerCache.saveSeller(seller);
     return modelMapper.map(savedSeller, SellerResponseDto.class);
   }
 
 
   @Override
   public SellerResponseDto getSellerById(Integer sellerId) {
-    Seller seller = sellerCacheUtil.getSeller(sellerId);
+    Seller seller = sellerCache.getSeller(sellerId);
     return modelMapper.map(seller, SellerResponseDto.class);
   }
 
   @Override
   public void deleteSeller(Integer sellerId) {
-    sellerCacheUtil.getSeller(sellerId); // check if seller exists
-    sellerCacheUtil.deleteSeller(sellerId);
+    sellerCache.getSeller(sellerId); // check if seller exists
+    sellerCache.deleteSeller(sellerId);
 
+  }
+
+  @Override
+  public List<SellerResponseDto> retrieveAllSellers(Pageable pageable) {
+    return sellerCache.retrieveAllSellers(pageable)
+      .map(seller -> modelMapper.map(seller, SellerResponseDto.class))
+      .toList();
+  }
+
+  @Override
+  public SellerResponseDto updateSeller(Integer sellerId, SellerPutRequestDto sellerPutRequestDto) {
+    Seller seller = sellerCache.getSeller(sellerId);
+    modelMapper.map(sellerPutRequestDto, seller);
+    Seller updatedSeller = sellerCache.saveSeller(seller);
+    return modelMapper.map(updatedSeller, SellerResponseDto.class);
   }
 
 
