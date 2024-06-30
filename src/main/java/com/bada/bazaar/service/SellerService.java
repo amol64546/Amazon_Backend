@@ -7,7 +7,7 @@ public interface SellerService {
 
 //    UserDetails getSellerByUsername(String username);
 
-    SellerResponseDto addSeller(SellerRequestDto sellerRequestDto);
+    SellerResponseDto registerSeller(SellerRequestDto sellerRequestDto);
 
     SellerResponseDto getSellerById(Integer sellerId);
 

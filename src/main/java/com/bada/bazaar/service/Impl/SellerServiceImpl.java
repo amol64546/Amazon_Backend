@@ -36,7 +36,7 @@ public class SellerServiceImpl implements SellerService{
 //  }
 
   @Override
-  public SellerResponseDto addSeller(SellerRequestDto sellerRequestDto) {
+  public SellerResponseDto registerSeller(SellerRequestDto sellerRequestDto) {
     Seller seller = modelMapper.map(sellerRequestDto, Seller.class);
 //    seller.setPassword(passwordEncoder.encode(sellerRequestDto.getPassword()));
     Seller savedSeller = sellerCacheUtil.saveSeller(seller);

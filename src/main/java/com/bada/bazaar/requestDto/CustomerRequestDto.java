@@ -36,7 +36,6 @@ public class CustomerRequestDto {
     private String password;
 
     private String address;
-    @Size(min = 1, max = 2, message = "Age must be between 1 and 2")
     private Integer age;
     private String gender;
 }

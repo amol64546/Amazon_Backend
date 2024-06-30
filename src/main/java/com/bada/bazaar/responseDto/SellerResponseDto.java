@@ -2,7 +2,7 @@ package com.bada.bazaar.responseDto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import java.time.LocalDateTime;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +25,7 @@ public class SellerResponseDto {
 
     private String email;
 
-    private LocalDateTime dateJoined;
+    private Date dateJoined;
 
     private String address;
     private Integer age;

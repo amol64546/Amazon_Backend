@@ -11,6 +11,7 @@ import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class Seller implements Serializable {
 
     @CreatedDate
     @Column(updatable = false)
-    private LocalDateTime dateJoined;
+    private Date dateJoined;
 
     private String address;
     private Integer age;

@@ -19,10 +19,10 @@ public class SellerControllerImpl implements SellerController {
   private final SellerService sellerService;
 
   @Override
-  public ResponseEntity<Object> addSeller(SellerRequestDto sellerRequestDto) {
+  public ResponseEntity<Object> registerSeller(SellerRequestDto sellerRequestDto) {
     log.info("[POST]: Request to add seller: {}", sellerRequestDto);
     return ResponseEntity.status(HttpStatus.CREATED)
-      .body(sellerService.addSeller(sellerRequestDto));
+      .body(sellerService.registerSeller(sellerRequestDto));
   }
 
   @Override

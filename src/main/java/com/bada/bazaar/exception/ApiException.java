@@ -1,11 +1,9 @@
 
 package com.bada.bazaar.exception;
 
-import lombok.Data;
+public class ApiException extends ApplicationException {
 
-@Data
-public class ApiException extends RuntimeException {
-
-  protected final Error error;
-
+  public ApiException(Error error) {
+    super(error);
+  }
 }

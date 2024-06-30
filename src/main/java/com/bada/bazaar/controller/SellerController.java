@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface SellerController {
 
   @PostMapping
-  ResponseEntity<Object> addSeller(@Valid @RequestBody SellerRequestDto sellerRequestDto) ;
+  ResponseEntity<Object> registerSeller(@Valid @RequestBody SellerRequestDto sellerRequestDto) ;
 
   @GetMapping("{sellerId}")
   ResponseEntity<SellerResponseDto> getSellerById(@PathVariable Integer sellerId);
