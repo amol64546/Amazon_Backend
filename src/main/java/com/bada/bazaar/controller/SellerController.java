@@ -2,10 +2,10 @@ package com.bada.bazaar.controller;
 
 import com.bada.bazaar.requestDto.SellerRequestDto;
 import com.bada.bazaar.responseDto.SellerResponseDto;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,16 +14,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("v1/sellers")
+@Validated
 public interface SellerController {
 
   @PostMapping
-  ResponseEntity<Object> addSeller(@RequestBody SellerRequestDto sellerRequestDto) ;
+  ResponseEntity<Object> addSeller(@Valid @RequestBody SellerRequestDto sellerRequestDto) ;
 
-  @GetMapping("{id}")
-  ResponseEntity<SellerResponseDto> getSellerById(@PathVariable Integer id);
+  @GetMapping("{sellerId}")
+  ResponseEntity<SellerResponseDto> getSellerById(@PathVariable Integer sellerId);
 
-  @DeleteMapping("{id}")
-  ResponseEntity<Void> deleteSeller(@PathVariable Integer id) ;
+  @DeleteMapping("{sellerId}")
+  ResponseEntity<ModelMap> deleteSeller(@PathVariable Integer sellerId) ;
 
 }
 

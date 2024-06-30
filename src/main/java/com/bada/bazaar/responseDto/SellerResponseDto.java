@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(Include.NON_NULL)
 public class SellerResponseDto {
 
-    private int id;
+    private Integer id;
 
     private String name;
 

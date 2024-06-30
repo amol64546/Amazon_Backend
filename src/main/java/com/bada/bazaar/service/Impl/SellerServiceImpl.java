@@ -27,7 +27,7 @@ public class SellerServiceImpl implements SellerService{
 //  private final PasswordEncoder passwordEncoder;
 //
 //  @Override
-//  public UserDetails loadUserByUsername(String username) {
+//  public UserDetails getSellerByUsername(String username) {
 //    Seller seller = sellerRepository.findByUsername(username);
 //    return org.springframework.security.core.userdetails.User.builder()
 //      .username(seller.getUsername())

@@ -1,6 +1,6 @@
 package com.bada.bazaar.responseDto;
 
-import com.bada.bazaar.enums.ProductCategory;
+import com.bada.bazaar.enums.Category;
 import com.bada.bazaar.enums.ProductStatus;
 import com.bada.bazaar.service.Impl.ProductServiceImpl;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -18,10 +18,11 @@ import lombok.NoArgsConstructor;
 @JsonInclude(Include.NON_NULL)
 public class ItemResponseDto {
 
+    private Integer id;
     private String productName;
     private Integer quantity;
     private Double price;
-    private ProductCategory productCategory;
+    private Category category;
     private ProductServiceImpl productServiceImpl;
     private ProductStatus productStatus;
     private LocalDateTime dateAdded;

@@ -1,17 +1,16 @@
 package com.bada.bazaar.requestDto;
 
-import com.bada.bazaar.enums.ProductCategory;
-import com.bada.bazaar.enums.ProductStatus;
-import com.bada.bazaar.enums.ProductSubCategory;
+import com.bada.bazaar.enums.Category;
+import com.bada.bazaar.enums.SubCategory;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
+import java.util.Map;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -23,24 +22,22 @@ public class ProductRequestDto {
     @NotBlank(message = "Product name is required")
     private String name;
 
-    private int quantity;
+    private Integer quantity;
 
-    private ProductCategory productCategory;
-    private ProductSubCategory productSubCategory;
+    private Category category;
+    private Enum<?> subCategory;
 
     @NotBlank(message = "Seller id is required")
-    private int sellerId;
+    private Integer sellerId;
 
     private String description;
     private Double price;
     private Integer stock;
-
     private byte[] image;
-    private String brand;
-    private String color;
-    private String size;
-    private String material;
 
-    private List<String> tags = new ArrayList<>();
+    private Map<String,String> characteristics;
+
+
+    private List<String> tags = new LinkedList<>();
 
 }

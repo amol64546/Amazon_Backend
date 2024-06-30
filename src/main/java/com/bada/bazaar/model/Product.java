@@ -1,8 +1,7 @@
 package com.bada.bazaar.model;
 
-import com.bada.bazaar.enums.ProductCategory;
+import com.bada.bazaar.enums.Category;
 import com.bada.bazaar.enums.ProductStatus;
-import com.bada.bazaar.enums.ProductSubCategory;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -14,8 +13,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,45 +32,42 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 public class Product implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    private String name;
+  private String name;
+  private String description;
+  private Double price;
+  private Integer stock;
+  private byte[] image;
 
-    @Enumerated(EnumType.STRING)
-    private ProductCategory productCategory;
+  @ElementCollection
+  private Map<String, String> characteristics = new LinkedHashMap<>();
 
-    @Enumerated(EnumType.STRING)
-    private ProductSubCategory productSubCategory;
+  @Enumerated(EnumType.STRING)
+  private Category category;
 
-    @Enumerated(EnumType.STRING)
-    private ProductStatus productStatus = ProductStatus.AVAILABLE;
+  private Enum<?> subCategory;
 
-    private String description;
-    private Double price;
-    private Integer stock;
+  @Enumerated(EnumType.STRING)
+  private ProductStatus productStatus = ProductStatus.AVAILABLE;
 
-    private byte[] image;
-    private String brand;
-    private String color;
-    private String size;
-    private String material;
+  @CreatedDate
+  @Column(updatable = false)
+  private LocalDateTime dateAdded;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime dateAdded;
+  @ElementCollection
+  private List<String> tags = new LinkedList<>();
 
-    @ElementCollection
-    private List<String> tags = new ArrayList<>();
+  @ElementCollection
+  private List<String> reviews = new LinkedList<>();
 
-    @ElementCollection
-    private List<String> reviews = new ArrayList<>();
-    private Integer rating;
-    private Integer views;
+  private Integer rating;
+  private Integer views;
 
-    private Integer sellerId;
-    private Integer itemId;
+  private Integer sellerId;
+  private Integer itemId;
 
 
 }

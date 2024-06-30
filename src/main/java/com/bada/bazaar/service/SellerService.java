@@ -5,12 +5,12 @@ import com.bada.bazaar.responseDto.SellerResponseDto;
 
 public interface SellerService {
 
-//    UserDetails loadUserByUsername(String username);
+//    UserDetails getSellerByUsername(String username);
 
     SellerResponseDto addSeller(SellerRequestDto sellerRequestDto);
 
     SellerResponseDto getSellerById(Integer sellerId);
 
-    void deleteSeller(Integer id);
+    void deleteSeller(Integer sellerId);
 
 }

@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,16 +26,18 @@ public class SellerControllerImpl implements SellerController {
   }
 
   @Override
-  public ResponseEntity<SellerResponseDto> getSellerById(Integer id) {
-    log.info("[GET]: Request to get seller by ID: {}", id);
-    return ResponseEntity.ok().body(sellerService.getSellerById(id));
+  public ResponseEntity<SellerResponseDto> getSellerById(Integer sellerId) {
+    log.info("[GET]: Request to get seller by ID: {}", sellerId);
+    return ResponseEntity.ok().body(sellerService.getSellerById(sellerId));
   }
 
   @Override
-  public ResponseEntity<Void> deleteSeller(Integer id) {
-    log.info("[DELETE]: Request to delete seller by ID: {}", id);
-    sellerService.deleteSeller(id);
-    return ResponseEntity.noContent().build();
+  public ResponseEntity<ModelMap> deleteSeller(Integer sellerId) {
+    log.info("[DELETE]: Request to delete seller by ID: {}", sellerId);
+    sellerService.deleteSeller(sellerId);
+    return ResponseEntity.status(HttpStatus.OK)
+      .body(new ModelMap().addAttribute("msg", "Successfully deleted."));
   }
+
 
 }
