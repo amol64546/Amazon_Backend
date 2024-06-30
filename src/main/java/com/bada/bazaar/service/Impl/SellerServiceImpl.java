@@ -1,6 +1,6 @@
 package com.bada.bazaar.service.Impl;
 
-import com.bada.bazaar.model.Seller;
+import com.bada.bazaar.entity.Seller;
 import com.bada.bazaar.repository.SellerRepository;
 import com.bada.bazaar.requestDto.SellerRequestDto;
 import com.bada.bazaar.responseDto.SellerResponseDto;

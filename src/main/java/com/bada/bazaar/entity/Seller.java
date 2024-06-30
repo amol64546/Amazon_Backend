@@ -1,4 +1,4 @@
-package com.bada.bazaar.model;
+package com.bada.bazaar.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -11,72 +11,62 @@ import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(indexes = {
-  @Index(name = "customer_username_email_phoneNumber",
+  @Index(name = "seller_username_email_phoneNumber",
     columnList = "username, email, phoneNumber")
 })
-@EntityListeners(AuditingEntityListener.class)
-@Entity
-public class Customer implements Serializable {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Seller implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
 
+    private String name;
 
     @Column(unique = true)
     private String email;
 
     @Column(unique = true)
-    private String phoneNumber;
-
-    private String address;
-    private Integer age;
-    private String gender;
+    private String username;
 
     @Column(unique = true)
-    private String username;
+    private String phoneNumber;
+
     private String password;
-
-    private Boolean notification = true;
-
-    private Integer cartId;
-
-    @ElementCollection
-    private List<Integer> cardIds = new ArrayList<>();
 
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime dateJoined;
 
-    @ElementCollection
-    private List<Integer> purchaseHistoryIds = new LinkedList<>();
+    private String address;
+    private Integer age;
+    private String gender;
+
+    private Integer rating;
 
     @ElementCollection
-    private List<Integer> wishlistIds = new LinkedList<>();
+    private Map<Integer,Integer> salesHistory = new LinkedHashMap<>(); // productId -> quantity
 
     @ElementCollection
-    private List<Integer> cartHistoryIds = new LinkedList<>();
+    private List<String> reviews = new LinkedList<>();
 
     @ElementCollection
-    private List<Integer> browsingHistoryIds = new LinkedList<>();
+    private List<Integer> productIds = new LinkedList<>();
 
-    @ElementCollection
-    private List<String> searchHistory = new LinkedList<>();
 
 }

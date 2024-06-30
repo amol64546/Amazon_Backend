@@ -2,7 +2,7 @@ package com.bada.bazaar.util;
 
 import com.bada.bazaar.exception.ApiException;
 import com.bada.bazaar.exception.ErrorConstants;
-import com.bada.bazaar.model.Seller;
+import com.bada.bazaar.entity.Seller;
 import com.bada.bazaar.repository.SellerRepository;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;

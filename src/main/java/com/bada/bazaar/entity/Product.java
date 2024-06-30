@@ -1,4 +1,4 @@
-package com.bada.bazaar.model;
+package com.bada.bazaar.entity;
 
 import com.bada.bazaar.enums.Category;
 import com.bada.bazaar.enums.ProductStatus;

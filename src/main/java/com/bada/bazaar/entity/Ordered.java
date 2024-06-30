@@ -1,5 +1,6 @@
-package com.bada.bazaar.model;
+package com.bada.bazaar.entity;
 
+import com.bada.bazaar.enums.CardType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -21,24 +22,40 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Data
 @Builder
-@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@NoArgsConstructor
 @AllArgsConstructor
-public class Cart implements Serializable {
+public class Ordered implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer totalAmount;
-
-    private Integer buyerId;
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime orderDate;
 
     @CreatedDate
     @Column(updatable = false)
-    private LocalDateTime dateAdded;
+    private LocalDateTime deliveryDate;
+
+    private Double totalCost;
+
+    private Double deliveryCharge;
+
+    private String shippingAddress;
+
+    private CardType paymentMode;
+
+    private String paymentStatus;
+
+    private Integer buyerId;
 
     @ElementCollection
     private List<Integer> itemIds = new LinkedList<>();
+
+    private Integer quantity;
+
+
 
 }

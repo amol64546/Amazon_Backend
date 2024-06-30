@@ -16,13 +16,10 @@ public class ApiErrorResponse implements ErrorResponse {
   protected String errorMessage;
   protected String actionsRequired;
 
-  public ApiErrorResponse(Throwable ex) {
-      if (ex instanceof ApplicationException) {
-        ApplicationException applicationException = (ApplicationException) ex;
-        this.errorMessage = applicationException.getError().getErrorMessage();
-        this.actionsRequired = applicationException.getError().getActionRequired();
-        this.statusCode = applicationException.getError().getStatusCode();
-      }
+  public ApiErrorResponse(ApiException ex) {
+        this.errorMessage = ex.getError().getErrorMessage();
+        this.actionsRequired = ex.getError().getActionRequired();
+        this.statusCode = ex.getError().getStatusCode();
   }
 
   @Override

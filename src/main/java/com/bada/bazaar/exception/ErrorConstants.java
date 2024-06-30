@@ -7,7 +7,7 @@ public class ErrorConstants {
   //400
   public static final Error BAD_REQUEST =
     new Error(HttpStatus.BAD_REQUEST,
-      "Bad Request", "");
+      "Bad Request", "Verify the request body");
 
   //404
   public static final Error SELLER_NOT_FOUND =
@@ -17,7 +17,7 @@ public class ErrorConstants {
   //409
   public static final Error CONFLICT =
     new Error(HttpStatus.CONFLICT,
-      "Conflict", "");
+      "Conflict", "Verify parameters");
 
 }
 
