@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +23,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Data
@@ -56,6 +58,9 @@ public class Product implements Serializable {
   @CreatedDate
   @Column(updatable = false)
   private LocalDateTime dateAdded;
+
+  @LastModifiedDate
+  private Date lastModifiedDate;
 
   @ElementCollection
   private List<String> tags = new LinkedList<>();

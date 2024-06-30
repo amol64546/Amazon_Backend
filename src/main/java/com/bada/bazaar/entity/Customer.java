@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Data
@@ -37,7 +39,6 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-
 
     @Column(unique = true)
     private String email;
@@ -63,6 +64,9 @@ public class Customer implements Serializable {
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime dateJoined;
+
+    @LastModifiedDate
+    private Date lastModifiedDate;
 
     @ElementCollection
     private List<Integer> purchaseHistoryIds = new LinkedList<>();

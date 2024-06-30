@@ -5,6 +5,7 @@ import com.bada.bazaar.enums.ProductStatus;
 import com.bada.bazaar.enums.SubCategory;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -35,6 +36,7 @@ public class ProductResponseDto implements Serializable {
     private Map<String,String> characteristics;
 
     private LocalDateTime dateAdded;
+    private Date lastModifiedDate;
 
     private List<String> tags;
 
