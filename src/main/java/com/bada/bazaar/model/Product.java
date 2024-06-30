@@ -42,9 +42,8 @@ public class Product implements Serializable {
   private Integer stock;
   private byte[] image;
 
-//  @ElementCollection
-//  private Map<String, String> characteristics = new LinkedHashMap<>();
-
+  @ElementCollection
+  private Map<String, String> characteristics = new LinkedHashMap<>();
 
   @Enumerated(EnumType.STRING)
   private Category category;

@@ -1,7 +1,7 @@
 package com.bada.bazaar.util;
 
-import com.bada.bazaar.constant.ErrorConstants;
 import com.bada.bazaar.exception.ApiException;
+import com.bada.bazaar.exception.ErrorConstants;
 import com.bada.bazaar.model.Seller;
 import com.bada.bazaar.repository.SellerRepository;
 import java.util.Optional;
@@ -33,7 +33,7 @@ public class SellerCacheUtil {
     Optional<Seller> seller = sellerRepository.findById(id);
     if (seller.isEmpty()) {
       log.error("-----Seller not found for id: {}-----", id);
-      throw new ApiException(ErrorConstants.NOT_FOUND,"Seller not found for id: " + id);
+      throw new ApiException(ErrorConstants.SELLER_NOT_FOUND);
     }
     return seller.get();
   }
