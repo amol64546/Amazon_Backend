@@ -1,6 +1,6 @@
 package com.bada.bazaar.entity;
 
-import jakarta.persistence.Column;
+import com.bada.bazaar.model.UserInfo;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -9,9 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,8 +16,6 @@ import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
@@ -32,35 +27,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Seller implements Serializable {
+public class Seller extends UserInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    private String name;
-
-    @Column(unique = true)
-    private String email;
-
-    @Column(unique = true)
-    private String username;
-
-    @Column(unique = true)
-    private String phoneNumber;
-
-    private String password;
-
-    @CreatedDate
-    @Column(updatable = false)
-    private Date dateJoined;
-
-    @LastModifiedDate
-    private Date lastModifiedDate;
-
-    private String address;
-    private Integer age;
-    private String gender;
 
     private Integer rating;
 

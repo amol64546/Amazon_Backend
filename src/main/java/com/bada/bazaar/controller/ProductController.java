@@ -25,34 +25,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("v1/products")
 public interface ProductController {
 
-//       ROLE - SELLER
-       @PostMapping
-       ResponseEntity<ProductResponseDto> addProductBySellerId(@Validated @Valid @RequestBody ProductPostRequestDto productPostRequestDto,
-       BindingResult bindingResult, HttpServletRequest request);
+  //       ROLE - SELLER
+  @PostMapping
+  ResponseEntity<ProductResponseDto> addProductBySellerId(
+    @Validated @Valid @RequestBody ProductPostRequestDto productPostRequestDto,
+    BindingResult bindingResult, HttpServletRequest request);
 
-       @PutMapping("{productId}")
-       ResponseEntity<ProductResponseDto> updateProduct(@PathVariable Integer productId,
-       @Validated @Valid @RequestBody ProductPutRequestDto productPutRequestDto,
-       BindingResult bindingResult,
-       HttpServletRequest request);
+  @PutMapping("{productId}")
+  ResponseEntity<ProductResponseDto> updateProduct(@PathVariable Integer productId,
+    @Validated @Valid @RequestBody ProductPutRequestDto productPutRequestDto,
+    BindingResult bindingResult,
+    HttpServletRequest request);
 
-       @DeleteMapping("{productId}")
-       ResponseEntity<ModelMap> deleteProduct(@PathVariable Integer productId, HttpServletRequest request);
+  @DeleteMapping("{productId}")
+  ResponseEntity<ModelMap> deleteProduct(@PathVariable Integer productId,
+    HttpServletRequest request);
 
-       // ROLE - SELLER/CUSTOMER
-       @GetMapping("{productId}")
-       ResponseEntity<ProductResponseDto> getProductById(@PathVariable Integer productId, HttpServletRequest request);
 
-       @GetMapping("seller/{sellerId}")
-       ResponseEntity<List<ProductResponseDto>> getProductsBySellerId(
-         @PathVariable Integer sellerId,
-         @Parameter(hidden = true) @PageableDefault(sort = "dateAdded",
-           direction = Sort.Direction.DESC) Pageable pageable,
-         HttpServletRequest request);
+  // ROLE - SELLER/CUSTOMER
+  @GetMapping("{productId}")
+  ResponseEntity<ProductResponseDto> getProductById(@PathVariable Integer productId,
+    HttpServletRequest request);
 
-       @GetMapping
-       ResponseEntity<List<ProductResponseDto>> getAllProducts(
-       @Parameter(hidden = true) @PageableDefault(sort = "dateAdded",
-       direction = Sort.Direction.DESC) Pageable pageable,
-       HttpServletRequest request);
+  @GetMapping("seller")
+  ResponseEntity<List<ProductResponseDto>> getProductsBySellerId(
+    @Parameter(hidden = true) @PageableDefault(sort = "dateAdded",
+      direction = Sort.Direction.DESC) Pageable pageable,
+    HttpServletRequest request);
+
+  @GetMapping
+  ResponseEntity<List<ProductResponseDto>> getAllProducts(
+    @Parameter(hidden = true) @PageableDefault(sort = "dateAdded",
+      direction = Sort.Direction.DESC) Pageable pageable,
+    HttpServletRequest request);
 }

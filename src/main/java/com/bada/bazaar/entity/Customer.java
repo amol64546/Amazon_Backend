@@ -1,6 +1,6 @@
 package com.bada.bazaar.entity;
 
-import jakarta.persistence.Column;
+import com.bada.bazaar.model.UserInfo;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -9,17 +9,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Data
@@ -32,26 +28,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 })
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Customer implements Serializable {
+public class Customer extends UserInfo {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
-  private String name;
-
-  @Column(unique = true)
-  private String email;
-
-  @Column(unique = true)
-  private String phoneNumber;
-
-  private String address;
-  private Integer age;
-  private String gender;
-
-  @Column(unique = true)
-  private String username;
-  private String password;
 
   private Boolean notification = true;
 
@@ -59,13 +40,6 @@ public class Customer implements Serializable {
 
   @ElementCollection
   private List<Integer> cardIds = new ArrayList<>();
-
-  @CreatedDate
-  @Column(updatable = false)
-  private Date dateJoined;
-
-  @LastModifiedDate
-  private Date lastModifiedDate;
 
   @ElementCollection
   private List<Integer> purchaseHistoryIds = new LinkedList<>();

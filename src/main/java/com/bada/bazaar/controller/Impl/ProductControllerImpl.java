@@ -1,6 +1,7 @@
 package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.controller.ProductController;
+import com.bada.bazaar.model.UserInfo;
 import com.bada.bazaar.requestDto.ProductPostRequestDto;
 import com.bada.bazaar.requestDto.ProductPutRequestDto;
 import com.bada.bazaar.responseDto.ProductResponseDto;
@@ -13,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,11 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+
 public class ProductControllerImpl implements ProductController {
 
   private final ProductService productService;
 
   @Override
+  @PreAuthorize("hasRole('SELLER')")
   public ResponseEntity<ProductResponseDto> addProductBySellerId(ProductPostRequestDto productPostRequestDto,
     BindingResult bindingResult, HttpServletRequest request) {
     log.info("[POST]: Request to add product: {}",
@@ -34,6 +38,7 @@ public class ProductControllerImpl implements ProductController {
   }
 
   @Override
+  @PreAuthorize("hasRole('SELLER')")
   public ResponseEntity<ProductResponseDto> updateProduct(Integer productId,
     ProductPutRequestDto productPutRequestDto, BindingResult bindingResult,
     HttpServletRequest request) {
@@ -43,6 +48,7 @@ public class ProductControllerImpl implements ProductController {
   }
 
   @Override
+  @PreAuthorize("hasRole('SELLER')")
   public ResponseEntity<ModelMap> deleteProduct(Integer productId, HttpServletRequest request) {
     log.info("[DELETE]: Request to delete product by ID: {}", productId);
     return ResponseEntity.status(HttpStatus.OK)
@@ -50,6 +56,7 @@ public class ProductControllerImpl implements ProductController {
   }
 
   @Override
+  @PreAuthorize("hasRole('SELLER') || hasRole('CUSTOMER')")
   public ResponseEntity<ProductResponseDto> getProductById(Integer productId,
     HttpServletRequest request) {
     log.info("[GET]: Request to get product by ID: {}", productId);
@@ -58,11 +65,13 @@ public class ProductControllerImpl implements ProductController {
   }
 
   @Override
-  public ResponseEntity<List<ProductResponseDto>> getProductsBySellerId(Integer sellerId,
+  @PreAuthorize("hasRole('SELLER') || hasRole('CUSTOMER')")
+  public ResponseEntity<List<ProductResponseDto>> getProductsBySellerId(
     Pageable pageable, HttpServletRequest request) {
-    log.info("[GET]: Request to get products by seller ID: {}", sellerId);
+    UserInfo user = CommonUtils.getUserInfo(request);
+    log.info("[GET]: Request to get products by seller ID: {}", user.getUserId());
     return ResponseEntity.status(HttpStatus.OK)
-      .body(productService.getProductsBySellerId(sellerId, pageable, request));
+      .body(productService.getProductsBySellerId(user.getUserId(), pageable, request));
   }
 
   @Override
