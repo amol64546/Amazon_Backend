@@ -33,7 +33,8 @@ public class AdminControllerImpl implements AdminController {
   @Override
   public ResponseEntity<List<CustomerResponseDto>> getAllCustomers(Pageable pageable,
     HttpServletRequest request) {
-    return null;
+    log.info("[GET]: Request to get all customers.");
+    return ResponseEntity.ok().body(customerService.retrieveAllCustomers(pageable));
   }
 
 }

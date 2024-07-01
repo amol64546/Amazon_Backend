@@ -1,7 +1,7 @@
 package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.controller.ProductController;
-import com.bada.bazaar.model.UserInfo;
+import com.bada.bazaar.entity.UserEntity;
 import com.bada.bazaar.requestDto.ProductPostRequestDto;
 import com.bada.bazaar.requestDto.ProductPutRequestDto;
 import com.bada.bazaar.responseDto.ProductResponseDto;
@@ -68,7 +68,7 @@ public class ProductControllerImpl implements ProductController {
   @PreAuthorize("hasRole('SELLER') || hasRole('CUSTOMER')")
   public ResponseEntity<List<ProductResponseDto>> getProductsBySellerId(
     Pageable pageable, HttpServletRequest request) {
-    UserInfo user = CommonUtils.getUserInfo(request);
+    UserEntity user = CommonUtils.getUserInfo(request);
     log.info("[GET]: Request to get products by seller ID: {}", user.getUserId());
     return ResponseEntity.status(HttpStatus.OK)
       .body(productService.getProductsBySellerId(user.getUserId(), pageable, request));

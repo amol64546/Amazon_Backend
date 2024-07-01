@@ -1,10 +1,10 @@
 package com.bada.bazaar.config;
 
-import com.bada.bazaar.service.AuthService;
+import com.bada.bazaar.enums.Role;
+import com.bada.bazaar.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,8 +21,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-  private final AuthService authService;
-  private final JwtAuthFilter jwtAuthFilter;
+  private final UserService userService;
+  private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
   @Bean
   public PasswordEncoder passwordEncoder() {
@@ -37,17 +37,16 @@ public class SecurityConfig {
       .csrf(AbstractHttpConfigurer::disable)
       .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
       .authorizeHttpRequests(auth -> auth
-        .requestMatchers(HttpMethod.POST, "/register/**").permitAll()
-        .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
-        .requestMatchers(HttpMethod.GET, "/swagger/**").permitAll()
-        .anyRequest().authenticated())
+        .requestMatchers("/users/**").permitAll()
+        .requestMatchers( "/swagger/**").permitAll()
+        .anyRequest().hasRole(Role.ADMIN.name()))
 //            .anyRequest().permitAll())
       .authenticationManager(authenticationManager)
-      .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+      .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
       .logout(logout -> logout
-        .logoutUrl("/logout")
+        .logoutUrl("v1/users/logout")
         .invalidateHttpSession(true)
-        .logoutSuccessUrl("/login")
+        .logoutSuccessUrl("v1/users/login")
         .deleteCookies("JSESSIONID"))
       .build();
   }
@@ -56,7 +55,7 @@ public class SecurityConfig {
   public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
     AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(
       AuthenticationManagerBuilder.class);
-    authenticationManagerBuilder.userDetailsService(authService).passwordEncoder(passwordEncoder());
+    authenticationManagerBuilder.userDetailsService(userService).passwordEncoder(passwordEncoder());
     return authenticationManagerBuilder.build();
   }
 

@@ -13,13 +13,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(indexes = {

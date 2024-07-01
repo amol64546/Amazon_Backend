@@ -1,14 +1,14 @@
 package com.bada.bazaar.service;
 
-import com.bada.bazaar.requestDto.LoginRequest;
+import com.bada.bazaar.requestDto.UserLoginRequest;
 import com.bada.bazaar.requestDto.UserPostRequestDto;
 import com.bada.bazaar.responseDto.UserResponseDto;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface AuthService extends UserDetailsService {
+public interface UserService extends UserDetailsService {
 
-  String login(LoginRequest loginRequest);
+  String login(UserLoginRequest userLoginRequest);
 
   UserDetails loadUserByUsername(String username);
 

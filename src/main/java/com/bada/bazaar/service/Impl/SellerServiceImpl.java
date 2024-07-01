@@ -3,6 +3,7 @@ package com.bada.bazaar.service.Impl;
 import com.bada.bazaar.cache.SellerCache;
 import com.bada.bazaar.entity.Seller;
 import com.bada.bazaar.requestDto.SellerPutRequestDto;
+import com.bada.bazaar.responseDto.CustomerResponseDto;
 import com.bada.bazaar.responseDto.SellerResponseDto;
 import com.bada.bazaar.service.SellerService;
 import java.util.List;
@@ -48,5 +49,6 @@ public class SellerServiceImpl implements SellerService {
     Seller updatedSeller = sellerCache.saveSeller(seller);
     return modelMapper.map(updatedSeller, SellerResponseDto.class);
   }
+
 
 }

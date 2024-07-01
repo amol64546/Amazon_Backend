@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LoginRequest implements Serializable {
+public class UserLoginRequest implements Serializable {
     private String username;
     private String password;
 }

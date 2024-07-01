@@ -1,9 +1,6 @@
 package com.bada.bazaar.config;
 
-import com.bada.bazaar.repository.CustomerRepository;
-import com.bada.bazaar.repository.SellerRepository;
-import com.bada.bazaar.service.AuthService;
-import com.bada.bazaar.service.Impl.SellerServiceImpl;
+import com.bada.bazaar.service.UserService;
 import com.bada.bazaar.util.JwtHelper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,9 +15,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 @Component
 @RequiredArgsConstructor
-public class JwtAuthFilter extends OncePerRequestFilter {
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-  private final AuthService authService;
+  private final UserService userService;
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
@@ -44,7 +41,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
 //       If any accessToken is present, then it will validate the token and then authenticate the request in security context
       if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-        UserDetails userDetails = authService.loadUserByUsername(username);
+        UserDetails userDetails = userService.loadUserByUsername(username);
         if (JwtHelper.validateToken(token, userDetails)) {
           UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
             userDetails, null, null);

@@ -3,8 +3,7 @@ package com.bada.bazaar.util;
 import com.bada.bazaar.enums.Role;
 import com.bada.bazaar.exception.ApiException;
 import com.bada.bazaar.exception.ErrorConstants;
-import com.bada.bazaar.model.UserInfo;
-import com.bada.bazaar.model.UserTokenBody;
+import com.bada.bazaar.entity.UserEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -24,8 +23,8 @@ public class CommonUtils {
     }
   }
 
-  public UserTokenBody getUserInfo(HttpServletRequest request){
-    return UserTokenBody.builder()
+  public UserEntity getUserInfo(HttpServletRequest request){
+    return UserEntity.builder()
       .userId(Integer.valueOf(request.getHeader("userId")))
       .username(request.getHeader("username"))
       .role(Role.valueOf(request.getHeader("userType")))

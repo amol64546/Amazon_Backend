@@ -1,8 +1,7 @@
 package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.controller.SellerController;
-import com.bada.bazaar.model.UserInfo;
-import com.bada.bazaar.model.UserTokenBody;
+import com.bada.bazaar.entity.UserEntity;
 import com.bada.bazaar.requestDto.SellerPutRequestDto;
 import com.bada.bazaar.responseDto.SellerResponseDto;
 import com.bada.bazaar.service.SellerService;
@@ -26,7 +25,7 @@ public class SellerControllerImpl implements SellerController {
 
   @Override
   public ResponseEntity<SellerResponseDto> getSellerById(HttpServletRequest request) {
-    UserTokenBody user = CommonUtils.getUserInfo(request);
+    UserEntity user = CommonUtils.getUserInfo(request);
     log.info("[GET]: Request to get seller by ID: {}", user.getUserId());
     return ResponseEntity.ok().body(sellerService.getSellerById(user.getUserId()));
   }
@@ -35,7 +34,7 @@ public class SellerControllerImpl implements SellerController {
   public ResponseEntity<SellerResponseDto> updateSeller(
     SellerPutRequestDto sellerPutRequestDto, BindingResult bindingResult,
     HttpServletRequest request) {
-    UserTokenBody user = CommonUtils.getUserInfo(request);
+    UserEntity user = CommonUtils.getUserInfo(request);
     log.info("[PUT]: Request to update seller by ID: {}", user.getUserId());
     return ResponseEntity.status(HttpStatus.OK)
       .body(sellerService.updateSeller(user.getUserId(), sellerPutRequestDto));
@@ -43,7 +42,7 @@ public class SellerControllerImpl implements SellerController {
 
   @Override
   public ResponseEntity<ModelMap> deleteSeller(HttpServletRequest request) {
-    UserTokenBody user = CommonUtils.getUserInfo(request);
+    UserEntity user = CommonUtils.getUserInfo(request);
     log.info("[DELETE]: Request to delete seller by ID: {}", user.getUserId());
     sellerService.deleteSeller(user.getUserId());
     return ResponseEntity.status(HttpStatus.OK)

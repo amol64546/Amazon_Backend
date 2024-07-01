@@ -1,6 +1,6 @@
 package com.bada.bazaar.controller;
 
-import com.bada.bazaar.requestDto.LoginRequest;
+import com.bada.bazaar.requestDto.UserLoginRequest;
 import com.bada.bazaar.requestDto.UserPostRequestDto;
 import com.bada.bazaar.responseDto.UserResponseDto;
 import jakarta.validation.Valid;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("v1/auth")
-public interface AuthController {
+@RequestMapping("v1/users")
+public interface UserController {
 
   @PostMapping("register")
   ResponseEntity<UserResponseDto> register(
@@ -19,7 +19,7 @@ public interface AuthController {
   );
 
   @PostMapping("login")
-  ResponseEntity<String> login(LoginRequest loginRequest);
+  ResponseEntity<String> login(UserLoginRequest userLoginRequest);
 
 }
 

@@ -1,10 +1,10 @@
 package com.bada.bazaar.controller.Impl;
 
-import com.bada.bazaar.controller.AuthController;
-import com.bada.bazaar.requestDto.LoginRequest;
+import com.bada.bazaar.controller.UserController;
+import com.bada.bazaar.requestDto.UserLoginRequest;
 import com.bada.bazaar.requestDto.UserPostRequestDto;
 import com.bada.bazaar.responseDto.UserResponseDto;
-import com.bada.bazaar.service.AuthService;
+import com.bada.bazaar.service.UserService;
 import com.bada.bazaar.util.CommonUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-public class AuthControllerImpl implements AuthController {
+public class UserControllerImpl implements UserController {
 
-  private final AuthService authService;
+  private final UserService userService;
 
   @Override
   public ResponseEntity<UserResponseDto> register(
@@ -26,12 +26,12 @@ public class AuthControllerImpl implements AuthController {
     log.info("[POST]: Request to add seller: {}",
       CommonUtils.prettyPrint(userPostRequestDto));
     return ResponseEntity.status(HttpStatus.CREATED)
-      .body(authService.register(userPostRequestDto));
+      .body(userService.register(userPostRequestDto));
   }
 
   @Override
-  public ResponseEntity<String> login(LoginRequest loginRequest) {
-    return ResponseEntity.ok().body(authService.login(loginRequest));
+  public ResponseEntity<String> login(UserLoginRequest userLoginRequest) {
+    return ResponseEntity.ok().body(userService.login(userLoginRequest));
   }
 
 }

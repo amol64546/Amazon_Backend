@@ -19,5 +19,15 @@ public class ErrorConstants {
     new Error(HttpStatus.CONFLICT,
       "Conflict", "Verify parameters");
 
+  public static final Error USER_ALREADY_EXISTS = new Error(
+    HttpStatus.CONFLICT,
+    "User Already Exists",
+    "Please verify the username"
+  );
+  public static final Error USER_NOT_FOUND = new Error(
+    HttpStatus.NOT_FOUND,
+    "User Not Found",
+    "Please verify the username"
+  );
 }
 

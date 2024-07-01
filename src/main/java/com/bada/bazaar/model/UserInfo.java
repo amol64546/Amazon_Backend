@@ -1,8 +1,10 @@
 package com.bada.bazaar.model;
 
 import com.bada.bazaar.enums.Role;
+import com.bada.bazaar.util.AttributeEncryptor;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.AllArgsConstructor;
@@ -24,6 +26,8 @@ public class UserInfo implements Serializable {
 
   @Column(unique = true)
   private String username;
+
+  @Convert(converter = AttributeEncryptor.class)
   private String password;
 
   @Column(unique = true)
