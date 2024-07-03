@@ -1,16 +1,18 @@
 package com.bada.bazaar.service;
 
-import com.bada.bazaar.requestDto.SellerRequestDto;
+import com.bada.bazaar.requestDto.SellerPutRequestDto;
 import com.bada.bazaar.responseDto.SellerResponseDto;
+import java.util.List;
+import org.springframework.data.domain.Pageable;
 
 public interface SellerService {
 
-//    UserDetails getSellerByUsername(String username);
+  SellerResponseDto getSellerById(Integer sellerId);
 
-    SellerResponseDto addSeller(SellerRequestDto sellerRequestDto);
+  void deleteSeller(Integer sellerId);
 
-    SellerResponseDto getSellerById(Integer sellerId);
+  List<SellerResponseDto> retrieveAllSellers(Pageable pageable);
 
-    void deleteSeller(Integer sellerId);
+  SellerResponseDto updateSeller(Integer sellerId, SellerPutRequestDto sellerPutRequestDto);
 
 }

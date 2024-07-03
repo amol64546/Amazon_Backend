@@ -1,17 +1,28 @@
 package com.bada.bazaar.exception;
 
+import static java.lang.String.format;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.CONFLICT;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+
+import jakarta.validation.ConstraintViolationException;
 import java.net.ConnectException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @Slf4j
 @ControllerAdvice
-public class RuntimeExceptionHandler extends ResponseEntityExceptionHandler {
+public class RuntimeExceptionHandler {
 
 
   @ExceptionHandler(ConnectException.class)
@@ -28,5 +39,25 @@ public class RuntimeExceptionHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<>(new ApiErrorResponse(e), e.getError().getStatusCode());
   }
 
+  @ExceptionHandler(DataIntegrityViolationException.class)
+  protected ResponseEntity<ApiErrorResponse> handleDataIntegrityViolation(
+    DataIntegrityViolationException exception) {
+
+    HttpStatusCode httpStatusCode = HttpStatusCode.valueOf(INTERNAL_SERVER_ERROR.value());
+
+    if (exception.getCause() instanceof ConstraintViolationException) {
+      httpStatusCode = HttpStatusCode.valueOf(CONFLICT.value());
+
+      return new ResponseEntity<>(new ApiErrorResponse(
+        "Constraint violation occurred. This operation cannot be completed.",
+        "Verify that all data meets the required constraints and try again. Review the specific constraints and adjust the input data accordingly."),
+        httpStatusCode);
+    }
+
+    return new ResponseEntity<>(
+      new ApiErrorResponse("Database transaction failed. Please try again later.",
+        "Ensure all database connections are stable and retry the operation. If the issue persists, check the transaction logs and database configuration."),
+      httpStatusCode);
+  }
 }
 

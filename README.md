@@ -48,5 +48,16 @@ mvn spring-boot:run
 
 
 
+# Enpoints
+roles - admin,seller,customer
+
+/register - userType,username,userId,password
+/login - username,password
+    - creates -> jwt (userType,userId,username)
+
+/all request - jwt
+    - extract -> (userType,userId,username)
+/logout
+
 
 

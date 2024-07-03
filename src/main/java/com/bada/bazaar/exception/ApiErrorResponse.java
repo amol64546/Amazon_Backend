@@ -12,18 +12,25 @@ import org.springframework.web.ErrorResponse;
 @JsonInclude(Include.NON_EMPTY)
 @JsonIgnoreProperties({"typeMessageCode", "detailMessageCode", "titleMessageCode"})
 public class ApiErrorResponse implements ErrorResponse {
+
   protected HttpStatusCode statusCode;
   protected String errorMessage;
   protected String actionsRequired;
 
   public ApiErrorResponse(Throwable ex) {
-      if (ex instanceof ApplicationException) {
-        ApplicationException applicationException = (ApplicationException) ex;
-        this.errorMessage = applicationException.getError().getErrorMessage();
-        this.actionsRequired = applicationException.getError().getActionRequired();
-        this.statusCode = applicationException.getError().getStatusCode();
-      }
+    if (ex instanceof ApplicationException) {
+      ApplicationException applicationException = (ApplicationException) ex;
+      this.errorMessage = applicationException.getError().getErrorMessage();
+      this.actionsRequired = applicationException.getError().getActionRequired();
+      this.statusCode = applicationException.getError().getStatusCode();
+    }
   }
+
+  public ApiErrorResponse(String errorMessage, String actionsRequired) {
+    this.errorMessage = errorMessage;
+    this.actionsRequired = actionsRequired;
+  }
+
 
   @Override
   public HttpStatusCode getStatusCode() {
