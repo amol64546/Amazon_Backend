@@ -22,16 +22,14 @@ import lombok.NoArgsConstructor;
 @JsonInclude(Include.NON_NULL)
 public class UserRegisterRequestDto implements Serializable {
 
-  @NotBlank(message = "First Name cannot be empty")
-  private String firstName;
-  @NotBlank(message = "First Name cannot be empty")
-  private String lastName;
+  @NotBlank(message = "Name cannot be empty")
+  private String name;
 
   @NotBlank(message = "Username cannot be empty")
   private String username;
 
   @NotBlank(message = "Password cannot be empty")
-  @Size(min = 4, max = 4, message = "Password must be 4 characters long")
+  @Size(min = 4, max = 8, message = "Password must be between 4 and 8 characters long")
   private String password;
 
   @NotNull(message = "Role cannot be empty")

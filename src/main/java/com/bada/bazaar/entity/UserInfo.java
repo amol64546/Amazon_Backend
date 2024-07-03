@@ -2,7 +2,6 @@ package com.bada.bazaar.entity;
 
 import com.bada.bazaar.enums.Role;
 import com.bada.bazaar.util.AttributeEncryptor;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import java.io.Serializable;
@@ -18,12 +17,10 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserInfo implements Serializable {
 
   private Role role;
-  private String firstName;
-  private String lastName;
+  private String name;
 
   @Column(unique = true)
   private String username;
