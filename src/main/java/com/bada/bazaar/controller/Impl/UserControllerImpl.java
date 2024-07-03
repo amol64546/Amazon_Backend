@@ -2,7 +2,7 @@ package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.controller.UserController;
 import com.bada.bazaar.requestDto.UserLoginRequest;
-import com.bada.bazaar.requestDto.UserPostRequestDto;
+import com.bada.bazaar.requestDto.UserRegisterRequestDto;
 import com.bada.bazaar.responseDto.UserResponseDto;
 import com.bada.bazaar.service.UserService;
 import com.bada.bazaar.util.CommonUtils;
@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,17 +22,19 @@ public class UserControllerImpl implements UserController {
 
   @Override
   public ResponseEntity<UserResponseDto> register(
-    UserPostRequestDto userPostRequestDto
+    UserRegisterRequestDto userRegisterRequestDto
   ) {
     log.info("[POST]: Request to add seller: {}",
-      CommonUtils.prettyPrint(userPostRequestDto));
+      CommonUtils.prettyPrint(userRegisterRequestDto));
     return ResponseEntity.status(HttpStatus.CREATED)
-      .body(userService.register(userPostRequestDto));
+      .body(userService.register(userRegisterRequestDto));
   }
 
   @Override
-  public ResponseEntity<String> login(UserLoginRequest userLoginRequest) {
-    return ResponseEntity.ok().body(userService.login(userLoginRequest));
+  public ResponseEntity<ModelMap> login(UserLoginRequest userLoginRequest) {
+    String token = userService.login(userLoginRequest);
+    return ResponseEntity.ok()
+      .body(new ModelMap().addAttribute("token", token));
   }
 
 }

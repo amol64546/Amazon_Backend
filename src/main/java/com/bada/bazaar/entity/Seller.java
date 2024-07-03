@@ -1,11 +1,9 @@
 package com.bada.bazaar.entity;
 
-import com.bada.bazaar.model.UserInfo;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
@@ -30,7 +28,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class Seller extends UserInfo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Integer id;
 
     private Integer rating;

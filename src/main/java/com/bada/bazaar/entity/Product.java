@@ -34,7 +34,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class Product implements Serializable {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue
   private Integer id;
 
   private String name;

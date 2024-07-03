@@ -1,4 +1,4 @@
-package com.bada.bazaar.model;
+package com.bada.bazaar.entity;
 
 import com.bada.bazaar.enums.Role;
 import com.bada.bazaar.util.AttributeEncryptor;
@@ -22,7 +22,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 public class UserInfo implements Serializable {
 
   private Role role;
-  private String name;
+  private String firstName;
+  private String lastName;
 
   @Column(unique = true)
   private String username;

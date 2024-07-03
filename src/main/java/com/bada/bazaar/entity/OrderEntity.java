@@ -25,10 +25,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ordered implements Serializable {
+public class OrderEntity implements Serializable {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue
   private Integer id;
 
   @CreatedDate

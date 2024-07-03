@@ -2,6 +2,9 @@ package com.bada.bazaar.responseDto;
 
 import com.bada.bazaar.enums.Category;
 import com.bada.bazaar.enums.ProductStatus;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +18,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(Include.NON_NULL)
 public class ProductResponseDto implements Serializable {
 
   private Integer id;

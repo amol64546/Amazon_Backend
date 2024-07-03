@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("v1/sellers")
+@RequestMapping("/v1/sellers")
 @Validated
 public interface SellerController {
 

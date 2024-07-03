@@ -1,7 +1,7 @@
 package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.controller.SellerController;
-import com.bada.bazaar.entity.UserEntity;
+import com.bada.bazaar.entity.User;
 import com.bada.bazaar.requestDto.SellerPutRequestDto;
 import com.bada.bazaar.responseDto.SellerResponseDto;
 import com.bada.bazaar.service.SellerService;
@@ -25,29 +25,29 @@ public class SellerControllerImpl implements SellerController {
 
   @Override
   public ResponseEntity<SellerResponseDto> getSellerById(HttpServletRequest request) {
-    UserEntity user = CommonUtils.getUserInfo(request);
-    log.info("[GET]: Request to get seller by ID: {}", user.getUserId());
-    return ResponseEntity.ok().body(sellerService.getSellerById(user.getUserId()));
+    User user = CommonUtils.getUserInfo(request);
+    log.info("[GET]: Request to get seller by ID: {}", user.getId());
+    return ResponseEntity.ok().body(sellerService.getSellerById(user.getId()));
   }
 
   @Override
   public ResponseEntity<SellerResponseDto> updateSeller(
     SellerPutRequestDto sellerPutRequestDto, BindingResult bindingResult,
     HttpServletRequest request) {
-    UserEntity user = CommonUtils.getUserInfo(request);
-    log.info("[PUT]: Request to update seller by ID: {}", user.getUserId());
+    User user = CommonUtils.getUserInfo(request);
+    log.info("[PUT]: Request to update seller by ID: {}", user.getId());
     return ResponseEntity.status(HttpStatus.OK)
-      .body(sellerService.updateSeller(user.getUserId(), sellerPutRequestDto));
+      .body(sellerService.updateSeller(user.getId(), sellerPutRequestDto));
   }
 
   @Override
   public ResponseEntity<ModelMap> deleteSeller(HttpServletRequest request) {
-    UserEntity user = CommonUtils.getUserInfo(request);
-    log.info("[DELETE]: Request to delete seller by ID: {}", user.getUserId());
-    sellerService.deleteSeller(user.getUserId());
+    User user = CommonUtils.getUserInfo(request);
+    log.info("[DELETE]: Request to delete seller by ID: {}", user.getId());
+    sellerService.deleteSeller(user.getId());
     return ResponseEntity.status(HttpStatus.OK)
       .body(new ModelMap()
-        .addAttribute("SellerId", user.getUserId())
+        .addAttribute("SellerId", user.getId())
         .addAttribute("msg", "Successfully deleted.")
       );
   }

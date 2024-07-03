@@ -2,6 +2,8 @@ package com.bada.bazaar.requestDto;
 
 import com.bada.bazaar.enums.Category;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import jakarta.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -17,6 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(Include.NON_NULL)
 public class ProductPostRequestDto implements Serializable {
 
     @NotBlank(message = "Product name is required")

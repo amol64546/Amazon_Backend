@@ -1,6 +1,6 @@
 package com.bada.bazaar.service;
 
-public interface OrderedService {
+public interface OrderService {
 
 
 }

@@ -3,7 +3,7 @@ package com.bada.bazaar.util;
 import com.bada.bazaar.enums.Role;
 import com.bada.bazaar.exception.ApiException;
 import com.bada.bazaar.exception.ErrorConstants;
-import com.bada.bazaar.entity.UserEntity;
+import com.bada.bazaar.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -23,9 +23,9 @@ public class CommonUtils {
     }
   }
 
-  public UserEntity getUserInfo(HttpServletRequest request){
-    return UserEntity.builder()
-      .userId(Integer.valueOf(request.getHeader("userId")))
+  public User getUserInfo(HttpServletRequest request){
+    return User.builder()
+      .id(Integer.valueOf(request.getHeader("userId")))
       .username(request.getHeader("username"))
       .role(Role.valueOf(request.getHeader("userType")))
       .build();

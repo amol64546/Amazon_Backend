@@ -1,12 +1,13 @@
 package com.bada.bazaar.repository;
 
-import com.bada.bazaar.entity.UserEntity;
+import com.bada.bazaar.entity.User;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
-  UserEntity findByUsername(String username);
+  Optional<User> findByUsername(String username);
 
 }
