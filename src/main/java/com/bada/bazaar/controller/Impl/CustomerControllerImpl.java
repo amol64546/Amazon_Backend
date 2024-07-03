@@ -7,15 +7,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@PreAuthorize("hasRole('CUSTOMER')")
 public class CustomerControllerImpl implements CustomerController {
 
   @Override
@@ -26,7 +23,7 @@ public class CustomerControllerImpl implements CustomerController {
 
   @Override
   public ResponseEntity<CustomerResponseDto> updateCustomer(
-    CustomerPutRequestDto sellerPutRequestDto, BindingResult bindingResult,
+    CustomerPutRequestDto sellerPutRequestDto,
     HttpServletRequest request) {
     return null;
   }

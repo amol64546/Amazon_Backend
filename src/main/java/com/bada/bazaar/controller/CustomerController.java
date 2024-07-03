@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/v1/customers")
-@Validated
 public interface CustomerController {
 
   @GetMapping
@@ -25,7 +23,6 @@ public interface CustomerController {
   @PutMapping
   ResponseEntity<CustomerResponseDto> updateCustomer(
     @Validated @Valid @RequestBody CustomerPutRequestDto sellerPutRequestDto,
-    BindingResult bindingResult,
     HttpServletRequest request);
 
   @DeleteMapping

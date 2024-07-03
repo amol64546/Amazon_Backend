@@ -20,7 +20,8 @@ public interface UserController {
   );
 
   @PostMapping("/login")
-  ResponseEntity<ModelMap> login(UserLoginRequest userLoginRequest);
+  ResponseEntity<ModelMap> login(
+    @Validated @Valid @RequestBody UserLoginRequest userLoginRequest);
 
 }
 

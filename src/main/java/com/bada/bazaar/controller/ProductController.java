@@ -29,12 +29,11 @@ public interface ProductController {
   @PostMapping
   ResponseEntity<ProductResponseDto> addProductBySellerId(
     @Validated @Valid @RequestBody ProductPostRequestDto productPostRequestDto,
-    BindingResult bindingResult, HttpServletRequest request);
+    HttpServletRequest request);
 
   @PutMapping("{productId}")
   ResponseEntity<ProductResponseDto> updateProduct(@PathVariable Integer productId,
     @Validated @Valid @RequestBody ProductPutRequestDto productPutRequestDto,
-    BindingResult bindingResult,
     HttpServletRequest request);
 
   @DeleteMapping("{productId}")
