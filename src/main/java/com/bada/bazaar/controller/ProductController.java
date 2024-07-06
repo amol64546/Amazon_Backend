@@ -1,8 +1,8 @@
 package com.bada.bazaar.controller;
 
-import com.bada.bazaar.requestDto.ProductPostRequestDto;
-import com.bada.bazaar.requestDto.ProductPutRequestDto;
-import com.bada.bazaar.responseDto.ProductResponseDto;
+import com.bada.bazaar.dto.request.ProductPostRequestDto;
+import com.bada.bazaar.dto.request.ProductPutRequestDto;
+import com.bada.bazaar.dto.response.ProductResponseDto;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -12,7 +12,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

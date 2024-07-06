@@ -2,11 +2,11 @@ package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.controller.ProductController;
 import com.bada.bazaar.entity.User;
-import com.bada.bazaar.requestDto.ProductPostRequestDto;
-import com.bada.bazaar.requestDto.ProductPutRequestDto;
-import com.bada.bazaar.responseDto.ProductResponseDto;
+import com.bada.bazaar.dto.request.ProductPostRequestDto;
+import com.bada.bazaar.dto.request.ProductPutRequestDto;
+import com.bada.bazaar.dto.response.ProductResponseDto;
 import com.bada.bazaar.service.ProductService;
-import com.bada.bazaar.util.CommonUtils;
+import com.bada.bazaar.util.CommonServices;
 import com.bada.bazaar.util.JwtHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -24,12 +24,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductControllerImpl implements ProductController {
 
   private final ProductService productService;
+  private final CommonServices commonServices;
 
   @Override
-  public ResponseEntity<ProductResponseDto> addProductBySellerId(ProductPostRequestDto productPostRequestDto,
+  public ResponseEntity<ProductResponseDto> addProductBySellerId(
+    ProductPostRequestDto productPostRequestDto,
     HttpServletRequest request) {
     log.info("[POST]: Request to add product: {}",
-      CommonUtils.prettyPrint(productPostRequestDto));
+      commonServices.prettyPrint(productPostRequestDto));
     return ResponseEntity.status(HttpStatus.CREATED)
       .body(productService.addProductBySellerId(productPostRequestDto, request));
   }

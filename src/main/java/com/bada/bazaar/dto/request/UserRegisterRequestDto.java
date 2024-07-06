@@ -1,4 +1,4 @@
-package com.bada.bazaar.requestDto;
+package com.bada.bazaar.dto.request;
 
 import com.bada.bazaar.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

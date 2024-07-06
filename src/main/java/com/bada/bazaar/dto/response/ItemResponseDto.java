@@ -1,6 +1,7 @@
-package com.bada.bazaar.responseDto;
+package com.bada.bazaar.dto.response;
 
-import com.bada.bazaar.enums.CardType;
+import com.bada.bazaar.enums.Category;
+import com.bada.bazaar.enums.ProductStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -12,21 +13,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class OrderResponseDto implements Serializable {
+public class ItemResponseDto implements Serializable {
 
-  private String id;
+  private Integer id;
   private String productName;
-  private Date orderDate;
-  private Double itemPrice;
   private Integer quantity;
-  private Double totalCost;
-  private Double deliveryCharge;
-  private CardType paymentMode;
-  private String shippingAddress;
-
+  private Double price;
+  private Category category;
+  private ProductStatus productStatus;
+  private Date dateAdded;
 }

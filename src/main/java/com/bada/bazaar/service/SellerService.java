@@ -1,7 +1,7 @@
 package com.bada.bazaar.service;
 
-import com.bada.bazaar.requestDto.SellerPutRequestDto;
-import com.bada.bazaar.responseDto.SellerResponseDto;
+import com.bada.bazaar.dto.request.SellerPutRequestDto;
+import com.bada.bazaar.dto.response.SellerResponseDto;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
 

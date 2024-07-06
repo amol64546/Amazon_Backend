@@ -1,4 +1,4 @@
-package com.bada.bazaar.exception;
+package com.bada.bazaar.error;
 
 import lombok.Data;
 

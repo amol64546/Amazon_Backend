@@ -1,6 +1,5 @@
-package com.bada.bazaar.responseDto;
+package com.bada.bazaar.dto.response;
 
-import com.bada.bazaar.enums.Role;
 import com.bada.bazaar.util.FieldMasking;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -14,32 +13,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class UserResponseDto implements Serializable {
+public class SellerResponseDto implements Serializable {
 
-  private Integer id;
-  private String name;
+    private Integer id;
 
-  private String username;
+    private String name;
 
-  private Role role;
+    private String username;
 
-  private String email;
+    @JsonSerialize(using = FieldMasking.class)
+    private String phoneNumber;
 
-  @JsonSerialize(using = FieldMasking.class)
-  private String phoneNumber;
+    private String email;
 
-  private String address;
-  private Integer age;
-  private String gender;
+    private Date dateJoined;
+    private Date lastModifiedDate;
 
-  private Date dateJoined;
-
-  private Date lastModifiedDate;
-
+    private String address;
+    private Integer age;
+    private String gender;
 }
-

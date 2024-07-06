@@ -1,5 +1,5 @@
 
-package com.bada.bazaar.exception;
+package com.bada.bazaar.error;
 
 public class ApiException extends ApplicationException {
 

@@ -1,7 +1,7 @@
 package com.bada.bazaar.controller;
 
-import com.bada.bazaar.requestDto.CustomerPutRequestDto;
-import com.bada.bazaar.responseDto.CustomerResponseDto;
+import com.bada.bazaar.dto.request.CustomerPutRequestDto;
+import com.bada.bazaar.dto.response.CustomerResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

@@ -1,5 +1,7 @@
 package com.bada.bazaar.config;
 
+import com.bada.bazaar.error.CustomAccessDeniedHandler;
+import com.bada.bazaar.error.CustomAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +20,8 @@ public class SecurityConfig {
 
   private final JwtAuthenticationFilter jwtAuthenticationFilter;
   private final AuthenticationProvider authenticationProvider;
+  private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+  private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
 
   @Bean
@@ -26,13 +30,20 @@ public class SecurityConfig {
       .cors(AbstractHttpConfigurer::disable)
       .csrf(AbstractHttpConfigurer::disable)
       .authorizeHttpRequests(auth -> auth
-        .requestMatchers("/v1/auth/**", "/swagger/**").permitAll()
-        .anyRequest().authenticated()
+//        .requestMatchers("/v1/auth/**", "/swagger/**").permitAll()
+//        .anyRequest().authenticated()
+        .anyRequest().permitAll()
       )
       .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
       .authenticationProvider(authenticationProvider)
       .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+//      .exceptionHandling(exception -> exception
+//        .authenticationEntryPoint(customAuthenticationEntryPoint)
+//        .accessDeniedHandler(customAccessDeniedHandler)
+//      )
       .build();
+
+
   }
 
 

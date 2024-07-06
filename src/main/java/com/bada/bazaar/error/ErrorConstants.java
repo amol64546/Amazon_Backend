@@ -1,4 +1,4 @@
-package com.bada.bazaar.exception;
+package com.bada.bazaar.error;
 
 import org.springframework.http.HttpStatus;
 

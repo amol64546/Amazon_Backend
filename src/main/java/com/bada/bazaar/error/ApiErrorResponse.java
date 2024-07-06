@@ -1,4 +1,4 @@
-package com.bada.bazaar.exception;
+package com.bada.bazaar.error;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

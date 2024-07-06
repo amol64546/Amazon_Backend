@@ -1,8 +1,8 @@
 package com.bada.bazaar.service;
 
-import com.bada.bazaar.requestDto.ProductPostRequestDto;
-import com.bada.bazaar.requestDto.ProductPutRequestDto;
-import com.bada.bazaar.responseDto.ProductResponseDto;
+import com.bada.bazaar.dto.request.ProductPostRequestDto;
+import com.bada.bazaar.dto.request.ProductPutRequestDto;
+import com.bada.bazaar.dto.response.ProductResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import org.springframework.data.domain.Pageable;

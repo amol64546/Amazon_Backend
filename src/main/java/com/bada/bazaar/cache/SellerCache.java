@@ -1,8 +1,8 @@
 package com.bada.bazaar.cache;
 
 import com.bada.bazaar.entity.Seller;
-import com.bada.bazaar.exception.ApiException;
-import com.bada.bazaar.exception.ErrorConstants;
+import com.bada.bazaar.error.ApiException;
+import com.bada.bazaar.error.ErrorConstants;
 import com.bada.bazaar.repository.SellerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
 package com.bada.bazaar.controller;
 
-import com.bada.bazaar.requestDto.CardRequestDto;
-import com.bada.bazaar.responseDto.CardResponseDto;
+import com.bada.bazaar.dto.request.CardRequestDto;
+import com.bada.bazaar.dto.response.CardResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import org.springframework.http.ResponseEntity;

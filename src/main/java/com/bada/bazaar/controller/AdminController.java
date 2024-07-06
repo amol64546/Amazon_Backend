@@ -1,7 +1,7 @@
 package com.bada.bazaar.controller;
 
-import com.bada.bazaar.responseDto.CustomerResponseDto;
-import com.bada.bazaar.responseDto.SellerResponseDto;
+import com.bada.bazaar.dto.response.CustomerResponseDto;
+import com.bada.bazaar.dto.response.SellerResponseDto;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/v1/admins")
+@RequestMapping("/v1/admin")
 public interface AdminController {
 
   @GetMapping("sellers")

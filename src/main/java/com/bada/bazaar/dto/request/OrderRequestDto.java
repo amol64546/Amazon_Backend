@@ -1,6 +1,6 @@
-package com.bada.bazaar.requestDto;
+package com.bada.bazaar.dto.request;
 
-import com.bada.bazaar.enums.Category;
+import com.bada.bazaar.enums.CardType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -10,20 +10,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class ProductPutRequestDto implements Serializable {
+public class OrderRequestDto implements Serializable {
 
-  private String name;
-  private Category category;
-  private Enum<?> subCategory;
-
-  private String description;
-  private Double price;
-  private Integer stock;
-  private byte[] image;
-
+    private Integer productId;
+    private Integer buyerId;
+    private Integer quantity;
+    private String shippingAddress;
+    private CardType paymentMode;
 }
-

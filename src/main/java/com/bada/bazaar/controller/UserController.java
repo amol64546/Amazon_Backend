@@ -1,8 +1,8 @@
 package com.bada.bazaar.controller;
 
-import com.bada.bazaar.requestDto.UserLoginRequest;
-import com.bada.bazaar.requestDto.UserRegisterRequestDto;
-import com.bada.bazaar.responseDto.UserResponseDto;
+import com.bada.bazaar.dto.request.UserLoginRequest;
+import com.bada.bazaar.dto.request.UserRegisterRequestDto;
+import com.bada.bazaar.dto.response.UserResponseDto;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;

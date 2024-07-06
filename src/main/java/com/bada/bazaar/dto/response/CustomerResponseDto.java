@@ -1,4 +1,4 @@
-package com.bada.bazaar.responseDto;
+package com.bada.bazaar.dto.response;
 
 import com.bada.bazaar.util.FieldMasking;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
