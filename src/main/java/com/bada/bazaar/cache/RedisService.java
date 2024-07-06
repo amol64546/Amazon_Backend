@@ -1,0 +1,49 @@
+package com.bada.bazaar.cache;
+
+import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+
+@Service
+public class RedisService {
+
+    private final RedisTemplate<String, Object> redisTemplate;
+
+    @Autowired
+    public RedisService(RedisTemplate<String, Object> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
+
+    public void save(String key, Object value) {
+        redisTemplate.opsForValue().set(key, value);
+    }
+
+    public Object get(String key) {
+        return redisTemplate.opsForValue().get(key);
+    }
+
+    public void delete(String key) {
+        redisTemplate.delete(key);
+    }
+
+    public void addToSet(String key, String value) {
+        redisTemplate.opsForSet().add(key, value);
+    }
+
+    public Set<Object> getSet(String key) {
+        return redisTemplate.opsForSet().members(key);
+    }
+
+    public boolean isMemberOfSet(String key, String value) {
+        return redisTemplate.opsForSet().isMember(key, value);
+    }
+
+    public void removeFromSet(String key, String value) {
+        redisTemplate.opsForSet().remove(key, value);
+    }
+
+    public void clearAll() {
+        redisTemplate.getConnectionFactory().getConnection().flushDb();
+    }
+}
