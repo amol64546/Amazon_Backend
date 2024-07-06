@@ -4,6 +4,7 @@ import com.bada.bazaar.dto.request.ProductPostRequestDto;
 import com.bada.bazaar.dto.request.ProductPutRequestDto;
 import com.bada.bazaar.dto.response.ProductResponseDto;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Tag(name = "Product")
 @RequestMapping("/v1/products")
 public interface ProductController {
 
@@ -35,18 +37,19 @@ public interface ProductController {
     @Validated @Valid @RequestBody ProductPutRequestDto productPutRequestDto,
     HttpServletRequest request);
 
-  @DeleteMapping("{productId}")
+  @DeleteMapping("/{productId}")
   ResponseEntity<ModelMap> deleteProduct(@PathVariable Integer productId,
     HttpServletRequest request);
 
 
   // ROLE - SELLER/CUSTOMER
-  @GetMapping("{productId}")
+  @GetMapping("/{productId}")
   ResponseEntity<ProductResponseDto> getProductById(@PathVariable Integer productId,
     HttpServletRequest request);
 
-  @GetMapping("seller")
+  @GetMapping("/seller/{sellerId}")
   ResponseEntity<List<ProductResponseDto>> getProductsBySellerId(
+    @PathVariable Integer sellerId,
     @Parameter(hidden = true) @PageableDefault(sort = "dateAdded",
       direction = Sort.Direction.DESC) Pageable pageable,
     HttpServletRequest request);

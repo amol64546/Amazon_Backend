@@ -2,6 +2,7 @@ package com.bada.bazaar.controller;
 
 import com.bada.bazaar.dto.request.CustomerPutRequestDto;
 import com.bada.bazaar.dto.response.CustomerResponseDto;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Tag(name = "Customer")
 @RequestMapping("/v1/customers")
 public interface CustomerController {
 

@@ -62,11 +62,12 @@ public class ProductControllerImpl implements ProductController {
 
   @Override
   public ResponseEntity<List<ProductResponseDto>> getProductsBySellerId(
+    Integer sellerId,
     Pageable pageable, HttpServletRequest request) {
     User user = JwtHelper.getUserInfo(request);
-    log.info("[GET]: Request to get products by seller ID: {}", user.getId());
+    log.info("[GET]: Request to get products by seller ID: {}", sellerId);
     return ResponseEntity.status(HttpStatus.OK)
-      .body(productService.getProductsBySellerId(user.getId(), pageable, request));
+      .body(productService.getProductsBySellerId(sellerId, pageable, request));
   }
 
   @Override

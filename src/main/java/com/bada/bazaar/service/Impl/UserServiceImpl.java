@@ -14,6 +14,8 @@ import com.bada.bazaar.dto.request.UserRegisterRequestDto;
 import com.bada.bazaar.dto.response.UserResponseDto;
 import com.bada.bazaar.service.UserService;
 import com.bada.bazaar.util.JwtHelper;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +56,11 @@ public class UserServiceImpl implements UserService {
     userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
     userRepository.save(userEntity);
     return userResponseDto;
+  }
+
+  @Override
+  public void refreshToken(HttpServletRequest request, HttpServletResponse response) {
+
   }
 
   public UserResponseDto createSellerUser(UserRegisterRequestDto userRegisterRequestDto) {

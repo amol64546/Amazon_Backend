@@ -100,4 +100,8 @@ public class JwtHelper {
       .role(Role.valueOf((String) claims.get(ROLE)))
       .build();
   }
+
+  private JwtHelper() {
+    throw new IllegalStateException("Utility class");
+  }
 }

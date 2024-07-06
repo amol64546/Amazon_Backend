@@ -2,6 +2,7 @@ package com.bada.bazaar.controller;
 
 import com.bada.bazaar.dto.request.SellerPutRequestDto;
 import com.bada.bazaar.dto.response.SellerResponseDto;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -14,22 +15,23 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Tag(name = "Seller")
 @RequestMapping("/v1/sellers")
 public interface SellerController {
 
-  @GetMapping("/{id}")
+  @GetMapping("/{sellerId}")
   ResponseEntity<SellerResponseDto> getSellerById(
-    @PathVariable Integer id, HttpServletRequest request);
+    @PathVariable Integer sellerId, HttpServletRequest request);
 
-  @PutMapping("/{id}")
+  @PutMapping("/{sellerId}")
   ResponseEntity<SellerResponseDto> updateSeller(
-    @PathVariable Integer id,
+    @PathVariable Integer sellerId,
     @Validated @Valid @RequestBody SellerPutRequestDto sellerPutRequestDto,
     HttpServletRequest request);
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("/{sellerId}")
   ResponseEntity<ModelMap> deleteSeller(
-    @PathVariable Integer id,
+    @PathVariable Integer sellerId,
     HttpServletRequest request);
 
 }

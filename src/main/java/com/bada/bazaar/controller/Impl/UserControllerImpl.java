@@ -6,6 +6,9 @@ import com.bada.bazaar.dto.request.UserRegisterRequestDto;
 import com.bada.bazaar.dto.response.UserResponseDto;
 import com.bada.bazaar.service.UserService;
 import com.bada.bazaar.util.CommonServices;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -38,6 +41,14 @@ public class UserControllerImpl implements UserController {
     String token = userService.login(userLoginRequest);
     return ResponseEntity.ok()
       .body(new ModelMap().addAttribute("token", token));
+  }
+
+  @Override
+  public void refreshToken(
+    HttpServletRequest request,
+    HttpServletResponse response
+  ) throws IOException {
+    userService.refreshToken(request, response);
   }
 
 }
