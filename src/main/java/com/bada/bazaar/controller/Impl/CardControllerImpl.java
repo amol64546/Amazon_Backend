@@ -1,8 +1,7 @@
 package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.controller.CardController;
-import com.bada.bazaar.dto.request.CardPostRequestDto;
-import com.bada.bazaar.dto.request.CardPutRequestDto;
+import com.bada.bazaar.dto.request.CardRequestDto;
 import com.bada.bazaar.dto.response.CardResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -19,7 +18,7 @@ public class CardControllerImpl implements CardController {
 
 
   @Override
-  public ResponseEntity<CardResponseDto> addCardToCustomer(CardPostRequestDto cardPostRequestDto,
+  public ResponseEntity<CardResponseDto> addCardToCustomer(CardRequestDto cardRequestDto,
     HttpServletRequest request) {
     return null;
   }

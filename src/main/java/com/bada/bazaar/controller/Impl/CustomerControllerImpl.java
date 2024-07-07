@@ -1,7 +1,7 @@
 package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.controller.CustomerController;
-import com.bada.bazaar.dto.request.CustomerPutRequestDto;
+import com.bada.bazaar.dto.request.CustomerRequestDto;
 import com.bada.bazaar.dto.response.CustomerResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class CustomerControllerImpl implements CustomerController {
   @Override
   public ResponseEntity<CustomerResponseDto> updateCustomer(
     Integer customerId,
-    CustomerPutRequestDto sellerPutRequestDto,
+    CustomerRequestDto sellerPutRequestDto,
     HttpServletRequest request) {
     return null;
   }

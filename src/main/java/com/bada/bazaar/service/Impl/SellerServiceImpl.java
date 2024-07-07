@@ -1,12 +1,11 @@
 package com.bada.bazaar.service.Impl;
 
 import com.bada.bazaar.cache.SellerCache;
-import com.bada.bazaar.dto.request.SellerPutRequestDto;
+import com.bada.bazaar.dto.request.SellerRequestDto;
 import com.bada.bazaar.dto.response.SellerResponseDto;
 import com.bada.bazaar.entity.Seller;
 import com.bada.bazaar.repository.SellerRepository;
 import com.bada.bazaar.service.SellerService;
-import com.bada.bazaar.util.CommonServices;
 import java.util.Date;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -46,9 +45,9 @@ public class SellerServiceImpl implements SellerService {
   }
 
   @Override
-  public SellerResponseDto updateSeller(Integer sellerId, SellerPutRequestDto sellerPutRequestDto) {
+  public SellerResponseDto updateSeller(Integer sellerId, SellerRequestDto sellerRequestDto) {
     Seller seller = sellerCache.getSeller(sellerId);
-    modelMapper.map(sellerPutRequestDto, seller);
+    modelMapper.map(sellerRequestDto, seller);
     seller.setLastModifiedDate(new Date());
     Seller updatedSeller = sellerCache.saveSeller(seller);
     return modelMapper.map(updatedSeller, SellerResponseDto.class);
