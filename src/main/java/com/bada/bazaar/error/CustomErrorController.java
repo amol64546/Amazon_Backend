@@ -26,19 +26,12 @@ public class CustomErrorController implements ErrorController {
   @RequestMapping(value = "/error", produces = MediaType.APPLICATION_JSON_VALUE)
   public void handleError(HttpServletRequest request, HttpServletResponse response)
     throws IOException {
-    log.info("Handling error");
 
     Integer statusCode = (Integer) request.getAttribute("jakarta.servlet.error.status_code");
-    if (ObjectUtils.isEmpty(statusCode)) {
-      response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Internal Server Error");
-      return;
-    }
-
     String message = (String) request.getAttribute("jakarta.servlet.error.message");
     String error = HttpStatus.valueOf(statusCode).getReasonPhrase();
     String path = (String) request.getAttribute("jakarta.servlet.error.request_uri");
     Throwable exception = (Throwable) request.getAttribute("jakarta.servlet.error.exception");
-    log.error("Exception: ", exception);
 
     if (StringUtils.isEmpty(path)) {
       path = request.getRequestURI();

@@ -7,6 +7,7 @@ import com.bada.bazaar.entity.Seller;
 import com.bada.bazaar.repository.SellerRepository;
 import com.bada.bazaar.service.SellerService;
 import com.bada.bazaar.util.CommonServices;
+import java.util.Date;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,6 +49,7 @@ public class SellerServiceImpl implements SellerService {
   public SellerResponseDto updateSeller(Integer sellerId, SellerPutRequestDto sellerPutRequestDto) {
     Seller seller = sellerCache.getSeller(sellerId);
     modelMapper.map(sellerPutRequestDto, seller);
+    seller.setLastModifiedDate(new Date());
     Seller updatedSeller = sellerCache.saveSeller(seller);
     return modelMapper.map(updatedSeller, SellerResponseDto.class);
   }

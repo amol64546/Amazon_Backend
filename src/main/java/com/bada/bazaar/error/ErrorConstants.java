@@ -7,7 +7,7 @@ public class ErrorConstants {
   //400
   public static final Error JSON_PARSING_EXCEPTION =
     new Error(HttpStatus.BAD_REQUEST,
-      "", "");
+      "JSON Parsing Exception", "Please verify the JSON");
 
   //404
   public static final Error SELLER_NOT_FOUND =

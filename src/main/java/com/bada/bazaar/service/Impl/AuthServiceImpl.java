@@ -1,6 +1,9 @@
 package com.bada.bazaar.service.Impl;
 
 import com.bada.bazaar.cache.SellerCache;
+import com.bada.bazaar.dto.request.UserLoginRequest;
+import com.bada.bazaar.dto.request.UserRegisterRequestDto;
+import com.bada.bazaar.dto.response.UserResponseDto;
 import com.bada.bazaar.entity.Customer;
 import com.bada.bazaar.entity.Seller;
 import com.bada.bazaar.entity.User;
@@ -9,13 +12,9 @@ import com.bada.bazaar.error.ApiException;
 import com.bada.bazaar.error.ErrorConstants;
 import com.bada.bazaar.repository.CustomerRepository;
 import com.bada.bazaar.repository.UserRepository;
-import com.bada.bazaar.dto.request.UserLoginRequest;
-import com.bada.bazaar.dto.request.UserRegisterRequestDto;
-import com.bada.bazaar.dto.response.UserResponseDto;
 import com.bada.bazaar.service.AuthService;
 import com.bada.bazaar.util.JwtHelper;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -61,12 +60,16 @@ public class AuthServiceImpl implements AuthService {
 
   public UserResponseDto createSellerUser(UserRegisterRequestDto userRegisterRequestDto) {
     Seller seller = modelMapper.map(userRegisterRequestDto, Seller.class);
+    seller.setDateJoined(new Date());
+    seller.setLastModifiedDate(new Date());
     Seller sellerFromDb = sellerCache.saveSeller(seller);
     return modelMapper.map(sellerFromDb, UserResponseDto.class);
   }
 
   public UserResponseDto createCustomerUser(UserRegisterRequestDto userRegisterRequestDto) {
     Customer customer = modelMapper.map(userRegisterRequestDto, Customer.class);
+    customer.setDateJoined(new Date());
+    customer.setLastModifiedDate(new Date());
     Customer customerFromDb = customerRepository.save(customer);
     return modelMapper.map(customerFromDb, UserResponseDto.class);
   }
