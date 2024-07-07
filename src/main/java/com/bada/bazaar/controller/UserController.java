@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Tag(name = "User")
+@Tag(name = "Authentication")
 @RequestMapping("/v1/auth")
 public interface UserController {
 
@@ -27,7 +27,6 @@ public interface UserController {
   @PostMapping("/login")
   ResponseEntity<ModelMap> login(
     @Validated @Valid @RequestBody UserLoginRequest userLoginRequest);
-
 
   @PostMapping("/refresh-token")
   void refreshToken(
