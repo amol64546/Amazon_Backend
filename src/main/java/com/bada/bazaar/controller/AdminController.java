@@ -1,18 +1,22 @@
 package com.bada.bazaar.controller;
 
-import com.bada.bazaar.responseDto.CustomerResponseDto;
-import com.bada.bazaar.responseDto.SellerResponseDto;
+import com.bada.bazaar.dto.response.CustomerResponseDto;
+import com.bada.bazaar.dto.response.SellerResponseDto;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/v1/admins")
+@Tag(name = "Admin")
+@RequestMapping("/v1/admin")
+@PreAuthorize("hasRole('ADMIN')")
 public interface AdminController {
 
   @GetMapping("sellers")

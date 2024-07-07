@@ -1,11 +1,12 @@
 package com.bada.bazaar.service.Impl;
 
 import com.bada.bazaar.cache.SellerCache;
+import com.bada.bazaar.dto.request.SellerRequestDto;
+import com.bada.bazaar.dto.response.SellerResponseDto;
 import com.bada.bazaar.entity.Seller;
-import com.bada.bazaar.requestDto.SellerPutRequestDto;
-import com.bada.bazaar.responseDto.CustomerResponseDto;
-import com.bada.bazaar.responseDto.SellerResponseDto;
+import com.bada.bazaar.repository.SellerRepository;
 import com.bada.bazaar.service.SellerService;
+import java.util.Date;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,7 @@ public class SellerServiceImpl implements SellerService {
 
   private final ModelMapper modelMapper;
   private final SellerCache sellerCache;
+  private final SellerRepository sellerRepository;
 
   @Override
   public SellerResponseDto getSellerById(Integer sellerId) {
@@ -37,15 +39,16 @@ public class SellerServiceImpl implements SellerService {
 
   @Override
   public List<SellerResponseDto> retrieveAllSellers(Pageable pageable) {
-    return sellerCache.retrieveAllSellers(pageable)
+    return sellerRepository.findAll(pageable)
       .map(seller -> modelMapper.map(seller, SellerResponseDto.class))
       .toList();
   }
 
   @Override
-  public SellerResponseDto updateSeller(Integer sellerId, SellerPutRequestDto sellerPutRequestDto) {
+  public SellerResponseDto updateSeller(Integer sellerId, SellerRequestDto sellerRequestDto) {
     Seller seller = sellerCache.getSeller(sellerId);
-    modelMapper.map(sellerPutRequestDto, seller);
+    modelMapper.map(sellerRequestDto, seller);
+    seller.setLastModifiedDate(new Date());
     Seller updatedSeller = sellerCache.saveSeller(seller);
     return modelMapper.map(updatedSeller, SellerResponseDto.class);
   }

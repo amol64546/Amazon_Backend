@@ -1,38 +1,39 @@
 package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.controller.CustomerController;
-import com.bada.bazaar.requestDto.CustomerPutRequestDto;
-import com.bada.bazaar.responseDto.CustomerResponseDto;
+import com.bada.bazaar.dto.request.CustomerRequestDto;
+import com.bada.bazaar.dto.response.CustomerResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@PreAuthorize("hasRole('CUSTOMER')")
 public class CustomerControllerImpl implements CustomerController {
 
   @Override
   public ResponseEntity<CustomerResponseDto> getCustomerById(
+    Integer customerId,
     HttpServletRequest request) {
     return null;
   }
 
   @Override
   public ResponseEntity<CustomerResponseDto> updateCustomer(
-    CustomerPutRequestDto sellerPutRequestDto, BindingResult bindingResult,
+    Integer customerId,
+    CustomerRequestDto sellerPutRequestDto,
     HttpServletRequest request) {
     return null;
   }
 
   @Override
-  public ResponseEntity<ModelMap> deleteCustomer( HttpServletRequest request) {
+  public ResponseEntity<ModelMap> deleteCustomer(
+    Integer customerId,
+    HttpServletRequest request) {
     return null;
   }
 }

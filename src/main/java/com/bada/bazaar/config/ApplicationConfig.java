@@ -1,6 +1,10 @@
 package com.bada.bazaar.config;
 
 import com.bada.bazaar.repository.UserRepository;
+import com.bada.bazaar.error.CustomAccessDeniedHandler;
+import com.bada.bazaar.error.CustomAuthenticationEntryPoint;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
@@ -23,12 +27,21 @@ public class ApplicationConfig {
   private final UserRepository userRepository;
 
   @Bean
+  public ObjectMapper objectMapper() {
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+    return objectMapper;
+  }
+
+  @Bean
   public ModelMapper modelMapper() {
     ModelMapper modelMapper = new ModelMapper();
     modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     modelMapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
     return modelMapper;
   }
+
 
   @Bean
   public UserDetailsService userDetailsService() {
@@ -56,5 +69,14 @@ public class ApplicationConfig {
   }
 
 
+  @Bean
+  public CustomAuthenticationEntryPoint customAuthenticationEntryPoint() {
+    return new CustomAuthenticationEntryPoint();
+  }
+
+  @Bean
+  public CustomAccessDeniedHandler customAccessDeniedHandler() {
+    return new CustomAccessDeniedHandler();
+  }
 }
 

@@ -1,8 +1,8 @@
 package com.bada.bazaar.service.Impl;
 
-import com.bada.bazaar.requestDto.ProductPostRequestDto;
-import com.bada.bazaar.requestDto.ProductPutRequestDto;
-import com.bada.bazaar.responseDto.ProductResponseDto;
+import com.bada.bazaar.dto.request.ProductPostRequestDto;
+import com.bada.bazaar.dto.request.ProductPutRequestDto;
+import com.bada.bazaar.dto.response.ProductResponseDto;
 import com.bada.bazaar.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;

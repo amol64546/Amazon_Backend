@@ -1,7 +1,7 @@
 package com.bada.bazaar.service.Impl;
 
 import com.bada.bazaar.repository.CustomerRepository;
-import com.bada.bazaar.responseDto.CustomerResponseDto;
+import com.bada.bazaar.dto.response.CustomerResponseDto;
 import com.bada.bazaar.service.CustomerService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

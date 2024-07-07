@@ -1,24 +1,32 @@
 package com.bada.bazaar.util;
 
+import static com.bada.bazaar.constant.CommonConstant.AUTHORIZATION;
+import static com.bada.bazaar.constant.CommonConstant.BEARER;
+import static com.bada.bazaar.constant.CommonConstant.MINUTES;
+import static com.bada.bazaar.constant.CommonConstant.ROLE;
+import static com.bada.bazaar.constant.CommonConstant.SECRET_KEY;
+import static com.bada.bazaar.constant.CommonConstant.USERNAME;
+import static com.bada.bazaar.constant.CommonConstant.USER_ID;
+
 import com.bada.bazaar.entity.User;
+import com.bada.bazaar.enums.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
+import jakarta.servlet.http.HttpServletRequest;
 import java.security.Key;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.function.Function;
-import lombok.experimental.UtilityClass;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class JwtHelper {
 
-  private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-  private static final int MINUTES = 60 * 24;
 
   public static String generateToken(
     User user) {
@@ -27,15 +35,29 @@ public class JwtHelper {
       .subject(user.getUsername())
       .issuedAt(Date.from(now))
       .expiration(Date.from(now.plus(MINUTES, ChronoUnit.MINUTES)))
-      .claim("username", user.getUsername())
-      .claim("userId", user.getId())
-      .claim("role", user.getRole())
-      .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+      .claim(USERNAME, user.getUsername())
+      .claim(USER_ID, user.getId())
+      .claim(ROLE, user.getRole())
+      .signWith(getSignInKey(), SignatureAlgorithm.HS256)
       .compact();
+  }
+
+  private static Key getSignInKey() {
+    byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
+    return Keys.hmacShaKeyFor(keyBytes);
   }
 
   public static String extractUsername(String token) {
     return extractClaim(token, Claims::getSubject);
+  }
+
+  public static String extractToken(HttpServletRequest request) {
+    String token = null;
+    String authHeader = request.getHeader(AUTHORIZATION);
+    if (authHeader != null && authHeader.startsWith(BEARER)) {
+      token = authHeader.substring(7);
+    }
+    return token;
   }
 
   public static <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -67,5 +89,19 @@ public class JwtHelper {
 
   private static Date extractExpiration(String token) {
     return extractClaim(token, Claims::getExpiration);
+  }
+
+  public static User getUserInfo(HttpServletRequest request) {
+    String token = extractToken(request);
+    Claims claims = extractAllClaims(token);
+    return User.builder()
+      .id((Integer) claims.get(USER_ID))
+      .username(claims.getSubject())
+      .role(Role.valueOf((String) claims.get(ROLE)))
+      .build();
+  }
+
+  private JwtHelper() {
+    throw new IllegalStateException("Utility class");
   }
 }

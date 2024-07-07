@@ -1,22 +1,19 @@
 package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.controller.CardController;
-import com.bada.bazaar.requestDto.CardRequestDto;
-import com.bada.bazaar.responseDto.CardResponseDto;
+import com.bada.bazaar.dto.request.CardRequestDto;
+import com.bada.bazaar.dto.response.CardResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@PreAuthorize("hasRole('CUSTOMER')")
 public class CardControllerImpl implements CardController {
 
 
@@ -27,13 +24,14 @@ public class CardControllerImpl implements CardController {
   }
 
   @Override
-  public ResponseEntity<ModelMap> removeCardFromCustomer(Integer cardId,
+  public ResponseEntity<ModelMap> removeCardFromCustomer(Integer cardId, Integer customerId,
     HttpServletRequest request) {
     return null;
   }
 
   @Override
-  public ResponseEntity<List<CardResponseDto>> getAllCardsOfCustomer(HttpServletRequest request) {
+  public ResponseEntity<List<CardResponseDto>> getAllCardsOfCustomer(Integer customerId,
+    HttpServletRequest request) {
     return null;
   }
 }
