@@ -33,29 +33,6 @@ public interface AuthController {
     HttpServletResponse response
   );
 
-  @PostMapping("/forgot-password")
-  void forgotPassword(
-    HttpServletRequest request,
-    HttpServletResponse response
-  );
-
-  @PostMapping("/change-password")
-  void changePassword(
-    HttpServletRequest request,
-    HttpServletResponse response
-  );
-
-  @PostMapping("/update")
-  void updateProfile(
-    HttpServletRequest request,
-    HttpServletResponse response
-  );
-
-  @PostMapping("/delete")
-  void deleteAccount(
-    HttpServletRequest request,
-    HttpServletResponse response
-  );
 
 }
 

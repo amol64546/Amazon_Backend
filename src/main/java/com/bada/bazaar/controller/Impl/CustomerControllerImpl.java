@@ -17,19 +17,23 @@ public class CustomerControllerImpl implements CustomerController {
 
   @Override
   public ResponseEntity<CustomerResponseDto> getCustomerById(
+    Integer customerId,
     HttpServletRequest request) {
     return null;
   }
 
   @Override
   public ResponseEntity<CustomerResponseDto> updateCustomer(
+    Integer customerId,
     CustomerPutRequestDto sellerPutRequestDto,
     HttpServletRequest request) {
     return null;
   }
 
   @Override
-  public ResponseEntity<ModelMap> deleteCustomer( HttpServletRequest request) {
+  public ResponseEntity<ModelMap> deleteCustomer(
+    Integer customerId,
+    HttpServletRequest request) {
     return null;
   }
 }

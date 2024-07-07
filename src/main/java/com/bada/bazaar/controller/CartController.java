@@ -6,4 +6,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Tag(name = "Cart")
 @RequestMapping("/v1/carts")
 public interface CartController {
+
 }

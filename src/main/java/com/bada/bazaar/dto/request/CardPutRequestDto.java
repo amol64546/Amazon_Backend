@@ -1,6 +1,5 @@
 package com.bada.bazaar.dto.request;
 
-import com.bada.bazaar.enums.CardType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -14,11 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class CardRequestDto implements Serializable {
+public class CardPutRequestDto implements Serializable {
 
-    private String cardNo;
-    private Integer cvv;
-    private String expiry;
-    private CardType cardType;
-    private Integer buyerId;
 }
+

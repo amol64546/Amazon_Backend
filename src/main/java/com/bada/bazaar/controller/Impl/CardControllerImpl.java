@@ -1,7 +1,8 @@
 package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.controller.CardController;
-import com.bada.bazaar.dto.request.CardRequestDto;
+import com.bada.bazaar.dto.request.CardPostRequestDto;
+import com.bada.bazaar.dto.request.CardPutRequestDto;
 import com.bada.bazaar.dto.response.CardResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -18,19 +19,20 @@ public class CardControllerImpl implements CardController {
 
 
   @Override
-  public ResponseEntity<CardResponseDto> addCardToCustomer(CardRequestDto cardRequestDto,
+  public ResponseEntity<CardResponseDto> addCardToCustomer(CardPostRequestDto cardPostRequestDto,
     HttpServletRequest request) {
     return null;
   }
 
   @Override
-  public ResponseEntity<ModelMap> removeCardFromCustomer(Integer cardId,
+  public ResponseEntity<ModelMap> removeCardFromCustomer(Integer cardId, Integer customerId,
     HttpServletRequest request) {
     return null;
   }
 
   @Override
-  public ResponseEntity<List<CardResponseDto>> getAllCardsOfCustomer(HttpServletRequest request) {
+  public ResponseEntity<List<CardResponseDto>> getAllCardsOfCustomer(Integer customerId,
+    HttpServletRequest request) {
     return null;
   }
 }

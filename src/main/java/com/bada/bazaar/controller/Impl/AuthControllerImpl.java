@@ -46,25 +46,5 @@ public class AuthControllerImpl implements AuthController {
   public void refreshToken(HttpServletRequest request, HttpServletResponse response) {
   }
 
-  @Override
-  public void updateProfile(HttpServletRequest request, HttpServletResponse response) {
-
-  }
-
-  @Override
-  public void forgotPassword(HttpServletRequest request, HttpServletResponse response) {
-
-  }
-
-  @Override
-  public void changePassword(HttpServletRequest request, HttpServletResponse response) {
-
-  }
-
-  @Override
-  public void deleteAccount(HttpServletRequest request, HttpServletResponse response) {
-
-  }
-
 }
 

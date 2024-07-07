@@ -47,7 +47,7 @@ public interface ProductController {
   ResponseEntity<ProductResponseDto> getProductById(@PathVariable Integer productId,
     HttpServletRequest request);
 
-  @GetMapping("/seller/{sellerId}")
+  @GetMapping("/{sellerId}")
   ResponseEntity<List<ProductResponseDto>> getProductsBySellerId(
     @PathVariable Integer sellerId,
     @Parameter(hidden = true) @PageableDefault(sort = "dateAdded",
