@@ -3,6 +3,7 @@ package com.bada.bazaar.controller;
 import com.bada.bazaar.dto.request.ProductPostRequestDto;
 import com.bada.bazaar.dto.request.ProductPutRequestDto;
 import com.bada.bazaar.dto.response.ProductResponseDto;
+import com.bada.bazaar.enums.Category;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,12 +42,6 @@ public interface ProductController {
   ResponseEntity<ModelMap> deleteProduct(@PathVariable Integer productId,
     HttpServletRequest request);
 
-
-  // ROLE - SELLER/CUSTOMER
-  @GetMapping("/{productId}")
-  ResponseEntity<ProductResponseDto> getProductById(@PathVariable Integer productId,
-    HttpServletRequest request);
-
   @GetMapping("/{sellerId}")
   ResponseEntity<List<ProductResponseDto>> getProductsBySellerId(
     @PathVariable Integer sellerId,
@@ -54,9 +49,8 @@ public interface ProductController {
       direction = Sort.Direction.DESC) Pageable pageable,
     HttpServletRequest request);
 
-  @GetMapping
-  ResponseEntity<List<ProductResponseDto>> getAllProducts(
-    @Parameter(hidden = true) @PageableDefault(sort = "dateAdded",
-      direction = Sort.Direction.DESC) Pageable pageable,
-    HttpServletRequest request);
+
+  @GetMapping("category/{category}")
+  ResponseEntity<List<ProductResponseDto>> getProductByCategory(@PathVariable Category category);
+
 }

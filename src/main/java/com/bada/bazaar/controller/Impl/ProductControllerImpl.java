@@ -5,6 +5,7 @@ import com.bada.bazaar.entity.User;
 import com.bada.bazaar.dto.request.ProductPostRequestDto;
 import com.bada.bazaar.dto.request.ProductPutRequestDto;
 import com.bada.bazaar.dto.response.ProductResponseDto;
+import com.bada.bazaar.enums.Category;
 import com.bada.bazaar.service.ProductService;
 import com.bada.bazaar.util.CommonServices;
 import com.bada.bazaar.util.JwtHelper;
@@ -53,14 +54,6 @@ public class ProductControllerImpl implements ProductController {
   }
 
   @Override
-  public ResponseEntity<ProductResponseDto> getProductById(Integer productId,
-    HttpServletRequest request) {
-    log.info("[GET]: Request to get product by ID: {}", productId);
-    return ResponseEntity.status(HttpStatus.OK)
-      .body(productService.getProductById(productId, request));
-  }
-
-  @Override
   public ResponseEntity<List<ProductResponseDto>> getProductsBySellerId(
     Integer sellerId,
     Pageable pageable, HttpServletRequest request) {
@@ -71,10 +64,7 @@ public class ProductControllerImpl implements ProductController {
   }
 
   @Override
-  public ResponseEntity<List<ProductResponseDto>> getAllProducts(Pageable pageable,
-    HttpServletRequest request) {
-    log.info("[GET]: Request to get all products.");
-    return ResponseEntity.status(HttpStatus.OK)
-      .body(productService.getAllProducts(pageable, request));
+  public ResponseEntity<List<ProductResponseDto>> getProductByCategory(Category category) {
+    return null;
   }
 }

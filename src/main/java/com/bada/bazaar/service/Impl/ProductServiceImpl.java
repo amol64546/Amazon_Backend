@@ -34,10 +34,6 @@ public class ProductServiceImpl implements ProductService {
     return null;
   }
 
-  @Override
-  public ProductResponseDto getProductById(Integer productId, HttpServletRequest request) {
-    return null;
-  }
 
   @Override
   public List<ProductResponseDto> getProductsBySellerId(Integer sellerId, Pageable pageable,
@@ -45,8 +41,4 @@ public class ProductServiceImpl implements ProductService {
     return List.of();
   }
 
-  @Override
-  public List<ProductResponseDto> getAllProducts(Pageable pageable, HttpServletRequest request) {
-    return List.of();
-  }
 }

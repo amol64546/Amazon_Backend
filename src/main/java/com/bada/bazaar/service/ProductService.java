@@ -16,9 +16,6 @@ public interface ProductService {
 
   ModelMap deleteProduct(Integer productId, HttpServletRequest request);
 
-  ProductResponseDto getProductById(Integer productId, HttpServletRequest request);
-
   List<ProductResponseDto> getProductsBySellerId(Integer sellerId, Pageable pageable, HttpServletRequest request);
 
-  List<ProductResponseDto> getAllProducts(Pageable pageable, HttpServletRequest request);
 }
