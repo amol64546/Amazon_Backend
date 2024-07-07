@@ -6,11 +6,10 @@ import com.bada.bazaar.dto.response.UserResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public interface UserService {
+public interface AuthService {
 
   String login(UserLoginRequest userLoginRequest);
 
   UserResponseDto register(UserRegisterRequestDto userRegisterRequestDto);
 
-  void refreshToken(HttpServletRequest request, HttpServletResponse response);
 }

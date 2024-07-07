@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
-import java.io.IOException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Tag(name = "Authentication")
 @RequestMapping("/v1/auth")
-public interface UserController {
+public interface AuthController {
 
   @PostMapping("/register")
   ResponseEntity<UserResponseDto> register(
@@ -32,7 +31,31 @@ public interface UserController {
   void refreshToken(
     HttpServletRequest request,
     HttpServletResponse response
-  ) throws IOException;
+  );
+
+  @PostMapping("/forgot-password")
+  void forgotPassword(
+    HttpServletRequest request,
+    HttpServletResponse response
+  );
+
+  @PostMapping("/change-password")
+  void changePassword(
+    HttpServletRequest request,
+    HttpServletResponse response
+  );
+
+  @PostMapping("/update")
+  void updateProfile(
+    HttpServletRequest request,
+    HttpServletResponse response
+  );
+
+  @PostMapping("/delete")
+  void deleteAccount(
+    HttpServletRequest request,
+    HttpServletResponse response
+  );
 
 }
 

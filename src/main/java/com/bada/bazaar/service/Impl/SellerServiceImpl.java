@@ -4,6 +4,7 @@ import com.bada.bazaar.cache.SellerCache;
 import com.bada.bazaar.dto.request.SellerPutRequestDto;
 import com.bada.bazaar.dto.response.SellerResponseDto;
 import com.bada.bazaar.entity.Seller;
+import com.bada.bazaar.repository.SellerRepository;
 import com.bada.bazaar.service.SellerService;
 import com.bada.bazaar.util.CommonServices;
 import java.util.List;
@@ -21,8 +22,7 @@ public class SellerServiceImpl implements SellerService {
 
   private final ModelMapper modelMapper;
   private final SellerCache sellerCache;
-//  private final SellerMapper sellerMapper;
-  private final CommonServices commonServices;
+  private final SellerRepository sellerRepository;
 
   @Override
   public SellerResponseDto getSellerById(Integer sellerId) {
@@ -39,7 +39,7 @@ public class SellerServiceImpl implements SellerService {
 
   @Override
   public List<SellerResponseDto> retrieveAllSellers(Pageable pageable) {
-    return sellerCache.retrieveAllSellers(pageable)
+    return sellerRepository.findAll(pageable)
       .map(seller -> modelMapper.map(seller, SellerResponseDto.class))
       .toList();
   }

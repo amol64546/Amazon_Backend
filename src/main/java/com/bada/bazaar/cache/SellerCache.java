@@ -9,9 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
@@ -21,8 +18,7 @@ public class SellerCache {
 
   private final SellerRepository sellerRepository;
 
-  @Caching(evict = {@CacheEvict(value = "retrieveAllSellers", allEntries = true)},
-    put = {@CachePut(cacheNames = "seller", key = "#seller.id")})
+  @CachePut(cacheNames = "seller", key = "#seller.id")
   public Seller saveSeller(Seller seller) {
     log.info("-----Persisting seller for id: {}-----", seller.getId());
     sellerRepository.save(seller);
@@ -36,17 +32,10 @@ public class SellerCache {
       .orElseThrow(()-> new ApiException(ErrorConstants.SELLER_NOT_FOUND));
   }
 
-  @Caching(evict = {@CacheEvict(value = "retrieveAllSellers", allEntries = true),
-    @CacheEvict(value = "seller", key = "#id")})
+  @CacheEvict(value = "seller", key = "#id")
   public void deleteSeller(Integer id) {
     log.info("----- Evicting seller for id: {} -----", id);
     sellerRepository.deleteById(id);
-  }
-
-  @Cacheable(cacheNames = "retrieveAllSellers")
-  public Page<Seller> retrieveAllSellers(Pageable pageable) {
-    log.info("-----Fetching all sellers from DB-----");
-    return sellerRepository.findAll(pageable);
   }
 
 }

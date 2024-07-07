@@ -12,7 +12,7 @@ import com.bada.bazaar.repository.UserRepository;
 import com.bada.bazaar.dto.request.UserLoginRequest;
 import com.bada.bazaar.dto.request.UserRegisterRequestDto;
 import com.bada.bazaar.dto.response.UserResponseDto;
-import com.bada.bazaar.service.UserService;
+import com.bada.bazaar.service.AuthService;
 import com.bada.bazaar.util.JwtHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,7 +28,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class AuthServiceImpl implements AuthService {
 
   private final AuthenticationManager authenticationManager;
   private final UserRepository userRepository;
@@ -58,10 +58,6 @@ public class UserServiceImpl implements UserService {
     return userResponseDto;
   }
 
-  @Override
-  public void refreshToken(HttpServletRequest request, HttpServletResponse response) {
-
-  }
 
   public UserResponseDto createSellerUser(UserRegisterRequestDto userRegisterRequestDto) {
     Seller seller = modelMapper.map(userRegisterRequestDto, Seller.class);
