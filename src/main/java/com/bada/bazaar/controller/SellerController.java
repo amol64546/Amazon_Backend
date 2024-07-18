@@ -1,6 +1,7 @@
 package com.bada.bazaar.controller;
 
-import com.bada.bazaar.dto.request.SellerRequestDto;
+import com.bada.bazaar.dto.request.SellerPostRequestDto;
+import com.bada.bazaar.dto.request.SellerPutRequestDto;
 import com.bada.bazaar.dto.response.SellerResponseDto;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,7 +29,7 @@ public interface SellerController {
   @PutMapping("/{sellerId}")
   ResponseEntity<SellerResponseDto> updateSeller(
     @PathVariable Integer sellerId,
-    @Validated @Valid @RequestBody SellerRequestDto sellerRequestDto,
+    @Validated @Valid @RequestBody SellerPutRequestDto sellerPutRequestDto,
     HttpServletRequest request);
 
   @DeleteMapping("/{sellerId}")

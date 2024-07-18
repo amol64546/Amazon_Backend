@@ -1,7 +1,8 @@
 package com.bada.bazaar.service.Impl;
 
 import com.bada.bazaar.cache.SellerCache;
-import com.bada.bazaar.dto.request.SellerRequestDto;
+import com.bada.bazaar.converter.SellerConverter;
+import com.bada.bazaar.dto.request.SellerPutRequestDto;
 import com.bada.bazaar.dto.response.SellerResponseDto;
 import com.bada.bazaar.entity.Seller;
 import com.bada.bazaar.repository.SellerRepository;
@@ -10,7 +11,6 @@ import java.util.Date;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -20,14 +20,14 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class SellerServiceImpl implements SellerService {
 
-  private final ModelMapper modelMapper;
   private final SellerCache sellerCache;
   private final SellerRepository sellerRepository;
+  private final SellerConverter sellerConverter;
 
   @Override
   public SellerResponseDto getSellerById(Integer sellerId) {
     Seller seller = sellerCache.getSeller(sellerId);
-    return modelMapper.map(seller, SellerResponseDto.class);
+    return sellerConverter.sellerToSellerResponseDto(seller);
   }
 
   @Override
@@ -40,17 +40,18 @@ public class SellerServiceImpl implements SellerService {
   @Override
   public List<SellerResponseDto> retrieveAllSellers(Pageable pageable) {
     return sellerRepository.findAll(pageable)
-      .map(seller -> modelMapper.map(seller, SellerResponseDto.class))
+      .map(sellerConverter::sellerToSellerResponseDto)
       .toList();
   }
 
   @Override
-  public SellerResponseDto updateSeller(Integer sellerId, SellerRequestDto sellerRequestDto) {
+  public SellerResponseDto updateSeller(Integer sellerId,
+    SellerPutRequestDto sellerPutRequestDto) {
     Seller seller = sellerCache.getSeller(sellerId);
-    modelMapper.map(sellerRequestDto, seller);
+    sellerConverter.sellerPutRequestToSeller(sellerPutRequestDto, seller);
     seller.setLastModifiedDate(new Date());
     Seller updatedSeller = sellerCache.saveSeller(seller);
-    return modelMapper.map(updatedSeller, SellerResponseDto.class);
+    return sellerConverter.sellerToSellerResponseDto(updatedSeller);
   }
 
 

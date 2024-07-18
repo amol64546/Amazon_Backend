@@ -6,9 +6,6 @@ import com.bada.bazaar.error.CustomAuthenticationEntryPoint;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.Conditions;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,15 +30,6 @@ public class ApplicationConfig {
     objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
     return objectMapper;
   }
-
-  @Bean
-  public ModelMapper modelMapper() {
-    ModelMapper modelMapper = new ModelMapper();
-    modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-    modelMapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
-    return modelMapper;
-  }
-
 
   @Bean
   public UserDetailsService userDetailsService() {

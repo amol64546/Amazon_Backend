@@ -11,7 +11,7 @@ import lombok.Data;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class SellerRequestDto implements Serializable {
+public class SellerPostRequestDto implements Serializable {
 
 
 }

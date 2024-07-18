@@ -1,8 +1,9 @@
 package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.controller.SellerController;
+import com.bada.bazaar.dto.request.SellerPutRequestDto;
 import com.bada.bazaar.entity.User;
-import com.bada.bazaar.dto.request.SellerRequestDto;
+import com.bada.bazaar.dto.request.SellerPostRequestDto;
 import com.bada.bazaar.dto.response.SellerResponseDto;
 import com.bada.bazaar.service.SellerService;
 import com.bada.bazaar.util.JwtHelper;
@@ -34,12 +35,12 @@ public class SellerControllerImpl implements SellerController {
   @Override
   public ResponseEntity<SellerResponseDto> updateSeller(
     @PathVariable Integer id,
-    SellerRequestDto sellerRequestDto,
+    SellerPutRequestDto sellerPutRequestDto,
     HttpServletRequest request) {
     User user = JwtHelper.getUserInfo(request);
     log.info("[PUT]: Request to update seller by ID: {}", id);
     return ResponseEntity.status(HttpStatus.OK)
-      .body(sellerService.updateSeller(id, sellerRequestDto));
+      .body(sellerService.updateSeller(id, sellerPutRequestDto));
   }
 
   @Override

@@ -1,6 +1,7 @@
 package com.bada.bazaar.service.Impl;
 
 import com.bada.bazaar.cache.SellerCache;
+import com.bada.bazaar.converter.UserConverter;
 import com.bada.bazaar.dto.request.UserLoginRequest;
 import com.bada.bazaar.dto.request.UserRegisterRequestDto;
 import com.bada.bazaar.dto.response.UserResponseDto;
@@ -18,7 +19,6 @@ import java.util.Date;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,8 +33,8 @@ public class AuthServiceImpl implements AuthService {
   private final UserRepository userRepository;
   private final SellerCache sellerCache;
   private final CustomerRepository customerRepository;
-  private final ModelMapper modelMapper;
   private final PasswordEncoder passwordEncoder;
+  private final UserConverter userConverter;
 
   @Override
   public UserResponseDto register(UserRegisterRequestDto userRegisterRequestDto) {
@@ -43,7 +43,7 @@ public class AuthServiceImpl implements AuthService {
       throw new ApiException(ErrorConstants.USER_ALREADY_EXISTS);
     }
 
-    User userEntity = modelMapper.map(userRegisterRequestDto, User.class);
+    User userEntity = userConverter.userRegisterRequestDtoToUser(userRegisterRequestDto);
 
     UserResponseDto userResponseDto;
     if (userRegisterRequestDto.getRole().name().equals(Role.SELLER.name())) {
@@ -59,19 +59,19 @@ public class AuthServiceImpl implements AuthService {
 
 
   public UserResponseDto createSellerUser(UserRegisterRequestDto userRegisterRequestDto) {
-    Seller seller = modelMapper.map(userRegisterRequestDto, Seller.class);
+    Seller seller = userConverter.userRegisterRequestDtoToSeller(userRegisterRequestDto);
     seller.setDateJoined(new Date());
     seller.setLastModifiedDate(new Date());
     Seller sellerFromDb = sellerCache.saveSeller(seller);
-    return modelMapper.map(sellerFromDb, UserResponseDto.class);
+    return userConverter.sellerToUserResponseDto(sellerFromDb);
   }
 
   public UserResponseDto createCustomerUser(UserRegisterRequestDto userRegisterRequestDto) {
-    Customer customer = modelMapper.map(userRegisterRequestDto, Customer.class);
+    Customer customer = userConverter.userRegisterRequestDtoToCustomer(userRegisterRequestDto);
     customer.setDateJoined(new Date());
     customer.setLastModifiedDate(new Date());
     Customer customerFromDb = customerRepository.save(customer);
-    return modelMapper.map(customerFromDb, UserResponseDto.class);
+    return userConverter.customerToUserResponseDto(customerFromDb);
   }
 
 
