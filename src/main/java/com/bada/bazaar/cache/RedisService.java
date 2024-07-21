@@ -1,5 +1,6 @@
 package com.bada.bazaar.cache;
 
+import java.util.Objects;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class RedisService {
     }
 
     public boolean isMemberOfSet(String key, String value) {
-        return redisTemplate.opsForSet().isMember(key, value);
+        return Boolean.TRUE.equals(redisTemplate.opsForSet().isMember(key, value));
     }
 
     public void removeFromSet(String key, String value) {
@@ -41,6 +42,7 @@ public class RedisService {
     }
 
     public void clearAll() {
-        redisTemplate.getConnectionFactory().getConnection().flushDb();
+        Objects.requireNonNull(redisTemplate.getConnectionFactory()).getConnection()
+          .serverCommands().flushDb();
     }
 }

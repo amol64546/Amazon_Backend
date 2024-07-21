@@ -1,6 +1,5 @@
 package com.bada.bazaar.controller;
 
-import com.bada.bazaar.dto.request.SellerPostRequestDto;
 import com.bada.bazaar.dto.request.SellerPutRequestDto;
 import com.bada.bazaar.dto.response.SellerResponseDto;
 import io.swagger.v3.oas.annotations.tags.Tag;
