@@ -1,5 +1,6 @@
 package com.bada.bazaar.service.Impl;
 
+import com.bada.bazaar.cache.RedisService;
 import com.bada.bazaar.cache.SellerCache;
 import com.bada.bazaar.converter.UserConverter;
 import com.bada.bazaar.dto.request.UserLoginRequest;
@@ -12,6 +13,7 @@ import com.bada.bazaar.enums.Role;
 import com.bada.bazaar.error.ApiException;
 import com.bada.bazaar.error.ErrorConstants;
 import com.bada.bazaar.repository.CustomerRepository;
+import com.bada.bazaar.repository.SellerRepository;
 import com.bada.bazaar.repository.UserRepository;
 import com.bada.bazaar.service.AuthService;
 import com.bada.bazaar.util.JwtHelper;
@@ -35,6 +37,8 @@ public class AuthServiceImpl implements AuthService {
   private final CustomerRepository customerRepository;
   private final PasswordEncoder passwordEncoder;
   private final UserConverter userConverter;
+  private final RedisService redisService;
+  private final SellerRepository sellerRepository;
 
   @Override
   public UserResponseDto register(UserRegisterRequestDto userRegisterRequestDto) {
@@ -62,7 +66,10 @@ public class AuthServiceImpl implements AuthService {
     Seller seller = userConverter.userRegisterRequestDtoToSeller(userRegisterRequestDto);
     seller.setDateJoined(new Date());
     seller.setLastModifiedDate(new Date());
-    Seller sellerFromDb = sellerCache.saveSeller(seller);
+
+//    Seller sellerFromDb = sellerCache.saveSeller(seller);
+    Seller sellerFromDb = sellerRepository.save(seller);
+    redisService.save(String.valueOf(seller.getId()), seller);
     return userConverter.sellerToUserResponseDto(sellerFromDb);
   }
 
