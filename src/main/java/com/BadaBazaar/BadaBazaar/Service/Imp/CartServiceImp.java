@@ -11,8 +11,6 @@ import com.BadaBazaar.BadaBazaar.ResponseDto.ItemResponseDto;
 import com.BadaBazaar.BadaBazaar.ResponseDto.OrderResponseDto;
 import com.BadaBazaar.BadaBazaar.Service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,8 +25,6 @@ public class CartServiceImp implements CartService {
     @Autowired
     ProductRepository productRepository;
 
-    @Autowired
-    JavaMailSender emailSender;
 
 
     @Override
@@ -145,13 +141,6 @@ public class CartServiceImp implements CartService {
 
         // send an email
         String text = "Congrats your order with total value "+totalCost+" has been placed";
-
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("amolnakhate240@gmail.com");
-        message.setTo(customer.getEmail());
-        message.setSubject("Order Placed Notification");
-        message.setText(text);
-        emailSender.send(message);
 
         cart.setItemList(new ArrayList<>());
         cart.setCartTotal(0);
