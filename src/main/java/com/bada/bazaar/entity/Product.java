@@ -48,7 +48,7 @@ public class Product implements Serializable {
   @Enumerated(EnumType.STRING)
   private Category category;
 
-  private Enum<?> subCategory;
+  private String subCategory;
 
   @Enumerated(EnumType.STRING)
   private ProductStatus productStatus = ProductStatus.AVAILABLE;
@@ -64,8 +64,8 @@ public class Product implements Serializable {
   @ElementCollection
   private List<String> reviews = new LinkedList<>();
 
-  private Integer rating;
-  private Integer views;
+  private Integer rating = 0;
+  private Integer views = 0;
 
   private Integer sellerId;
   private Integer itemId;

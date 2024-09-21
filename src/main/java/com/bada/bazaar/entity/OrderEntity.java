@@ -9,14 +9,15 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 @JsonInclude(Include.NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -34,7 +35,6 @@ public class OrderEntity implements Serializable {
   @Column(updatable = false)
   private Date orderDate;
 
-  @Column(updatable = false)
   private Date deliveryDate;
 
   private Double totalCost;

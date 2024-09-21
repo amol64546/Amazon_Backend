@@ -27,7 +27,7 @@ public class ProductResponseDto implements Serializable {
   private String name;
 
   private Category category;
-  private Enum<?> subCategory;
+  private String subCategory;
 
   private ProductStatus productStatus;
 

@@ -29,9 +29,9 @@ public class SwaggerConfig {
 
   private Info apiInfo() {
     return new Info()
-      .title("Authentication Service Api Doc")
+      .title("Bada Bazaar")
       .version("1.0.0")
-      .description("HTTP APIs to manage user registration and authentication.")
+      .description("")
       .contact(new Contact().name("Amol Nakhate"));
   }
 }
