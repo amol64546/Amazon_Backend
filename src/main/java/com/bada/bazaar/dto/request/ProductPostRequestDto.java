@@ -36,5 +36,4 @@ public class ProductPostRequestDto implements Serializable {
     private Map<String,String> characteristics;
 
     private List<String> tags = new LinkedList<>();
-
 }
