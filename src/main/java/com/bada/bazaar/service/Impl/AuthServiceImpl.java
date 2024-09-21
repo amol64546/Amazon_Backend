@@ -1,7 +1,6 @@
 package com.bada.bazaar.service.Impl;
 
 import com.bada.bazaar.cache.RedisService;
-import com.bada.bazaar.cache.SellerCache;
 import com.bada.bazaar.converter.UserConverter;
 import com.bada.bazaar.dto.request.UserLoginRequest;
 import com.bada.bazaar.dto.request.UserRegisterRequestDto;
@@ -17,14 +16,15 @@ import com.bada.bazaar.repository.SellerRepository;
 import com.bada.bazaar.repository.UserRepository;
 import com.bada.bazaar.service.AuthService;
 import com.bada.bazaar.util.JwtHelper;
-import java.util.Date;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -33,7 +33,6 @@ public class AuthServiceImpl implements AuthService {
 
   private final AuthenticationManager authenticationManager;
   private final UserRepository userRepository;
-  private final SellerCache sellerCache;
   private final CustomerRepository customerRepository;
   private final PasswordEncoder passwordEncoder;
   private final UserConverter userConverter;
@@ -67,7 +66,6 @@ public class AuthServiceImpl implements AuthService {
     seller.setDateJoined(new Date());
     seller.setLastModifiedDate(new Date());
 
-//    Seller sellerFromDb = sellerCache.saveSeller(seller);
     Seller sellerFromDb = sellerRepository.save(seller);
     redisService.save(String.valueOf(seller.getId()), seller);
     return userConverter.sellerToUserResponseDto(sellerFromDb);

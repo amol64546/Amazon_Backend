@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Tag(name = "Cart")
+@Tag(name = "Cart Controller")
 @RequestMapping("/v1/carts")
 public interface CartController {
 

@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(Include.NON_NULL)
+@JsonInclude(Include.NON_EMPTY)
 public class ProductPostRequestDto implements Serializable {
 
     @NotBlank(message = "Product name is required")
@@ -34,7 +34,6 @@ public class ProductPostRequestDto implements Serializable {
     private byte[] image;
 
     private Map<String,String> characteristics;
-
 
     private List<String> tags = new LinkedList<>();
 

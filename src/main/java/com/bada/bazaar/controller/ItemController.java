@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Tag(name = "Item")
+@Tag(name = "Item Controller")
 @RequestMapping("/v1/items")
 public interface ItemController {
 

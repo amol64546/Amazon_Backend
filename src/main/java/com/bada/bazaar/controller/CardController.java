@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Tag(name = "Card")
+@Tag(name = "Card Controller")
 @RequestMapping("/v1/cards")
 @PreAuthorize("hasRole('CUSTOMER')")
 public interface CardController {

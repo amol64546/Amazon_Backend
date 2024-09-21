@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Tag(name = "Product")
+@Tag(name = "Product Controller")
 @RequestMapping("/v1/products")
 public interface ProductController {
 
@@ -48,6 +48,8 @@ public interface ProductController {
     @Parameter(hidden = true) @PageableDefault(sort = "dateAdded",
       direction = Sort.Direction.DESC) Pageable pageable,
     HttpServletRequest request);
+
+
 
 
   @GetMapping("category/{category}")
