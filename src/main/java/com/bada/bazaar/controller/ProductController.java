@@ -46,7 +46,7 @@ public interface ProductController {
   @GetMapping("/{sellerId}")
   ResponseEntity<Page<Product>> getProductsBySellerId(
     @PathVariable Integer sellerId,
-    @Parameter @PageableDefault(sort = "dateAdded",
+    @Parameter(hidden = true) @PageableDefault(sort = "dateAdded",
       direction = Sort.Direction.DESC) Pageable pageable,
     HttpServletRequest request);
 
@@ -54,7 +54,7 @@ public interface ProductController {
   @GetMapping("category/{category}")
   ResponseEntity<Page<Product>> getProductByCategory(
     @PathVariable Category category,
-    @Parameter @PageableDefault(sort = "dateAdded",
+    @Parameter(hidden = true) @PageableDefault(sort = "dateAdded",
       direction = Sort.Direction.DESC) Pageable pageable,
     HttpServletRequest request);
 

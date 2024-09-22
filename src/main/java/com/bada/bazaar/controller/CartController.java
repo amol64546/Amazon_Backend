@@ -32,7 +32,7 @@ public interface CartController {
 
   @GetMapping("{customerId}")
   ResponseEntity<Page<Item>> viewItems(@PathVariable Integer customerId,
-                                       @Parameter @PageableDefault(sort = "dateAdded",
+                                       @Parameter(hidden = true) @PageableDefault(sort = "dateAdded",
                                          direction = Sort.Direction.DESC) Pageable pageable,
                                        HttpServletRequest request);
 

@@ -44,28 +44,34 @@ public class AuthServiceImpl implements AuthService {
 
   @Override
   public UserResponseDto register(UserRegisterRequestDto userRegisterRequestDto) {
+
+    if (!userRegisterRequestDto.getRole().getValue().equals(Role.SELLER.getValue()) ||
+      !userRegisterRequestDto.getRole().getValue().equals(Role.CUSTOMER.getValue())) {
+      throw new ApiException(ErrorConstants.INVALID_ROLE);
+    }
+
     Optional<User> user = userRepository.findByUsername(userRegisterRequestDto.getUsername());
     if (user.isPresent()) {
       throw new ApiException(ErrorConstants.USER_ALREADY_EXISTS);
     }
 
     User userEntity = userConverter.userRegisterRequestDtoToUser(userRegisterRequestDto);
+    userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+    userEntity = userRepository.save(userEntity);
 
     UserResponseDto userResponseDto;
-    if (userRegisterRequestDto.getRole().name().equals(Role.SELLER.name())) {
-      userResponseDto = createSellerUser(userRegisterRequestDto);
+    if (userRegisterRequestDto.getRole().getValue().equals(Role.SELLER.getValue())) {
+      userResponseDto = createSellerUser(userRegisterRequestDto, userEntity.getId());
     } else {
-      userResponseDto = createCustomerUser(userRegisterRequestDto);
+      userResponseDto = createCustomerUser(userRegisterRequestDto, userEntity.getId());
     }
-    userEntity.setId(userResponseDto.getId());
-    userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-    userRepository.save(userEntity);
     return userResponseDto;
   }
 
 
-  public UserResponseDto createSellerUser(UserRegisterRequestDto userRegisterRequestDto) {
+  public UserResponseDto createSellerUser(UserRegisterRequestDto userRegisterRequestDto, Integer id) {
     Seller seller = userConverter.userRegisterRequestDtoToSeller(userRegisterRequestDto);
+    seller.setId(id);
     seller.setDateJoined(new Date());
     seller.setLastModifiedDate(new Date());
 
@@ -74,8 +80,9 @@ public class AuthServiceImpl implements AuthService {
     return userConverter.sellerToUserResponseDto(seller);
   }
 
-  public UserResponseDto createCustomerUser(UserRegisterRequestDto userRegisterRequestDto) {
+  public UserResponseDto createCustomerUser(UserRegisterRequestDto userRegisterRequestDto, Integer id) {
     Customer customer = userConverter.userRegisterRequestDtoToCustomer(userRegisterRequestDto);
+    customer.setId(id);
     customer.setDateJoined(new Date());
     customer.setLastModifiedDate(new Date());
 

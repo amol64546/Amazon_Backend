@@ -54,5 +54,9 @@ public class ErrorConstants {
     "Seller Not Found.",
     "Please verify the sellerId or register as seller."
   );
+  public static final Error INVALID_ROLE =
+    new Error(HttpStatus.BAD_REQUEST,
+      "Invalid role",
+      "Only CUSTOMER and SELLER roles are allowed to be used.");
 }
 

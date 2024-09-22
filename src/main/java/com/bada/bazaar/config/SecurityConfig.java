@@ -19,6 +19,7 @@ public class SecurityConfig {
 
   private static final String[] WHITE_LIST_URL = {
     "/v1/auth/**",
+    "/v1/admin",
     "/v2/api-docs",
     "/v3/api-docs",
     "/v3/api-docs/**",
@@ -35,7 +36,6 @@ public class SecurityConfig {
   private final AuthenticationProvider authenticationProvider;
   private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
   private final CustomAccessDeniedHandler customAccessDeniedHandler;
-//  private final LogoutHandler logoutHandler;
 
 
   @Bean
@@ -44,23 +44,16 @@ public class SecurityConfig {
       .cors(AbstractHttpConfigurer::disable)
       .csrf(AbstractHttpConfigurer::disable)
       .authorizeHttpRequests(auth -> auth
-//        .requestMatchers(WHITE_LIST_URL).permitAll()
-//        .anyRequest().authenticated()
-          .anyRequest().permitAll()
+        .requestMatchers(WHITE_LIST_URL).permitAll()
+        .anyRequest().authenticated()
       )
       .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
       .authenticationProvider(authenticationProvider)
       .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-//      .exceptionHandling(exception -> exception
-//        .authenticationEntryPoint(customAuthenticationEntryPoint)
-//        .accessDeniedHandler(customAccessDeniedHandler)
-//      )
-//      .logout(logout ->
-//        logout.logoutUrl("/v1/auth/logout")
-//          .addLogoutHandler(logoutHandler)
-//          .logoutSuccessHandler(
-//            (request, response, authentication) -> SecurityContextHolder.clearContext())
-//      )
+      .exceptionHandling(exception -> exception
+        .authenticationEntryPoint(customAuthenticationEntryPoint)
+        .accessDeniedHandler(customAccessDeniedHandler)
+      )
     ;
 
     return http.build();
