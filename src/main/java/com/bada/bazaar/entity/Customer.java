@@ -9,27 +9,23 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.Index;
-import jakarta.persistence.Table;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@JsonInclude(Include.NON_NULL)
+import java.io.Serializable;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+
+@JsonInclude(Include.NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
-@Table(indexes = {
-  @Index(name = "customer_username_email_phoneNumber",
-    columnList = "username, email, phoneNumber")
-})
 public class Customer implements Serializable {
 
   @Id
@@ -62,7 +58,9 @@ public class Customer implements Serializable {
   private Integer cartId;
 
   @ElementCollection
-  private List<Integer> cardIds = new ArrayList<>();
+  private List<Integer> cardIds = new LinkedList<>();
+
+  // productIds
 
   @ElementCollection
   private List<Integer> purchaseHistoryIds = new LinkedList<>();
@@ -77,6 +75,6 @@ public class Customer implements Serializable {
   private List<Integer> browsingHistoryIds = new LinkedList<>();
 
   @ElementCollection
-  private List<String> searchHistory = new LinkedList<>();
+  private List<String> searchHistoryIds = new LinkedList<>();
 
 }

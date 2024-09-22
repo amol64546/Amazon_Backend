@@ -3,6 +3,7 @@ package com.bada.bazaar.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@JsonInclude(Include.NON_NULL)
+@JsonInclude(Include.NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Data
@@ -29,11 +30,9 @@ public class Cart implements Serializable {
   @GeneratedValue
   private Integer id;
 
-  private Integer totalAmount;
+  private Double totalAmount;
 
-  private Integer buyerId;
-
-  private Date dateAdded;
+  private Integer customerId;
 
   @ElementCollection
   private List<Integer> itemIds = new LinkedList<>();

@@ -1,17 +1,17 @@
 package com.bada.bazaar.controller.Impl;
 
 import com.bada.bazaar.controller.ProductController;
-import com.bada.bazaar.entity.User;
 import com.bada.bazaar.dto.request.ProductPostRequestDto;
 import com.bada.bazaar.dto.request.ProductPutRequestDto;
 import com.bada.bazaar.dto.response.ProductResponseDto;
+import com.bada.bazaar.entity.Product;
+import com.bada.bazaar.enums.Category;
 import com.bada.bazaar.service.ProductService;
 import com.bada.bazaar.util.CommonServices;
-import com.bada.bazaar.util.JwtHelper;
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,12 +37,12 @@ public class ProductControllerImpl implements ProductController {
   }
 
   @Override
-  public ResponseEntity<ProductResponseDto> updateProduct(Integer productId,
+  public ResponseEntity<ProductResponseDto> updateProduct(
     ProductPutRequestDto productPutRequestDto,
     HttpServletRequest request) {
-    log.info("[PUT]: Request to update product by ID: {}", productId);
+    log.info("[PUT]: Request to update product by ID: {}", productPutRequestDto.getId());
     return ResponseEntity.status(HttpStatus.OK)
-      .body(productService.updateProduct(productId, productPutRequestDto, request));
+      .body(productService.updateProduct(productPutRequestDto, request));
   }
 
   @Override
@@ -53,28 +53,20 @@ public class ProductControllerImpl implements ProductController {
   }
 
   @Override
-  public ResponseEntity<ProductResponseDto> getProductById(Integer productId,
-    HttpServletRequest request) {
-    log.info("[GET]: Request to get product by ID: {}", productId);
-    return ResponseEntity.status(HttpStatus.OK)
-      .body(productService.getProductById(productId, request));
-  }
-
-  @Override
-  public ResponseEntity<List<ProductResponseDto>> getProductsBySellerId(
+  public ResponseEntity<Page<Product>> getProductsBySellerId(
     Integer sellerId,
     Pageable pageable, HttpServletRequest request) {
-    User user = JwtHelper.getUserInfo(request);
     log.info("[GET]: Request to get products by seller ID: {}", sellerId);
     return ResponseEntity.status(HttpStatus.OK)
       .body(productService.getProductsBySellerId(sellerId, pageable, request));
   }
 
   @Override
-  public ResponseEntity<List<ProductResponseDto>> getAllProducts(Pageable pageable,
-    HttpServletRequest request) {
-    log.info("[GET]: Request to get all products.");
+  public ResponseEntity<Page<Product>> getProductByCategory(
+    Category category,
+    Pageable pageable, HttpServletRequest request) {
+    log.info("[GET]: Request to get products by category: {}", category);
     return ResponseEntity.status(HttpStatus.OK)
-      .body(productService.getAllProducts(pageable, request));
+      .body(productService.getProductByCategory(category,pageable,request));
   }
 }

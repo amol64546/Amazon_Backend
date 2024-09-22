@@ -16,7 +16,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@JsonInclude(Include.NON_NULL)
+@JsonInclude(Include.NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @AllArgsConstructor
@@ -39,7 +39,7 @@ public class Card implements Serializable {
   @Enumerated(EnumType.STRING)
   private CardType cardType;
 
-  private Integer buyerId;
+  private Integer customerId;
 
 }
 

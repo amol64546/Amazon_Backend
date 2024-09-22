@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(Include.NON_NULL)
+@JsonInclude(Include.NON_EMPTY)
 public class UserLoginRequest implements Serializable {
 
     @NotBlank(message = "Username cannot be empty")

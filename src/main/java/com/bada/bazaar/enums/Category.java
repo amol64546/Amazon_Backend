@@ -1,17 +1,22 @@
 package com.bada.bazaar.enums;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum Category {
-    SPORTS(SportsSubCategory.class),
-    FASHION(FashionSubCategory.class),
-    ELECTRONICS(ElectronicsSubCategory.class);
 
-    private Class<? extends SubCategory> subCategoryClass;
+  SPORTS("SPORTS"),
+  FASHION("FASHION"),
+  ELECTRONICS("ELECTRONICS");
 
-    Category(Class<? extends SubCategory> subCategoryClass) {
-        this.subCategoryClass = subCategoryClass;
-    }
+  private final String value;
 
-    public Class<? extends SubCategory> getSubCategoryClass() {
-        return subCategoryClass;
-    }
+  Category(String value) {
+    this.value = value;
+  }
+
+  @JsonValue
+  public String getValue() {
+    return value;
+  }
+
 }

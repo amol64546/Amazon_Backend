@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(Include.NON_NULL)
+@JsonInclude(Include.NON_EMPTY)
 public class ProductResponseDto implements Serializable {
 
   private Integer id;
@@ -27,7 +27,7 @@ public class ProductResponseDto implements Serializable {
   private String name;
 
   private Category category;
-  private Enum<?> subCategory;
+  private String subCategory;
 
   private ProductStatus productStatus;
 

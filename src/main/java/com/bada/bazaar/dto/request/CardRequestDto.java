@@ -13,12 +13,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(Include.NON_NULL)
+@JsonInclude(Include.NON_EMPTY)
 public class CardRequestDto implements Serializable {
 
     private String cardNo;
     private Integer cvv;
     private String expiry;
     private CardType cardType;
-    private Integer buyerId;
+    private Integer customerId;
 }

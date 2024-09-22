@@ -2,6 +2,7 @@ package com.bada.bazaar.controller;
 
 import com.bada.bazaar.dto.request.CardRequestDto;
 import com.bada.bazaar.dto.response.CardResponseDto;
+import com.bada.bazaar.entity.Card;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Tag(name = "Card")
+@Tag(name = "Card Controller")
 @RequestMapping("/v1/cards")
 @PreAuthorize("hasRole('CUSTOMER')")
 public interface CardController {
@@ -37,7 +38,7 @@ public interface CardController {
 
   //Get all cards of customer
   @GetMapping("{customerId}")
-  ResponseEntity<List<CardResponseDto>> getAllCardsOfCustomer(
+  ResponseEntity<List<Card>> getAllCardsOfCustomer(
     @PathVariable Integer customerId,
     HttpServletRequest request
   );
