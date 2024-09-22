@@ -18,7 +18,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -63,10 +63,10 @@ public class Seller implements Serializable {
   private Map<Integer, Integer> salesHistory = new LinkedHashMap<>(); // productId -> quantity
 
   @ElementCollection
-  private List<String> reviews = new LinkedList<>();
+  private List<String> reviews = new ArrayList<>();
 
   @ElementCollection
-  private List<Integer> productIds = new LinkedList<>();
+  private List<Integer> productIds = new ArrayList<>();
 
 
 }

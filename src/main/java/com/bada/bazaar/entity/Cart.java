@@ -10,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,6 +35,6 @@ public class Cart implements Serializable {
   private Integer customerId;
 
   @ElementCollection
-  private List<Integer> itemIds = new LinkedList<>();
+  private List<Integer> itemIds = new ArrayList<>();
 
 }

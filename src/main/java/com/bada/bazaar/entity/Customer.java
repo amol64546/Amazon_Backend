@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(Include.NON_EMPTY)
@@ -44,7 +44,7 @@ public class Customer implements Serializable {
   @Column(unique = true)
   private String phoneNumber;
 
-  private String address;
+  private String shippingAddress;
   private Integer age;
   private String gender;
 
@@ -58,23 +58,23 @@ public class Customer implements Serializable {
   private Integer cartId;
 
   @ElementCollection
-  private List<Integer> cardIds = new LinkedList<>();
+  private List<Integer> cardIds = new ArrayList<>();
 
   // productIds
 
   @ElementCollection
-  private List<Integer> purchaseHistoryIds = new LinkedList<>();
+  private List<Integer> purchaseHistoryIds = new ArrayList<>();
 
   @ElementCollection
-  private List<Integer> wishlistIds = new LinkedList<>();
+  private List<Integer> wishlistIds = new ArrayList<>();
 
   @ElementCollection
-  private List<Integer> cartHistoryIds = new LinkedList<>();
+  private List<Integer> cartHistoryIds = new ArrayList<>();
 
   @ElementCollection
-  private List<Integer> browsingHistoryIds = new LinkedList<>();
+  private List<Integer> browsingHistoryIds = new ArrayList<>();
 
   @ElementCollection
-  private List<String> searchHistoryIds = new LinkedList<>();
+  private List<String> searchHistoryIds = new ArrayList<>();
 
 }

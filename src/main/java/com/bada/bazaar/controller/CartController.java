@@ -2,7 +2,6 @@ package com.bada.bazaar.controller;
 
 import com.bada.bazaar.dto.request.OrderRequestDto;
 import com.bada.bazaar.entity.Item;
-import com.bada.bazaar.entity.OrderEntity;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,8 +26,9 @@ public interface CartController {
                                      HttpServletRequest request);
 
   @PostMapping("{customerId}")
-  ResponseEntity<Page<OrderEntity>> checkout(@PathVariable Integer customerId,
-                                             HttpServletRequest request);
+  ResponseEntity<ModelMap> checkout(@PathVariable Integer customerId,
+                                    Integer cardId,
+                                    HttpServletRequest request);
 
   @GetMapping("{customerId}")
   ResponseEntity<Page<Item>> viewItems(@PathVariable Integer customerId,

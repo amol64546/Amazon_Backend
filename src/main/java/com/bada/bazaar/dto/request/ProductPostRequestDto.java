@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,5 +38,5 @@ public class ProductPostRequestDto implements Serializable {
 
   private Map<String, String> characteristics;
 
-  private List<String> tags = new LinkedList<>();
+  private List<String> tags = new ArrayList<>();
 }

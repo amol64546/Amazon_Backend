@@ -24,7 +24,6 @@ public class CardResponseDto implements Serializable {
 
     @JsonSerialize(using = FieldMasking.class)
     private String cardNo;
-    private String expiry;
     private CardType cardType;
 
 }

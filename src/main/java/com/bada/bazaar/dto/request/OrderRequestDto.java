@@ -1,13 +1,13 @@
 package com.bada.bazaar.dto.request;
 
-import com.bada.bazaar.enums.CardType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 @JsonInclude(Include.NON_EMPTY)
 public class OrderRequestDto implements Serializable {
 
-    private Integer productId;
-    private Integer customerId;
-    private Integer quantity;
-    private String shippingAddress;
-    private CardType paymentMode;
+  private Integer productId;
+  private Integer customerId;
+  private Integer quantity;
+  private String shippingAddress;
+  private Integer cardId;
 }

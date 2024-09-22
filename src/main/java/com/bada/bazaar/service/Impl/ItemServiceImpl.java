@@ -12,6 +12,7 @@ import com.bada.bazaar.repository.ItemRepository;
 import com.bada.bazaar.repository.ProductRepository;
 import com.bada.bazaar.service.ItemService;
 import com.bada.bazaar.util.CommonServices;
+import com.bada.bazaar.util.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +46,7 @@ public class ItemServiceImpl implements ItemService {
       .build();
     item = itemRepository.save(item);
 
-    CommonServices.UserInfo userInfo = CommonServices.getUserInfo(request);
+    UserInfo userInfo = CommonServices.getUserInfo(request);
     if(userInfo.role().equals(CUSTOMER.getValue())){
       Customer customer = customerRepository.findById(Integer.valueOf(userInfo.userId())).get();
       customer.getBrowsingHistoryIds().add(productId);

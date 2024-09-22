@@ -40,19 +40,19 @@ public class ErrorConstants {
   public static final Error CARD_NOT_FOUND = new Error(
     HttpStatus.NOT_FOUND,
     "Card Not Found",
-    "Please verify the cardId"
+    "Please verify the cardId or add new card."
   );
 
   public static final Error CUSTOMER_NOT_FOUND = new Error(
     HttpStatus.NOT_FOUND,
-    "Customer Not Found",
-    "Please verify the customerId"
+    "Customer Not Found.",
+    "Please verify the customerId or register as customer."
   );
 
   public static final Error SELLER_NOT_FOUND = new Error(
     HttpStatus.NOT_FOUND,
-    "Seller Not Found",
-    "Please verify the sellerId"
+    "Seller Not Found.",
+    "Please verify the sellerId or register as seller."
   );
 }
 
