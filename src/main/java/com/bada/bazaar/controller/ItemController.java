@@ -2,6 +2,7 @@ package com.bada.bazaar.controller;
 
 import com.bada.bazaar.dto.response.ItemResponseDto;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ public interface ItemController {
 
   @GetMapping("/{productId}")
   ResponseEntity<ItemResponseDto> viewItem(
-    @PathVariable int productId );
+    @PathVariable int productId,
+    HttpServletRequest request);
 
 }

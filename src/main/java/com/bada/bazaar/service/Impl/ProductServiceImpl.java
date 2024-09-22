@@ -9,6 +9,7 @@ import com.bada.bazaar.enums.Category;
 import com.bada.bazaar.error.ApiException;
 import com.bada.bazaar.error.ErrorConstants;
 import com.bada.bazaar.repository.ProductRepository;
+import com.bada.bazaar.repository.SellerRepository;
 import com.bada.bazaar.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class ProductServiceImpl implements ProductService {
 
   private final ProductRepository productRepository;
   private final ProductConverter productConverter;
+  private final SellerRepository sellerRepository;
 
   @Override
   public ProductResponseDto addProductBySellerId(ProductPostRequestDto productPostRequestDto,
@@ -63,6 +65,9 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public Page<Product> getProductsBySellerId(Integer sellerId, Pageable pageable,
                                              HttpServletRequest request) {
+    if(!sellerRepository.existsById(sellerId)) {
+      throw new ApiException(ErrorConstants.SELLER_NOT_FOUND);
+    }
     Product probe = Product.builder()
       .sellerId(sellerId)
       .build();

@@ -5,12 +5,14 @@ import com.bada.bazaar.converter.UserConverter;
 import com.bada.bazaar.dto.request.UserLoginRequest;
 import com.bada.bazaar.dto.request.UserRegisterRequestDto;
 import com.bada.bazaar.dto.response.UserResponseDto;
+import com.bada.bazaar.entity.Cart;
 import com.bada.bazaar.entity.Customer;
 import com.bada.bazaar.entity.Seller;
 import com.bada.bazaar.entity.User;
 import com.bada.bazaar.enums.Role;
 import com.bada.bazaar.error.ApiException;
 import com.bada.bazaar.error.ErrorConstants;
+import com.bada.bazaar.repository.CartRepository;
 import com.bada.bazaar.repository.CustomerRepository;
 import com.bada.bazaar.repository.SellerRepository;
 import com.bada.bazaar.repository.UserRepository;
@@ -38,6 +40,7 @@ public class AuthServiceImpl implements AuthService {
   private final UserConverter userConverter;
   private final RedisService redisService;
   private final SellerRepository sellerRepository;
+  private final CartRepository cartRepository;
 
   @Override
   public UserResponseDto register(UserRegisterRequestDto userRegisterRequestDto) {
@@ -66,17 +69,22 @@ public class AuthServiceImpl implements AuthService {
     seller.setDateJoined(new Date());
     seller.setLastModifiedDate(new Date());
 
-    Seller sellerFromDb = sellerRepository.save(seller);
+    seller = sellerRepository.save(seller);
     redisService.save(String.valueOf(seller.getId()), seller);
-    return userConverter.sellerToUserResponseDto(sellerFromDb);
+    return userConverter.sellerToUserResponseDto(seller);
   }
 
   public UserResponseDto createCustomerUser(UserRegisterRequestDto userRegisterRequestDto) {
     Customer customer = userConverter.userRegisterRequestDtoToCustomer(userRegisterRequestDto);
     customer.setDateJoined(new Date());
     customer.setLastModifiedDate(new Date());
-    Customer customerFromDb = customerRepository.save(customer);
-    return userConverter.customerToUserResponseDto(customerFromDb);
+
+    Cart cart = new Cart();
+    cart = cartRepository.save(cart);
+    customer.setCartId(cart.getId());
+    customer = customerRepository.save(customer);
+    redisService.save(String.valueOf(customer.getId()), customer);
+    return userConverter.customerToUserResponseDto(customer);
   }
 
 

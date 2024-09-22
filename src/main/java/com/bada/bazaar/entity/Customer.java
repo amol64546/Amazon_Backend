@@ -15,7 +15,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -59,7 +58,9 @@ public class Customer implements Serializable {
   private Integer cartId;
 
   @ElementCollection
-  private List<Integer> cardIds = new ArrayList<>();
+  private List<Integer> cardIds = new LinkedList<>();
+
+  // productIds
 
   @ElementCollection
   private List<Integer> purchaseHistoryIds = new LinkedList<>();
@@ -74,6 +75,6 @@ public class Customer implements Serializable {
   private List<Integer> browsingHistoryIds = new LinkedList<>();
 
   @ElementCollection
-  private List<String> searchHistory = new LinkedList<>();
+  private List<String> searchHistoryIds = new LinkedList<>();
 
 }

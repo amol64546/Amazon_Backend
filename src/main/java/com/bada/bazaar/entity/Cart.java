@@ -30,7 +30,7 @@ public class Cart implements Serializable {
   @GeneratedValue
   private Integer id;
 
-  private Integer totalAmount;
+  private Double totalAmount;
 
   private Integer customerId;
 

@@ -7,6 +7,7 @@ import com.bada.bazaar.entity.Card;
 import com.bada.bazaar.error.ApiException;
 import com.bada.bazaar.error.ErrorConstants;
 import com.bada.bazaar.repository.CardRepository;
+import com.bada.bazaar.repository.CustomerRepository;
 import com.bada.bazaar.service.CardService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class CardServiceImpl implements CardService {
 
   private final CardConverter cardConverter;
   private final CardRepository cardRepository;
+  private final CustomerRepository customerRepository;
 
   @Override
   public CardResponseDto addCardToCustomer(CardRequestDto cardRequestDto, HttpServletRequest request) {
@@ -35,6 +37,9 @@ public class CardServiceImpl implements CardService {
 
   @Override
   public ModelMap removeCardFromCustomer(Integer cardId, Integer customerId, HttpServletRequest request) {
+    if(!customerRepository.existsById(customerId)) {
+      throw new ApiException(ErrorConstants.CUSTOMER_NOT_FOUND);
+    }
     if(!cardRepository.existsById(cardId)){
       throw new ApiException(ErrorConstants.CARD_NOT_FOUND);
     }
@@ -45,6 +50,9 @@ public class CardServiceImpl implements CardService {
 
   @Override
   public List<Card> getAllCardsOfCustomer(Integer customerId, HttpServletRequest request) {
+    if(!customerRepository.existsById(customerId)) {
+      throw new ApiException(ErrorConstants.CUSTOMER_NOT_FOUND);
+    }
     Card card = Card.builder()
       .customerId(customerId)
       .build();

@@ -39,7 +39,7 @@ public class CardControllerImpl implements CardController {
     HttpServletRequest request) {
     log.info("[DELETE]: Request to remove card, cardId: {}, customerId: {}",
       cardId, customerId);
-    return ResponseEntity.status(HttpStatus.CREATED)
+    return ResponseEntity.status(HttpStatus.OK)
       .body(cardService.removeCardFromCustomer(cardId, customerId, request));
   }
 
@@ -47,7 +47,7 @@ public class CardControllerImpl implements CardController {
   public ResponseEntity<List<Card>> getAllCardsOfCustomer(Integer customerId,
     HttpServletRequest request) {
     log.info("[GET]: Request to get all cards, customerId: {}", customerId);
-    return ResponseEntity.status(HttpStatus.CREATED)
+    return ResponseEntity.status(HttpStatus.OK)
       .body(cardService.getAllCardsOfCustomer(customerId, request));
   }
 }
