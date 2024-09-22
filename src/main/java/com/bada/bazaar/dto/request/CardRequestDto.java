@@ -20,5 +20,5 @@ public class CardRequestDto implements Serializable {
     private Integer cvv;
     private String expiry;
     private CardType cardType;
-    private Integer buyerId;
+    private Integer customerId;
 }

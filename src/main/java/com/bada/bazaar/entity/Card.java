@@ -39,7 +39,7 @@ public class Card implements Serializable {
   @Enumerated(EnumType.STRING)
   private CardType cardType;
 
-  private Integer buyerId;
+  private Integer customerId;
 
 }
 

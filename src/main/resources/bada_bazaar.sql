@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: card; Type: TABLE; Schema: public; Owner: postgres
+-- Name: card; Type: TABLE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE TABLE public.card (
@@ -35,10 +35,10 @@ CREATE TABLE public.card (
 );
 
 
-ALTER TABLE public.card OWNER TO postgres;
+ALTER TABLE public.card OWNER TO bada_bazaar_user;
 
 --
--- Name: card_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: card_id_seq; Type: SEQUENCE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE SEQUENCE public.card_id_seq
@@ -50,17 +50,17 @@ CREATE SEQUENCE public.card_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.card_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.card_id_seq OWNER TO bada_bazaar_user;
 
 --
--- Name: card_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: card_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER SEQUENCE public.card_id_seq OWNED BY public.card.id;
 
 
 --
--- Name: cart; Type: TABLE; Schema: public; Owner: postgres
+-- Name: cart; Type: TABLE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE TABLE public.cart (
@@ -71,10 +71,10 @@ CREATE TABLE public.cart (
 );
 
 
-ALTER TABLE public.cart OWNER TO postgres;
+ALTER TABLE public.cart OWNER TO bada_bazaar_user;
 
 --
--- Name: cart_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: cart_id_seq; Type: SEQUENCE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE SEQUENCE public.cart_id_seq
@@ -86,17 +86,17 @@ CREATE SEQUENCE public.cart_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.cart_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.cart_id_seq OWNER TO bada_bazaar_user;
 
 --
--- Name: cart_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: cart_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER SEQUENCE public.cart_id_seq OWNED BY public.cart.id;
 
 
 --
--- Name: cart_item_ids; Type: TABLE; Schema: public; Owner: postgres
+-- Name: cart_item_ids; Type: TABLE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE TABLE public.cart_item_ids (
@@ -105,10 +105,10 @@ CREATE TABLE public.cart_item_ids (
 );
 
 
-ALTER TABLE public.cart_item_ids OWNER TO postgres;
+ALTER TABLE public.cart_item_ids OWNER TO bada_bazaar_user;
 
 --
--- Name: customer; Type: TABLE; Schema: public; Owner: postgres
+-- Name: customer; Type: TABLE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE TABLE public.customer (
@@ -127,10 +127,10 @@ CREATE TABLE public.customer (
 );
 
 
-ALTER TABLE public.customer OWNER TO postgres;
+ALTER TABLE public.customer OWNER TO bada_bazaar_user;
 
 --
--- Name: customer_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: customer_id_seq; Type: SEQUENCE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE SEQUENCE public.customer_id_seq
@@ -142,17 +142,17 @@ CREATE SEQUENCE public.customer_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.customer_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.customer_id_seq OWNER TO bada_bazaar_user;
 
 --
--- Name: customer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: customer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER SEQUENCE public.customer_id_seq OWNED BY public.customer.id;
 
 
 --
--- Name: item; Type: TABLE; Schema: public; Owner: postgres
+-- Name: item; Type: TABLE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE TABLE public.item (
@@ -166,10 +166,10 @@ CREATE TABLE public.item (
 );
 
 
-ALTER TABLE public.item OWNER TO postgres;
+ALTER TABLE public.item OWNER TO bada_bazaar_user;
 
 --
--- Name: item_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: item_id_seq; Type: SEQUENCE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE SEQUENCE public.item_id_seq
@@ -181,17 +181,17 @@ CREATE SEQUENCE public.item_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.item_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.item_id_seq OWNER TO bada_bazaar_user;
 
 --
--- Name: item_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: item_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER SEQUENCE public.item_id_seq OWNED BY public.item.id;
 
 
 --
--- Name: ordered; Type: TABLE; Schema: public; Owner: postgres
+-- Name: ordered; Type: TABLE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE TABLE public.ordered (
@@ -209,10 +209,10 @@ CREATE TABLE public.ordered (
 );
 
 
-ALTER TABLE public.ordered OWNER TO postgres;
+ALTER TABLE public.ordered OWNER TO bada_bazaar_user;
 
 --
--- Name: ordered_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: ordered_id_seq; Type: SEQUENCE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE SEQUENCE public.ordered_id_seq
@@ -224,17 +224,17 @@ CREATE SEQUENCE public.ordered_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.ordered_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.ordered_id_seq OWNER TO bada_bazaar_user;
 
 --
--- Name: ordered_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: ordered_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER SEQUENCE public.ordered_id_seq OWNED BY public.ordered.id;
 
 
 --
--- Name: product; Type: TABLE; Schema: public; Owner: postgres
+-- Name: product; Type: TABLE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE TABLE public.product (
@@ -250,17 +250,17 @@ CREATE TABLE public.product (
     rating integer,
     seller_id integer,
     stock integer,
-    sub_category bytea,
+    sub_category character varying(255),
     views integer,
     CONSTRAINT product_category_check CHECK (((category)::text = ANY ((ARRAY['SPORTS'::character varying, 'FASHION'::character varying, 'ELECTRONICS'::character varying])::text[]))),
     CONSTRAINT product_product_status_check CHECK (((product_status)::text = ANY ((ARRAY['AVAILABLE'::character varying, 'OUT_OF_STOCK'::character varying])::text[])))
 );
 
 
-ALTER TABLE public.product OWNER TO postgres;
+ALTER TABLE public.product OWNER TO bada_bazaar_user;
 
 --
--- Name: product_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: product_id_seq; Type: SEQUENCE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE SEQUENCE public.product_id_seq
@@ -272,17 +272,17 @@ CREATE SEQUENCE public.product_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.product_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.product_id_seq OWNER TO bada_bazaar_user;
 
 --
--- Name: product_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: product_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER SEQUENCE public.product_id_seq OWNED BY public.product.id;
 
 
 --
--- Name: seller; Type: TABLE; Schema: public; Owner: postgres
+-- Name: seller; Type: TABLE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE TABLE public.seller (
@@ -300,10 +300,10 @@ CREATE TABLE public.seller (
 );
 
 
-ALTER TABLE public.seller OWNER TO postgres;
+ALTER TABLE public.seller OWNER TO bada_bazaar_user;
 
 --
--- Name: seller_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: seller_id_seq; Type: SEQUENCE; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE SEQUENCE public.seller_id_seq
@@ -315,66 +315,66 @@ CREATE SEQUENCE public.seller_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.seller_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.seller_id_seq OWNER TO bada_bazaar_user;
 
 --
--- Name: seller_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: seller_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER SEQUENCE public.seller_id_seq OWNED BY public.seller.id;
 
 
 --
--- Name: card id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: card id; Type: DEFAULT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.card ALTER COLUMN id SET DEFAULT nextval('public.card_id_seq'::regclass);
 
 
 --
--- Name: cart id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: cart id; Type: DEFAULT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.cart ALTER COLUMN id SET DEFAULT nextval('public.cart_id_seq'::regclass);
 
 
 --
--- Name: customer id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: customer id; Type: DEFAULT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.customer ALTER COLUMN id SET DEFAULT nextval('public.customer_id_seq'::regclass);
 
 
 --
--- Name: item id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: item id; Type: DEFAULT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.item ALTER COLUMN id SET DEFAULT nextval('public.item_id_seq'::regclass);
 
 
 --
--- Name: ordered id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: ordered id; Type: DEFAULT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.ordered ALTER COLUMN id SET DEFAULT nextval('public.ordered_id_seq'::regclass);
 
 
 --
--- Name: product id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: product id; Type: DEFAULT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.product ALTER COLUMN id SET DEFAULT nextval('public.product_id_seq'::regclass);
 
 
 --
--- Name: seller id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: seller id; Type: DEFAULT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.seller ALTER COLUMN id SET DEFAULT nextval('public.seller_id_seq'::regclass);
 
 
 --
--- Name: card card_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: card card_pkey; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.card
@@ -382,7 +382,7 @@ ALTER TABLE ONLY public.card
 
 
 --
--- Name: cart cart_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: cart cart_pkey; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.cart
@@ -390,7 +390,7 @@ ALTER TABLE ONLY public.cart
 
 
 --
--- Name: customer customer_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: customer customer_pkey; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.customer
@@ -398,7 +398,7 @@ ALTER TABLE ONLY public.customer
 
 
 --
--- Name: item item_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: item item_pkey; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.item
@@ -406,7 +406,7 @@ ALTER TABLE ONLY public.item
 
 
 --
--- Name: ordered ordered_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: ordered ordered_pkey; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.ordered
@@ -414,7 +414,7 @@ ALTER TABLE ONLY public.ordered
 
 
 --
--- Name: product product_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: product product_pkey; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.product
@@ -422,7 +422,7 @@ ALTER TABLE ONLY public.product
 
 
 --
--- Name: seller seller_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: seller seller_pkey; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.seller
@@ -430,7 +430,7 @@ ALTER TABLE ONLY public.seller
 
 
 --
--- Name: card uk_2gifx4rwq94tfkasgtoaxpdah; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: card uk_2gifx4rwq94tfkasgtoaxpdah; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.card
@@ -438,7 +438,7 @@ ALTER TABLE ONLY public.card
 
 
 --
--- Name: seller uk_3gnjncn8l4no25wl7pyjqrx3p; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: seller uk_3gnjncn8l4no25wl7pyjqrx3p; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.seller
@@ -446,7 +446,7 @@ ALTER TABLE ONLY public.seller
 
 
 --
--- Name: seller uk_3slg2gbtwwcmki7wa5j4k5107; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: seller uk_3slg2gbtwwcmki7wa5j4k5107; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.seller
@@ -454,7 +454,7 @@ ALTER TABLE ONLY public.seller
 
 
 --
--- Name: seller uk_crgbovyy4gvgsum2yyb3fbfn7; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: seller uk_crgbovyy4gvgsum2yyb3fbfn7; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.seller
@@ -462,7 +462,7 @@ ALTER TABLE ONLY public.seller
 
 
 --
--- Name: customer uk_dwk6cx0afu8bs9o4t536v1j5v; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: customer uk_dwk6cx0afu8bs9o4t536v1j5v; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.customer
@@ -470,7 +470,7 @@ ALTER TABLE ONLY public.customer
 
 
 --
--- Name: customer uk_irnrrncatp2fvw52vp45j7rlw; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: customer uk_irnrrncatp2fvw52vp45j7rlw; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.customer
@@ -478,7 +478,7 @@ ALTER TABLE ONLY public.customer
 
 
 --
--- Name: customer uk_rosd2guvs3i1agkplv5n8vu82; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: customer uk_rosd2guvs3i1agkplv5n8vu82; Type: CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.customer
@@ -486,21 +486,21 @@ ALTER TABLE ONLY public.customer
 
 
 --
--- Name: customer_username_email_phonenumber; Type: INDEX; Schema: public; Owner: postgres
+-- Name: customer_username_email_phonenumber; Type: INDEX; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE INDEX customer_username_email_phonenumber ON public.customer USING btree (username, email, phone_number);
 
 
 --
--- Name: seller_username_email_phonenumber; Type: INDEX; Schema: public; Owner: postgres
+-- Name: seller_username_email_phonenumber; Type: INDEX; Schema: public; Owner: bada_bazaar_user
 --
 
 CREATE INDEX seller_username_email_phonenumber ON public.seller USING btree (username, email, phone_number);
 
 
 --
--- Name: cart_item_ids fk8dgfi3x8mtaid2rewcyyylwx2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: cart_item_ids fk8dgfi3x8mtaid2rewcyyylwx2; Type: FK CONSTRAINT; Schema: public; Owner: bada_bazaar_user
 --
 
 ALTER TABLE ONLY public.cart_item_ids

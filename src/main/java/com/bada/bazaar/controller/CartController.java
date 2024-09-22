@@ -1,11 +1,10 @@
 package com.bada.bazaar.controller;
 
 import com.bada.bazaar.dto.request.OrderRequestDto;
-import com.bada.bazaar.dto.response.ItemResponseDto;
-import com.bada.bazaar.dto.response.OrderResponseDto;
-import com.bada.bazaar.service.CartService;
+import com.bada.bazaar.entity.Item;
+import com.bada.bazaar.entity.OrderEntity;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import java.util.List;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +20,9 @@ public interface CartController {
   ResponseEntity<String> addToCart(@RequestBody OrderRequestDto orderRequestDto);
 
   @PostMapping("{customerId}")
-  ResponseEntity<List<OrderResponseDto>> checkout(@PathVariable Integer customerId);
+  ResponseEntity<Page<OrderEntity>> checkout(@PathVariable Integer customerId);
 
   @GetMapping("{customerId}")
-  ResponseEntity<List<ItemResponseDto>> viewItems(@PathVariable Integer customerId) ;
+  ResponseEntity<Page<Item>> viewItems(@PathVariable Integer customerId);
 
 }

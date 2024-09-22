@@ -2,6 +2,7 @@ package com.bada.bazaar.controller;
 
 import com.bada.bazaar.dto.request.CardRequestDto;
 import com.bada.bazaar.dto.response.CardResponseDto;
+import com.bada.bazaar.entity.Card;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -37,7 +38,7 @@ public interface CardController {
 
   //Get all cards of customer
   @GetMapping("{customerId}")
-  ResponseEntity<List<CardResponseDto>> getAllCardsOfCustomer(
+  ResponseEntity<List<Card>> getAllCardsOfCustomer(
     @PathVariable Integer customerId,
     HttpServletRequest request
   );

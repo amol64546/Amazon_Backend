@@ -23,5 +23,11 @@ public class ErrorConstants {
     "Product Not Found",
     "Please verify the productId"
   );
+
+  public static final Error CARD_NOT_FOUND = new Error(
+    HttpStatus.NOT_FOUND,
+    "Card Not Found",
+    "Please verify the cardId"
+  );
 }
 
