@@ -1,6 +1,5 @@
 package com.bada.bazaar.controller;
 
-import com.bada.bazaar.entity.Product;
 import com.bada.bazaar.entity.User;
 import com.bada.bazaar.enums.Role;
 import io.swagger.v3.oas.annotations.Parameter;

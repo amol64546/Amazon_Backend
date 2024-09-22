@@ -45,7 +45,7 @@ public class AuthServiceImpl implements AuthService {
   @Override
   public UserResponseDto register(UserRegisterRequestDto userRegisterRequestDto) {
 
-    if (!userRegisterRequestDto.getRole().getValue().equals(Role.SELLER.getValue()) ||
+    if (!userRegisterRequestDto.getRole().getValue().equals(Role.SELLER.getValue()) &&
       !userRegisterRequestDto.getRole().getValue().equals(Role.CUSTOMER.getValue())) {
       throw new ApiException(ErrorConstants.INVALID_ROLE);
     }
@@ -59,10 +59,10 @@ public class AuthServiceImpl implements AuthService {
     userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
     userEntity = userRepository.save(userEntity);
 
-    UserResponseDto userResponseDto;
+    UserResponseDto userResponseDto = null;
     if (userRegisterRequestDto.getRole().getValue().equals(Role.SELLER.getValue())) {
       userResponseDto = createSellerUser(userRegisterRequestDto, userEntity.getId());
-    } else {
+    } else if (userRegisterRequestDto.getRole().getValue().equals(Role.CUSTOMER.getValue())) {
       userResponseDto = createCustomerUser(userRegisterRequestDto, userEntity.getId());
     }
     return userResponseDto;
