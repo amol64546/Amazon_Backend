@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class OrderRequestDto implements Serializable {
 
     private Integer productId;
-    private Integer buyerId;
+    private Integer customerId;
     private Integer quantity;
     private String shippingAddress;
     private CardType paymentMode;

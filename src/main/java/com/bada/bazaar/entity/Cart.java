@@ -32,10 +32,7 @@ public class Cart implements Serializable {
 
   private Integer totalAmount;
 
-  private Integer buyerId;
-
-  @Column(updatable = false)
-  private Date dateAdded;
+  private Integer customerId;
 
   @ElementCollection
   private List<Integer> itemIds = new LinkedList<>();
