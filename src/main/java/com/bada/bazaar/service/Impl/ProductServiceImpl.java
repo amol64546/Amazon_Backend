@@ -32,6 +32,9 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public ProductResponseDto addProductBySellerId(ProductPostRequestDto productPostRequestDto,
                                                  HttpServletRequest request) {
+    if (!sellerRepository.existsById(productPostRequestDto.getSellerId())) {
+      throw new ApiException(ErrorConstants.SELLER_NOT_FOUND);
+    }
     Product product = productConverter.productPostRequestDtoToProduct(productPostRequestDto);
     productRepository.save(product);
     return productConverter.productToProductResponseDto(product);

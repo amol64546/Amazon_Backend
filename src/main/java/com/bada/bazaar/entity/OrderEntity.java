@@ -1,6 +1,6 @@
 package com.bada.bazaar.entity;
 
-import com.bada.bazaar.enums.CardType;
+import com.bada.bazaar.enums.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -8,6 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(Include.NON_EMPTY)
@@ -29,7 +30,7 @@ import java.util.List;
 public class OrderEntity implements Serializable {
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @Column(updatable = false)
@@ -43,14 +44,14 @@ public class OrderEntity implements Serializable {
 
   private String shippingAddress;
 
-  private CardType paymentMode;
+  private String cardId;
 
-  private String paymentStatus;
+  private PaymentStatus paymentStatus;
 
-  private Integer buyerId;
+  private Integer customerId;
 
   @ElementCollection
-  private List<Integer> itemIds = new LinkedList<>();
+  private List<Integer> itemIds = new ArrayList<>();
 
   private Integer quantity;
 

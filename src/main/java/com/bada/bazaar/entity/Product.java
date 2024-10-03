@@ -11,11 +11,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -33,7 +34,7 @@ import lombok.NoArgsConstructor;
 public class Product implements Serializable {
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   private String name;
@@ -59,10 +60,10 @@ public class Product implements Serializable {
   private Date lastModifiedDate;
 
   @ElementCollection
-  private List<String> tags = new LinkedList<>();
+  private List<String> tags = new ArrayList<>();
 
   @ElementCollection
-  private List<String> reviews = new LinkedList<>();
+  private List<String> reviews = new ArrayList<>();
 
   private Integer rating = 0;
   private Integer views = 0;

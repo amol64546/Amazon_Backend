@@ -1,5 +1,6 @@
 package com.bada.bazaar.dto.response;
 
+import com.bada.bazaar.entity.Card;
 import com.bada.bazaar.enums.CardType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -26,7 +27,8 @@ public class OrderResponseDto implements Serializable {
   private Integer quantity;
   private Double totalCost;
   private Double deliveryCharge;
-  private CardType paymentMode;
+  private Date deliveryDate;
+  private CardResponseDto cardResponseDto;
   private String shippingAddress;
 
 }

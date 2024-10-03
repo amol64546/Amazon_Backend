@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,9 +15,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +31,6 @@ import java.util.Map;
 public class Seller implements Serializable {
 
   @Id
-  @GeneratedValue
   private Integer id;
 
   private Integer rating;
@@ -63,10 +61,10 @@ public class Seller implements Serializable {
   private Map<Integer, Integer> salesHistory = new LinkedHashMap<>(); // productId -> quantity
 
   @ElementCollection
-  private List<String> reviews = new LinkedList<>();
+  private List<String> reviews = new ArrayList<>();
 
   @ElementCollection
-  private List<Integer> productIds = new LinkedList<>();
+  private List<Integer> productIds = new ArrayList<>();
 
 
 }

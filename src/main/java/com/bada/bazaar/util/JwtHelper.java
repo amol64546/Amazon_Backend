@@ -38,7 +38,6 @@ public class JwtHelper {
       .claim(USERNAME, user.getUsername())
       .claim(USER_ID, user.getId())
       .claim(ROLE, user.getRole())
-      .claim("tenantId", "618b6fdef5dacc0001a6b1b0")
       .signWith(getSignInKey(), SignatureAlgorithm.HS256)
       .compact();
   }

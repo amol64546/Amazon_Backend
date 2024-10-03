@@ -3,7 +3,6 @@ package com.bada.bazaar.controller.Impl;
 import com.bada.bazaar.controller.CartController;
 import com.bada.bazaar.dto.request.OrderRequestDto;
 import com.bada.bazaar.entity.Item;
-import com.bada.bazaar.entity.OrderEntity;
 import com.bada.bazaar.service.CartService;
 import com.bada.bazaar.util.CommonServices;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,11 +34,12 @@ public class CartControllerImpl implements CartController {
   }
 
   @Override
-  public ResponseEntity<Page<OrderEntity>> checkout(Integer customerId,
-                                                    HttpServletRequest request) {
+  public ResponseEntity<ModelMap> checkout(Integer customerId,
+                                           Integer cardId,
+                                           HttpServletRequest request) {
     log.info("[POST]: Request to checkout cart, customerId: {}", customerId);
     return ResponseEntity.status(HttpStatus.CREATED)
-      .body(cartService.checkout(customerId, request));
+      .body(cartService.checkout(customerId, cardId, request));
   }
 
   @Override

@@ -28,7 +28,6 @@ public class CommonServices {
     }
   }
 
-  public record UserInfo(String userId, String role) {}
 
   public static UserInfo getUserInfo(HttpServletRequest request) {
     String role = request.getHeader(ROLE);
