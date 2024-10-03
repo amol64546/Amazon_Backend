@@ -105,7 +105,7 @@ public class CartServiceImpl implements CartService {
     List<Item> items = itemRepository.findAllById(cart.getItemIds());
 
     List<OrderResponseDto> orderResponseDtos = new ArrayList<>();
-    for(Item item : items) {
+    items.forEach(item -> {
       Optional<Product> product = productRepository.findById(item.getProductId());
       Date currentDate = new Date();
 
@@ -137,7 +137,7 @@ public class CartServiceImpl implements CartService {
       order = orderRepository.save(order);
       OrderResponseDto orderResponseDto = orderConverter.orderToOrderResponseDto(order);
       orderResponseDtos.add(orderResponseDto);
-    }
+    });
 
     Optional<Card> card = cardRepository.findById(cardId);
     if(card.isEmpty()){

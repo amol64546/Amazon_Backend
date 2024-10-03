@@ -2,6 +2,7 @@ package com.bada.bazaar.controller;
 
 import com.bada.bazaar.entity.User;
 import com.bada.bazaar.enums.Role;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/v1/admin")
 public interface AdminController {
 
-
+  @Operation(summary = "Get users by role")
   @GetMapping
   ResponseEntity<Page<User>> getUsersByRole(
     @RequestParam Role role,
