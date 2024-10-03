@@ -3,6 +3,7 @@ package com.bada.bazaar.controller;
 import com.bada.bazaar.dto.request.CardRequestDto;
 import com.bada.bazaar.dto.response.CardResponseDto;
 import com.bada.bazaar.entity.Card;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +21,14 @@ import java.util.List;
 @RequestMapping("/v1/cards")
 public interface CardController {
 
-  //Add card to customer
+  @Operation(summary = "Add card")
   @PostMapping
   ResponseEntity<CardResponseDto> addCardToCustomer(
     @RequestBody CardRequestDto cardRequestDto,
     HttpServletRequest request
   );
 
-  //Remove card from customer
+  @Operation(summary = "Remove card")
   @DeleteMapping("{cardId}/customer/{customerId}")
   ResponseEntity<ModelMap> removeCardFromCustomer(
     @PathVariable Integer cardId,
@@ -35,7 +36,7 @@ public interface CardController {
     HttpServletRequest request
   );
 
-  //Get all cards of customer
+  @Operation(summary = "Get all cards")
   @GetMapping("{customerId}")
   ResponseEntity<List<Card>> getAllCardsOfCustomer(
     @PathVariable Integer customerId,

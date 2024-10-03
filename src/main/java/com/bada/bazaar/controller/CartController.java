@@ -2,6 +2,7 @@ package com.bada.bazaar.controller;
 
 import com.bada.bazaar.dto.request.OrderRequestDto;
 import com.bada.bazaar.entity.Item;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,15 +22,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/v1/carts")
 public interface CartController {
 
+  @Operation(summary = "Add product to cart")
   @PostMapping
   ResponseEntity<ModelMap> addToCart(@RequestBody OrderRequestDto orderRequestDto,
                                      HttpServletRequest request);
 
+  @Operation(summary = "Checkout cart")
   @PostMapping("{customerId}")
   ResponseEntity<ModelMap> checkout(@PathVariable Integer customerId,
                                     Integer cardId,
                                     HttpServletRequest request);
 
+  @Operation(summary = "Get all products in cart")
   @GetMapping("{customerId}")
   ResponseEntity<Page<Item>> viewItems(@PathVariable Integer customerId,
                                        @Parameter(hidden = true) @PageableDefault(sort = "dateAdded",
